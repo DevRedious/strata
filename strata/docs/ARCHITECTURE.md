@@ -42,7 +42,11 @@ Conséquence : aucun secret ne doit être versionné ici. Les workflows de publi
 - **Workflows de Vencord.** Les cinq workflows de `.github/workflows/` publient uniquement si `github.repository == 'Vendicated/Vencord'`. Chez nous, `build.yml` et `test.yml` se contentent de compiler et de tester, et les autres ne font rien : aucun n'a besoin d'être modifié.
 - **Ce qui nous appartient.** Notre code vit dans `strata/` (thème, outils, documentation). Le plugin ira dans `src/plugins/strata/`, puisque Vencord ne compile comme plugins que les dossiers de `src/plugins/` et `src/userplugins/`, et que ce dernier est ignoré par Git. Un dossier entièrement nouveau ne crée pas de conflit lors des fusions avec Vencord.
 - **Attention.** Un dossier dans `src/plugins/` sans fichier `index` casse la compilation : le plugin ne doit y être créé qu'avec son code.
-- **Fichiers de Vencord.** On ne les modifie que lorsque c'est indispensable (par exemple pour rebaptiser la distribution ou l'outil de mise à jour), et chaque modification est notée dans ce document.
+- **Fichiers de Vencord.** On ne les modifie que lorsque c'est indispensable (par exemple pour rebaptiser la distribution ou l'outil de mise à jour), et chaque modification est notée ici. Lors d'une fusion avec `upstream`, on garde notre version de ces fichiers.
+
+  | Fichier | Modification | Depuis |
+  |---|---|---|
+  | `README.md` | Remplacé par le README de Strata, qui crédite Vencord et rappelle la licence. | 2026-10-22 |
 - **Mises à jour de Vencord.** On les récupère avec `git fetch upstream && git merge upstream/main` ; une tâche planifiée GitHub Actions le fera automatiquement.
 
 ## Installation chez un collègue (à construire)

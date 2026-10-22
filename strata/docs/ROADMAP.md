@@ -4,7 +4,7 @@
 
 - [x] Thème complet, vérifié visuellement sur les salons textuels, les forums, les fils, la page Amis, les paramètres, les salons vocaux et leur chat, les profils, le tiroir ouvert et fermé, et le panneau utilisateur.
 - [x] Outils : vérification des classes, recherche dans le CSS de Discord, assemblage et installation du thème, captures d'écran.
-- [x] Fork public `DevRedious/strata`, avec Vencord déclaré comme `upstream`.
+- [x] Dépôt public `DevRedious/strata`, indépendant (pas un fork GitHub) mais avec tout l'historique de Vencord, déclaré comme `upstream`.
 - [x] Architecture choisie et documentée ([ARCHITECTURE.md](ARCHITECTURE.md)).
 
 ## Phase 1 : le plugin et le menu, testés en local
@@ -22,7 +22,6 @@
 - [ ] Vérifier comment `gitRemote` et `gitHash` sont calculés, ainsi que le format attendu pour les releases (voir [ARCHITECTURE.md](ARCHITECTURE.md)).
 - [ ] Workflow de compilation et de publication des releases, sur le modèle de celui de Vencord, avec le bon nom de release et les bons fichiers.
 - [ ] Workflow planifié qui fusionne `upstream/main`, compile, et ne publie que si la compilation réussit.
-- [ ] Activer GitHub Actions sur le fork : c'est désactivé par défaut sur un fork.
 - [ ] Rebaptiser l'outil de mise à jour (nom affiché, lien vers le dépôt) si nécessaire.
 
 ## Phase 3 : installation par les collègues

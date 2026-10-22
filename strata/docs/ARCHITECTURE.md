@@ -21,7 +21,7 @@ Plusieurs approches ont été comparées le 2026-10-22.
 
 L'outil de mise à jour de Vencord (`src/main/updater/http.ts`) interroge `https://api.github.com/repos/${gitRemote}/releases/latest` :
 
-- **Le dépôt interrogé.** `gitRemote` est fixé au moment de la compilation. Une version compilée depuis ce fork interroge donc `DevRedious/strata`.
+- **Le dépôt interrogé.** `gitRemote` est fixé au moment de la compilation. Une version compilée depuis ce dépôt interroge donc `DevRedious/strata`.
 - **La version.** Le hash de commit est lu dans le **dernier mot du nom de la release**, puis comparé au hash compilé.
 - **Les fichiers.** Les fichiers de la release dont le nom commence par une entrée de `VENCORD_FILES` sont téléchargés, puis écrits à la place des fichiers en cours d'utilisation.
 
@@ -37,7 +37,9 @@ Conséquence : aucun secret ne doit être versionné ici. Les workflows de publi
 
 ## Organisation du dépôt
 
-- **Remotes.** `origin` pointe sur `DevRedious/strata` (fork GitHub), `upstream` sur `Vendicated/Vencord`.
+- **Remotes.** `origin` pointe sur `DevRedious/strata`, `upstream` sur `Vendicated/Vencord`.
+- **Dépôt indépendant, pas un fork GitHub.** Le fork d'origine a été remplacé le 2026-10-22 par un dépôt ordinaire qui contient tout l'historique de Vencord. Les fusions avec `upstream` fonctionnent pareil, puisque Git ne dépend que de l'historique commun. On y gagne : plus de PR proposées par défaut vers Vendicated/Vencord, GitHub Actions actif d'office, et un dépôt présenté comme un produit à part entière.
+- **Workflows de Vencord.** Les cinq workflows de `.github/workflows/` publient uniquement si `github.repository == 'Vendicated/Vencord'`. Chez nous, `build.yml` et `test.yml` se contentent de compiler et de tester, et les autres ne font rien : aucun n'a besoin d'être modifié.
 - **Ce qui nous appartient.** Notre code vit dans `strata/` (thème, outils, documentation). Le plugin ira dans `src/plugins/strata/`, puisque Vencord ne compile comme plugins que les dossiers de `src/plugins/` et `src/userplugins/`, et que ce dernier est ignoré par Git. Un dossier entièrement nouveau ne crée pas de conflit lors des fusions avec Vencord.
 - **Attention.** Un dossier dans `src/plugins/` sans fichier `index` casse la compilation : le plugin ne doit y être créé qu'avec son code.
 - **Fichiers de Vencord.** On ne les modifie que lorsque c'est indispensable (par exemple pour rebaptiser la distribution ou l'outil de mise à jour), et chaque modification est notée dans ce document.

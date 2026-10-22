@@ -1,6 +1,6 @@
 # Strata
 
-Ce dépôt est un fork de Vencord. On y construit **Strata** : Vencord, plus un plugin maison (thème et menu de réglages), compilé et publié depuis `DevRedious/strata`. Lire d'abord `strata/README.md`, puis `strata/docs/ARCHITECTURE.md`, `strata/docs/ROADMAP.md` et `strata/docs/THEME-NOTES.md`.
+Ce dépôt est une copie indépendante de Vencord (pas un fork GitHub), qui garde son historique et le suit via le remote `upstream`. On y construit **Strata** : Vencord, plus un plugin maison (thème et menu de réglages), compilé et publié depuis `DevRedious/strata`. Lire d'abord `strata/README.md`, puis `strata/docs/ARCHITECTURE.md`, `strata/docs/ROADMAP.md` et `strata/docs/THEME-NOTES.md`.
 
 Les règles de Vencord dans `AGENTS.md` s'appliquent : ne jamais créer d'issue ni de pull request.
 

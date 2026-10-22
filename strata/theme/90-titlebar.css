@@ -1,0 +1,61 @@
+/* Barre de titre : boutons de fenêtre en pastilles façon macOS.
+   Ordre Discord : réduire, agrandir, fermer ; ordre macOS : fermer, réduire, agrandir.
+   La zone cliquable garde la hauteur de la barre, seule la pastille est dessinée. */
+.winButtons_c38106 {
+  gap: 0;
+}
+
+/* Séparateur vertical de Discord : reste avant le groupe de pastilles */
+.winButtonsWithDivider_c38106::before {
+  order: -2;
+}
+
+/* :not(#_) pour annuler le fond de survol de Discord (rouge sur fermer) */
+.winButton_c38106:not(#_) {
+  position: relative;
+  width: 22px;
+  background: transparent;
+  color: rgb(0 0 0 / 0.65);
+}
+
+.winButton_c38106 {
+  --ui-dot: #febc2e;
+}
+
+.winButton_c38106:nth-child(2) {
+  --ui-dot: #28c840;
+}
+
+.winButton_c38106.winButtonClose_c38106 {
+  --ui-dot: #ff5f57;
+  order: -1;
+}
+
+.winButton_c38106::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 12px;
+  height: 12px;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--ui-dot);
+  box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.25);
+}
+
+/* Icônes masquées, visibles quand la souris est sur le groupe, comme sur macOS */
+.winButton_c38106 svg {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.winButtons_c38106:hover .winButton_c38106 svg {
+  opacity: 1;
+}
+
+.winButton_c38106:active::before {
+  filter: brightness(0.85);
+}

@@ -1,0 +1,35 @@
+/* Réglages du thème : c'est le seul fichier à modifier pour changer l'apparence.
+   Pour surcharger sans rebuild, recopier le bloc :root dans le QuickCSS de Vencord. */
+:root {
+  /* Couleur d'accent (sélection, boutons, mentions, focus) */
+  --ui-accent: #7c6cff;
+  /* Texte posé sur l'accent (boutons pleins) */
+  --ui-accent-contrast: #ffffff;
+
+  /* Fond de l'application et surfaces, du plus sombre au plus clair */
+  --ui-bg: #0a0b0f;
+  --ui-surface-1: #111318;
+  --ui-surface-2: #171a21;
+  --ui-surface-3: #1e222b;
+
+  --ui-text: #e4e6ec;
+  --ui-text-strong: #ffffff;
+  --ui-text-muted: #8a90a0;
+  --ui-border: rgb(255 255 255 / 0.06);
+
+  /* Disposition */
+  --ui-gap: 8px;
+  --ui-radius: 14px;
+  --ui-radius-sm: 8px;
+
+  /* Liste des salons en tiroir : repliée, elle s'ouvre au survol des serveurs.
+     Mettre off pour la garder toujours ouverte. */
+  --ui-drawer: on;
+  --ui-drawer-open-delay: 120ms;
+  --ui-drawer-close-delay: 250ms;
+
+  /* Dérivés de l'accent, rien à toucher ici */
+  --ui-accent-strong: color-mix(in oklab, var(--ui-accent) 75%, white);
+  --ui-accent-soft: color-mix(in oklab, var(--ui-accent) 20%, transparent);
+  --ui-accent-faint: color-mix(in oklab, var(--ui-accent) 10%, transparent);
+}

@@ -1,0 +1,30 @@
+/* Panneau utilisateur (bas gauche) et bloc « Voix connectée » */
+
+/* Durées d'appel (bloc « Voix connectée », salons vocaux de la liste) : Discord
+   impose la police de code en style inline, d'où !important. Chiffres de largeur
+   égale pour que le compteur ne bouge pas. */
+:is(.channel_e131a9, .sidebarList__5e434) [style*="--font-code"] {
+  font-family: var(--font-primary) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nom et statut lisibles sur une nameplate (bannière décorative) */
+.plated__37e49 :is(.panelTitleContainer__37e49, .panelSubtextContainer__37e49) {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.85), 0 0 8px rgb(0 0 0 / 0.5);
+}
+
+.plated__37e49 .panelSubtextContainer__37e49 {
+  color: var(--ui-text);
+}
+
+/* Survol des boutons en accent : caméra, partage, activités, soundboard… */
+:is(.button_e131a9.buttonColor_e131a9, .button_e131a9 .buttonColor_e131a9):not(.buttonActive_e131a9):hover:not(#_) {
+  background-color: var(--ui-accent-soft);
+  color: var(--ui-text-strong);
+}
+
+/* … et micro, casque, paramètres */
+.buttons__37e49 :is(button, [role="button"]):hover:not(#_) {
+  background-color: var(--ui-accent-soft);
+  color: var(--ui-text-strong);
+}

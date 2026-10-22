@@ -1,0 +1,6 @@
+/* Paramètres utilisateur */
+
+/* Onglet sélectionné : même voile d'accent que le salon sélectionné */
+.item_caf372.active_caf372:not(#_) {
+  background-color: var(--ui-accent-soft);
+}

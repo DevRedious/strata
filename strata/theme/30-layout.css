@@ -1,0 +1,88 @@
+/* Disposition en panneaux flottants : liste des salons, en-tête, chat et membres
+   deviennent des cartes séparées par --ui-gap sur le fond --ui-bg.
+   Les classes hachées (_5e434, _f75fb0…) sont vérifiées par `npm run check`. */
+
+.base__5e434,
+.sidebar__5e434,
+.guilds__5e434 {
+  background: var(--ui-bg);
+}
+
+/* Bande sombre que Discord ajoute sous la colonne de gauche */
+.sidebar__5e434::after {
+  display: none;
+}
+
+/* Liste des salons */
+.sidebarList__5e434 {
+  box-sizing: border-box;
+  background: var(--ui-surface-1);
+  border: 1px solid var(--ui-border) !important;
+  border-radius: var(--ui-radius);
+}
+
+/* Panneau utilisateur (micro, casque, réglages) */
+.panels__5e434 {
+  background: var(--ui-surface-2);
+  border-color: var(--ui-border);
+  border-radius: var(--ui-radius);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+/* Zone principale : marge autour, chaque enfant devient une carte */
+.page__5e434 {
+  padding: 0 var(--ui-gap) var(--ui-gap);
+  background: var(--ui-bg);
+  border: none !important;
+}
+
+.page__5e434 > :not(:has(.chat_f75fb0)) {
+  background: var(--ui-surface-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  overflow: hidden;
+}
+
+/* Page de salon : l'en-tête, les messages et les membres sont trois cartes,
+   leurs conteneurs restent transparents */
+.page__5e434 > :has(.chat_f75fb0),
+.chat_f75fb0 {
+  background: transparent;
+}
+
+/* En-têtes de chat (salon textuel, chat d'un salon vocal…). L'espace vers le chat
+   est une marge sur .container__9293f, présent sur tous ces en-têtes ; seul celui
+   des salons textuels porte aussi .title_f75fb0.
+   :not(#_) pour passer devant `.theme-dark .themed__9293f`, chargé après le thème */
+.chat_f75fb0 .container__9293f:not(#_) {
+  --__header-bar-background: var(--ui-surface-1);
+  background: var(--ui-surface-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  margin-bottom: var(--ui-gap);
+}
+
+.content_f75fb0 {
+  gap: var(--ui-gap);
+}
+
+.chatContent_f75fb0 {
+  background: var(--ui-surface-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  overflow: hidden;
+}
+
+/* overflow: hidden autorise la carte à rétrécir sous la largeur de la liste :
+   flex-shrink: 0 la garde entière quand la zone centrale réclame de la place (forums) */
+.container_c8ffbb {
+  background: var(--ui-surface-1);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.members_c8ffbb {
+  background: transparent;
+}

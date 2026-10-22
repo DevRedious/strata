@@ -1,0 +1,22 @@
+/* Salons vocaux et appels */
+
+/* Zone d'appel : couleur des panneaux au lieu du noir pur.
+   .root_bfe55a recouvre entièrement .callContainer_cb9592, les deux sont noirs.
+   En plein écran on garde le noir de Discord, mieux adapté à la vidéo. */
+.callContainer__722ff:not(#_),
+.wrapper_cb9592:not(.fullScreen_cb9592) .callContainer_cb9592:not(#_),
+.wrapper_cb9592:not(.fullScreen_cb9592) .root_bfe55a:not(#_) {
+  background: var(--ui-surface-1);
+}
+
+/* La zone d'appel devient une carte comme les autres panneaux.
+   Discord n'arrondit que le côté droit quand le chat est ouvert. */
+.callContainer__722ff:not(#_),
+.wrapper_cb9592:not(.fullScreen_cb9592) .callContainer_cb9592:not(#_) {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+}
+
+.wrapper_cb9592:not(.fullScreen_cb9592) .callContent_cb9592:not(#_) {
+  border-radius: calc(var(--ui-radius) - 1px);
+}

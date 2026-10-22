@@ -1,0 +1,26 @@
+/* Messages et zone de saisie */
+
+.message__5126c {
+  border-radius: var(--ui-radius-sm);
+}
+
+/* Liseré à gauche des messages qui te mentionnent */
+.mentioned__5126c::before {
+  background: var(--ui-accent);
+}
+
+/* Barre de saisie */
+.channelTextArea__74017 {
+  border-radius: 12px;
+  border-color: var(--border-muted);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.channelTextArea__74017:focus-within {
+  border-color: color-mix(in oklab, var(--ui-accent) 60%, transparent);
+  box-shadow: 0 0 0 3px var(--ui-accent-faint);
+}
+
+.scrollableContainer__74017 {
+  border-radius: 12px;
+}

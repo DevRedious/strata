@@ -1,0 +1,105 @@
+/* Gamme « brand » (blurple) : définie sur :root et .visual-refresh, utilisée
+   directement par certains éléments (barre « nouveaux messages »…) */
+:root:not(#_) {
+  --brand-360: var(--ui-accent-strong);
+  --brand-500: var(--ui-accent);
+  --brand-560: color-mix(in oklab, var(--ui-accent) 88%, black);
+  --brand-600: color-mix(in oklab, var(--ui-accent) 78%, black);
+}
+
+/* Branche les réglages sur les variables de Discord.
+   :not(#_) donne une spécificité d'ID : on passe devant .theme-dark quel que soit
+   l'ordre de chargement des feuilles de Discord. */
+:is(.theme-dark, .theme-darker, .theme-midnight):not(#_) {
+  /* Fonds */
+  --background-base-lowest: var(--ui-bg);
+  --background-base-lower: var(--ui-surface-1);
+  --background-base-low: var(--ui-surface-1);
+  --background-surface-high: var(--ui-surface-2);
+  --background-surface-higher: var(--ui-surface-3);
+  --background-surface-highest: var(--ui-surface-3);
+  --chat-background: var(--ui-surface-1);
+  --chat-background-default: var(--ui-surface-2);
+  --custom-channel-members-bg: var(--ui-surface-1);
+  --app-frame-background: var(--ui-bg);
+  --app-frame-border: transparent;
+  --modal-background: var(--ui-surface-2);
+
+  --background-mod-subtle: rgb(255 255 255 / 0.04);
+  --background-mod-muted: rgb(255 255 255 / 0.06);
+  --background-mod-normal: rgb(255 255 255 / 0.08);
+  --background-mod-strong: rgb(255 255 255 / 0.12);
+
+  /* Bordures */
+  --border-subtle: var(--ui-border);
+  --border-muted: rgb(255 255 255 / 0.08);
+  --border-normal: rgb(255 255 255 / 0.12);
+  --border-strong: rgb(255 255 255 / 0.18);
+  --border-focus: var(--ui-accent);
+
+  /* Texte */
+  --text-default: var(--ui-text);
+  --text-strong: var(--ui-text-strong);
+  --text-muted: var(--ui-text-muted);
+  --text-subtle: color-mix(in oklab, var(--ui-text-muted) 70%, var(--ui-text));
+  --text-link: var(--ui-accent-strong);
+  --text-brand: var(--ui-accent-strong);
+  --channels-default: var(--ui-text-muted);
+
+  /* États interactifs (salons, membres, menus) */
+  --interactive-text-default: var(--ui-text-muted);
+  --interactive-text-hover: var(--ui-text);
+  --interactive-text-active: var(--ui-text-strong);
+  --interactive-icon-default: var(--ui-text-muted);
+  --interactive-icon-hover: var(--ui-text);
+  --interactive-icon-active: var(--ui-text-strong);
+  --interactive-background-hover: rgb(255 255 255 / 0.04);
+  --interactive-background-active: rgb(255 255 255 / 0.08);
+  --interactive-background-selected: var(--ui-accent-soft);
+  --interactive-accent-background-default: var(--ui-accent-faint);
+  --interactive-accent-background-hover: var(--ui-accent-soft);
+  --interactive-accent-background-active: var(--ui-accent-soft);
+  --interactive-accent-background-selected: var(--ui-accent-soft);
+
+  /* Accent de marque */
+  --background-brand: var(--ui-accent);
+  --background-accent: var(--ui-accent);
+  --icon-brand: var(--ui-accent);
+  --control-brand-foreground: var(--ui-accent-strong);
+  --control-brand-foreground-new: var(--ui-accent-strong);
+
+  /* Boutons principaux */
+  --control-primary-background-default: var(--ui-accent);
+  --control-primary-background-hover: color-mix(in oklab, var(--ui-accent) 88%, white);
+  --control-primary-background-active: color-mix(in oklab, var(--ui-accent) 85%, black);
+  --control-primary-border-default: transparent;
+  --control-primary-border-hover: transparent;
+  --control-primary-border-active: transparent;
+  --control-primary-text-default: var(--ui-accent-contrast);
+  --control-primary-text-hover: var(--ui-accent-contrast);
+  --control-primary-text-active: var(--ui-accent-contrast);
+  --control-primary-icon-default: var(--ui-accent-contrast);
+  --control-primary-icon-hover: var(--ui-accent-contrast);
+  --control-primary-icon-active: var(--ui-accent-contrast);
+
+  /* Mentions et messages */
+  --mention-background: var(--ui-accent-soft);
+  --mention-foreground: var(--ui-accent-strong);
+  --message-background-hover: rgb(255 255 255 / 0.025);
+  --message-mentioned-background-default: var(--ui-accent-faint);
+  --message-mentioned-background-hover: var(--ui-accent-soft);
+
+  /* Champs */
+  --input-background-default: var(--ui-surface-2);
+  --input-border-default: rgb(255 255 255 / 0.08);
+  --input-border-hover: rgb(255 255 255 / 0.12);
+  --input-border-active: var(--ui-accent);
+
+  /* Barres de défilement */
+  --scrollbar-thin-thumb: rgb(255 255 255 / 0.12);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: rgb(255 255 255 / 0.12);
+  --scrollbar-auto-track: transparent;
+  --scrollbar-auto-scrollbar-color-thumb: rgb(255 255 255 / 0.12);
+  --scrollbar-auto-scrollbar-color-track: transparent;
+}

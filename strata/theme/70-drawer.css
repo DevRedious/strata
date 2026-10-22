@@ -1,0 +1,118 @@
+/* Tiroir : la colonne de gauche se réduit à la barre des serveurs, la liste des
+   salons s'ouvre par-dessus le chat au survol. Le panneau utilisateur reste
+   visible en version compacte (avatar, boutons en colonne) et reprend sa forme
+   complète à l'ouverture.
+   Désactivé par --ui-drawer: off, et quand Discord a lui-même replié la colonne
+   (data-collapsed). */
+@container style(--ui-drawer: on) {
+  .sidebar__5e434:not([data-collapsed="true"]) {
+    /* Discord fixe la largeur en ligne quand on redimensionne : !important nécessaire */
+    width: var(--custom-guild-list-width) !important;
+    overflow: visible;
+    /* Au-dessus de l'en-tête du chat (.title_f75fb0, z-index 100) */
+    z-index: 110;
+  }
+
+  /* Hors du flux, la colonne des salons de la grille tombe à zéro et le chat
+     prend la place. grid-area: auto pour se positionner par rapport à la colonne
+     entière et non à la case vide des salons. */
+  .sidebar__5e434:not([data-collapsed="true"]) .sidebarList__5e434 {
+    grid-area: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: var(--custom-guild-list-width);
+    width: calc(var(--custom-guild-sidebar-width) - var(--custom-guild-list-width) - 1px);
+    z-index: 1;
+    box-shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+  }
+
+  /* Plugin Vencord BetterFolders : un dossier ouvert ajoute une colonne de la
+     largeur de la barre des serveurs ; le tiroir s'ouvre après elle */
+  .base__5e434:has(.vc-betterFolders-sidebar) .sidebar__5e434:not([data-collapsed="true"]) .sidebarList__5e434 {
+    inset-inline-start: calc(var(--custom-guild-list-width) * 2);
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]) .panels__5e434 {
+    width: calc(var(--custom-guild-sidebar-width) - var(--custom-panels-spacing) * 2);
+  }
+
+  .base__5e434:has(.vc-betterFolders-sidebar) .sidebar__5e434:not([data-collapsed="true"]) .panels__5e434 {
+    width: calc(var(--custom-guild-sidebar-width) + var(--custom-guild-list-width) - var(--custom-panels-spacing) * 2);
+  }
+
+  /* Fermé : invisible et non cliquable, avec un délai pour pouvoir passer
+     de la barre des serveurs au tiroir sans qu'il se referme */
+  .sidebar__5e434:not([data-collapsed="true"]) .sidebarList__5e434 {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-12px);
+    transition:
+      opacity 0.15s ease var(--ui-drawer-close-delay),
+      transform 0.15s ease var(--ui-drawer-close-delay),
+      visibility 0s linear calc(var(--ui-drawer-close-delay) + 0.15s);
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]):hover .sidebarList__5e434 {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition:
+      opacity 0.15s ease var(--ui-drawer-open-delay),
+      transform 0.15s ease var(--ui-drawer-open-delay),
+      visibility 0s linear var(--ui-drawer-open-delay);
+  }
+
+  /* Fermé : panneau utilisateur compact, à la largeur de la barre des serveurs.
+     Sous 100 px, Discord masque déjà le nom ; on empile avatar et boutons.
+     Discord mesure la hauteur du panneau (--custom-app-panels-height) et
+     réserve la place en bas de la barre des serveurs. :not(#_) pour passer
+     devant les largeurs du panneau ouvert, BetterFolders compris. */
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .panels__5e434:not(#_) {
+    width: calc(var(--custom-guild-list-width) - var(--custom-panels-spacing) * 2);
+    /* La nameplate dépasserait des coins arrondis */
+    overflow: hidden;
+  }
+
+  /* Bloc « Voix connectée » masqué : il ne tient pas en largeur réduite */
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .panels__5e434 .container_e131a9 {
+    display: none;
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .container__37e49 {
+    flex-direction: column;
+    height: auto;
+    padding: var(--space-12) 0 var(--space-8);
+    gap: var(--space-8);
+  }
+
+  /* Flèches de choix de périphérique (micro, casque) : elles décentrent les
+     icônes ; on les retrouve en ouvrant le tiroir */
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .buttonChevron__5e764 {
+    display: none;
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .audioButtonWithMenu__5e764 {
+    border-radius: var(--radius-sm);
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .accountPopoutButtonWrapper__37e49 {
+    flex: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .buttons__37e49 {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* La poignée de redimensionnement suivrait la colonne réduite : on la masque */
+  .sidebar__5e434:not([data-collapsed="true"]) .sidebarResizeHandle__5e434 {
+    display: none;
+  }
+}

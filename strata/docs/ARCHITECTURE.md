@@ -37,6 +37,7 @@ Ce sont des fichiers à nous dans `.github/workflows/`, aucun fichier de Vencord
 
 - **`strata-release.yml`** : à chaque push sur `main` qui touche le code, ou à la main. Il lance `pnpm test` (compilation `--standalone`, types, lint, liste des plugins), vérifie que la bannière porte le hash du commit, puis met à jour la release unique `build`, nommée `Strata <hash>` et marquée « latest ». Les fichiers sont envoyés avant que le nom ne change, pour qu'un client ne voie la nouvelle version qu'une fois tout en ligne.
 - **`strata-sync-upstream.yml`** : toutes les 6 heures, ou à la main. Il fusionne `Vendicated/Vencord/main` ; en cas de conflit ou d'échec de `pnpm test`, il s'arrête sans rien pousser et GitHub prévient par e-mail. Sinon il pousse et appelle directement `strata-release.yml`, car un push fait avec `GITHUB_TOKEN` ne déclenche pas les autres workflows.
+- **`strata-pages.yml`** : publie le site `strata/site/` sur GitHub Pages (devredious.github.io/strata) à chaque modification du site.
 - **Limite connue.** `GITHUB_TOKEN` ne peut pas pousser une modification de `.github/workflows/`. Quand Vencord modifie ses propres workflows, la synchronisation échoue au push : il faut alors fusionner à la main (`git fetch upstream && git merge upstream/main`, puis `git push`).
 
 ## Pourquoi un dépôt public

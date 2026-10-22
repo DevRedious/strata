@@ -1,0 +1,542 @@
+/* Site de Strata : mêmes couleurs que le thème (src/plugins/strata/styles/10-settings.css) */
+:root {
+    --accent: #7c6cff;
+    --accent-soft: color-mix(in oklab, var(--accent) 20%, transparent);
+    --accent-faint: color-mix(in oklab, var(--accent) 10%, transparent);
+    --accent-strong: color-mix(in oklab, var(--accent) 75%, white);
+    --bg: #0a0b0f;
+    --s1: #111318;
+    --s2: #171a21;
+    --s3: #1e222b;
+    --text: #e4e6ec;
+    --strong: #fff;
+    --muted: #8a90a0;
+    --border: rgb(255 255 255 / 6%);
+    --border-2: rgb(255 255 255 / 10%);
+    --warn: #e8b04a;
+
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+a {
+    color: var(--accent-strong);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+code {
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: var(--s3);
+    font: 0.9em ui-monospace, Consolas, monospace;
+}
+
+.wrap {
+    width: min(1080px, 100% - 48px);
+    margin-inline: auto;
+}
+
+/* En-tête */
+.top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+}
+
+.top .wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 64px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--strong);
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 30px;
+    height: 30px;
+    padding: 5px 7px;
+    border-radius: 9px;
+    background: linear-gradient(145deg, color-mix(in oklab, var(--accent) 35%, var(--s3)), var(--s3));
+}
+
+.top nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    margin-left: auto;
+    font-size: 14.5px;
+}
+
+.top nav a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.top nav a:hover,
+.top nav a[aria-current="page"] {
+    color: var(--strong);
+}
+
+.lang {
+    padding: 3px 10px;
+    border: 1px solid var(--border-2);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Titres et sections */
+h1,
+h2,
+h3 {
+    color: var(--strong);
+    line-height: 1.2;
+}
+
+h1 {
+    margin: 0 0 18px;
+    font-size: clamp(34px, 5vw, 52px);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    margin: 0 0 14px;
+    font-size: 28px;
+}
+
+h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+}
+
+section {
+    padding: 64px 0;
+}
+
+section + section {
+    border-top: 1px solid var(--border);
+}
+
+.lead {
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 18px;
+}
+
+/* Accueil */
+.hero {
+    padding: 72px 0 56px;
+    background: radial-gradient(70% 90% at 15% 0%, var(--accent-soft), transparent 60%);
+}
+
+.hero .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    border: 1px solid var(--border-2);
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.button.primary {
+    border-color: transparent;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 24px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.button:hover {
+    filter: brightness(1.1);
+}
+
+.small {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13.5px;
+}
+
+/* Schéma de Discord dessiné en CSS : panneaux flottants et tiroir */
+.mock {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 10px;
+    height: 340px;
+    padding: 10px;
+    border-radius: 18px;
+    background: var(--bg);
+    border: 1px solid var(--border-2);
+    box-shadow: 0 30px 80px rgb(0 0 0 / 55%), 0 0 0 1px rgb(0 0 0 / 40%);
+}
+
+.mock-guilds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+}
+
+.mock-guilds span {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--s3);
+}
+
+.mock-guilds span:nth-child(2) {
+    border-radius: 8px;
+    background: var(--accent);
+}
+
+.mock-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+
+.mock-card {
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.mock-header {
+    flex: none;
+    height: 38px;
+    padding: 14px;
+}
+
+.mock-body {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    min-height: 0;
+}
+
+.mock-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+}
+
+.mock-members {
+    flex: none;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 12px;
+}
+
+.mock-line {
+    display: block;
+    height: 8px;
+    border-radius: 4px;
+    background: rgb(255 255 255 / 10%);
+}
+
+.mock-line.title {
+    width: 40%;
+    background: rgb(255 255 255 / 22%);
+}
+
+.mock-line.mention {
+    height: 22px;
+    border-radius: 7px;
+    background: var(--accent-soft);
+    box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.mock-input {
+    margin-top: auto;
+    height: 30px;
+    border-radius: 10px;
+    background: var(--s2);
+    border: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
+}
+
+.mock-member {
+    display: block;
+    height: 14px;
+    border-radius: 7px;
+    background: linear-gradient(90deg, var(--s3) 14px, rgb(255 255 255 / 8%) 14px);
+}
+
+/* Le tiroir des salons, ouvert par-dessus le chat */
+.mock-drawer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    box-shadow: 0 16px 48px rgb(0 0 0 / 60%);
+}
+
+.mock-drawer .mock-line:nth-child(3) {
+    height: 18px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+}
+
+/* Fonctionnalités */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.card {
+    padding: 22px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgb(255 255 255 / 2%), transparent 40%), var(--s2);
+    border: 1px solid var(--border);
+}
+
+.card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.card .icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 14px;
+    border-radius: 11px;
+    background: var(--accent-faint);
+    border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+    color: var(--accent-strong);
+    font-size: 18px;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.shot {
+    border-radius: 14px;
+    border: 1px solid var(--border-2);
+    box-shadow: 0 24px 60px rgb(0 0 0 / 50%);
+}
+
+.checks {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.checks li {
+    position: relative;
+    padding-left: 28px;
+    margin: 8px 0;
+}
+
+.checks li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.5l2.2 2.2 4.8-5' fill='none' stroke='%23c9c2ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+/* Encadrés */
+.note {
+    margin: 24px 0;
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: var(--accent-faint);
+    border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+.note.warn {
+    background: rgb(232 176 74 / 8%);
+    border-color: rgb(232 176 74 / 30%);
+}
+
+.note > :first-child {
+    margin-top: 0;
+}
+
+.note > :last-child {
+    margin-bottom: 0;
+}
+
+/* Pages de texte (téléchargement, confidentialité, signature) */
+.page {
+    padding: 56px 0 72px;
+}
+
+.page .wrap {
+    max-width: 780px;
+}
+
+.page h2 {
+    margin-top: 44px;
+    font-size: 23px;
+}
+
+.page p,
+.page li {
+    color: var(--text);
+}
+
+.steps {
+    counter-reset: step;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.steps > li {
+    position: relative;
+    padding: 0 0 18px 50px;
+}
+
+.steps > li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+}
+
+.download {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+    padding: 24px;
+    border-radius: 18px;
+    background: radial-gradient(90% 140% at 0% 0%, var(--accent-soft), transparent 60%), var(--s2);
+    border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+}
+
+.download p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14.5px;
+}
+
+dt {
+    margin-top: 18px;
+    color: var(--strong);
+    font-weight: 600;
+}
+
+dd {
+    margin: 4px 0 0;
+}
+
+/* Pied */
+footer {
+    padding: 36px 0 48px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 32px;
+}
+
+footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+}
+
+footer a {
+    color: var(--muted);
+}
+
+@media (width <= 860px) {
+    .hero .wrap,
+    .split {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .top nav {
+        display: none;
+    }
+}

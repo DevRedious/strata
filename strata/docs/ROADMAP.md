@@ -38,7 +38,8 @@
 - [ ] Compiler et publier l'exe du launcher par GitHub Actions.
 - [ ] Signature : demande à SignPath Foundation (gratuit pour l'open source), puis soumission de l'exe à Norton et à Microsoft pour analyse.
 - [ ] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client.
-- [ ] Guide d'installation pour les collègues, mentionnant les conditions d'utilisation de Discord.
+- [x] Site public [devredious.github.io/strata](https://devredious.github.io/strata/), bilingue, avec le guide d'installation (SmartScreen et antivirus compris), la politique de confidentialité et la politique de signature, exigées par SignPath (2026-10-22).
+- [ ] Demande de signature à SignPath Foundation : suivi dans `strata-launcher/docs/SIGNPATH.md`.
 - [x] README de Strata à la racine du dépôt, au format des projets ark-management (2026-10-22). À compléter avec le guide d'installation.
 
 ## Idées en attente

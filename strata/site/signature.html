@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Politique de signature du code · Strata</title>
+    <meta name="description" content="Code signing policy du launcher Strata : ce qui est signé, par qui, comment, et ce que fait le programme.">
+    <link rel="icon" href="assets/icon.png">
+    <link rel="alternate" hreflang="en" href="en/code-signing.html">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="assets/logo.svg" alt="">Strata</a>
+            <nav>
+                <a href="./">Accueil</a>
+                <a href="telecharger.html">Télécharger</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="signature.html" aria-current="page">Signature du code</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+            </nav>
+            <a class="lang" href="en/code-signing.html" hreflang="en" lang="en">EN</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="wrap">
+            <h1>Code signing policy</h1>
+            <p class="lead">Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>.</p>
+
+            <div class="note warn">
+                <p>La signature n'est pas encore active : la demande à SignPath Foundation est en préparation. En attendant, les exe publiés ne sont pas signés.</p>
+            </div>
+
+            <h2>Ce qui est signé</h2>
+            <p>Uniquement <code>strata-launcher.exe</code>, le launcher de Strata pour Windows. Il est compilé par GitHub Actions, sur des machines hébergées par GitHub, à partir du code de son dépôt (<a href="https://github.com/DevRedious/strata-launcher/blob/main/.github/workflows/build.yml">workflow de compilation</a>), pour chaque version publiée. Aucun binaire compilé sur un poste de développement n'est signé ni distribué.</p>
+            <p>Le launcher télécharge ensuite les fichiers de Strata (JavaScript et CSS chargés par Discord) depuis les <a href="https://github.com/DevRedious/strata/releases">releases de Strata</a>, elles aussi compilées par GitHub Actions. Ce ne sont pas des exécutables Windows : ils ne sont pas couverts par cette signature.</p>
+
+            <h2>Rôles</h2>
+            <dl>
+                <dt>Auteur, relecteur et approbateur des signatures</dt>
+                <dd><a href="https://github.com/DevRedious">DevRedious</a></dd>
+            </dl>
+            <p>Toute contribution extérieure est relue avant d'être fusionnée. Chaque demande de signature est approuvée à la main. L'authentification à deux facteurs est exigée sur GitHub et sur SignPath.</p>
+
+            <h2>Ce que fait le programme</h2>
+            <p>Le launcher installe, répare ou désinstalle Strata sur les clients Discord de l'ordinateur, à la demande de l'utilisateur, avec un bouton par opération :</p>
+            <ul>
+                <li>il ferme le client Discord concerné, après avoir prévenu qu'un appel en cours sera coupé ;</li>
+                <li>il renomme <code>resources\app.asar</code> en <code>_app.asar</code> dans le dossier de Discord, et écrit à sa place une petite archive qui charge Strata, comme l'installeur officiel de Vencord ;</li>
+                <li>« Désinstaller » rend à Discord son fichier d'origine et supprime les fichiers de Strata ;</li>
+                <li>il ne demande aucun droit administrateur, ne modifie rien en dehors du dossier de Discord et de <code>%APPDATA%\Strata</code>, et ne laisse aucun programme en arrière-plan.</li>
+            </ul>
+
+            <h2>Confidentialité</h2>
+            <p>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. Le détail des connexions est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Strata · GPL-3.0 · par <a href="https://github.com/DevRedious">DevRedious</a></span>
+            <nav>
+                <a href="./">Accueil</a>
+                <a href="telecharger.html">Télécharger</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+                <a href="en/code-signing.html" hreflang="en" lang="en">English</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

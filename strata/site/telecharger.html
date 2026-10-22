@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Télécharger et installer Strata</title>
+    <meta name="description" content="Télécharger le launcher Strata pour Windows et installer Strata sur Discord en un clic : étapes, mises à jour, réparation et désinstallation.">
+    <link rel="icon" href="assets/icon.png">
+    <link rel="alternate" hreflang="en" href="en/download.html">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="assets/logo.svg" alt="">Strata</a>
+            <nav>
+                <a href="./">Accueil</a>
+                <a href="telecharger.html" aria-current="page">Télécharger</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="signature.html">Signature du code</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+            </nav>
+            <a class="lang" href="en/download.html" hreflang="en" lang="en">EN</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="wrap">
+            <h1>Télécharger Strata</h1>
+            <p class="lead">Strata s'installe avec son launcher, un petit programme pour Windows qui s'occupe de tout. Il ne demande aucun droit administrateur.</p>
+
+            <div class="download">
+                <a class="button primary" href="https://github.com/DevRedious/strata-launcher/releases/latest/download/strata-launcher.exe">Télécharger le launcher (.exe)</a>
+                <p>Windows 10 ou 11, avec Discord pour ordinateur installé.<br>Toutes les versions et leurs empreintes SHA-256 : <a href="https://github.com/DevRedious/strata-launcher/releases">page des releases</a>.</p>
+            </div>
+
+            <div class="note">
+                <h3>Code signing policy</h3>
+                <p>Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>. Le launcher est compilé par GitHub Actions à partir de <a href="https://github.com/DevRedious/strata-launcher">son code source</a>. Détails : <a href="signature.html">politique de signature du code</a>.</p>
+            </div>
+
+            <h2>Installer</h2>
+            <ol class="steps">
+                <li><strong>Téléchargez</strong> <code>strata-launcher.exe</code> et lancez-le. Il n'a pas besoin d'être installé.</li>
+                <li><strong>Si Windows affiche « Windows a protégé votre ordinateur »</strong>, cliquez sur « Informations complémentaires », puis « Exécuter quand même ». Ce message apparaît tant que le launcher n'est pas signé : Windows se méfie des programmes récents qu'il ne connaît pas encore.</li>
+                <li><strong>Sur la carte de votre Discord</strong>, cliquez sur « Installer Strata ». Discord se ferme puis se relance : un appel en cours sera coupé.</li>
+                <li><strong>C'est installé.</strong> Le bouton Strata en haut à droite de Discord ouvre les réglages : couleur d'accent, fond, espacement, tiroir, parties du thème.</li>
+            </ol>
+
+            <div class="note warn">
+                <p><strong>Antivirus.</strong> Un antivirus peut se méfier du launcher : il est récent, et il modifie les fichiers de Discord, comme l'installeur de Vencord. Si le vôtre le bloque, vérifiez que le fichier vient bien de la <a href="https://github.com/DevRedious/strata-launcher/releases">page des releases</a> (et son empreinte SHA-256), puis signalez-le à votre antivirus comme faux positif.</p>
+            </div>
+
+            <h2>Mises à jour</h2>
+            <p>Strata se met à jour tout seul, depuis ses <a href="https://github.com/DevRedious/strata/releases">releases sur GitHub</a>. Pour vérifier à la main : Paramètres de Discord → Vencord → Mettre à jour. Quand Discord se met lui-même à jour, Strata se réapplique automatiquement.</p>
+
+            <h2>Réparer ou désinstaller</h2>
+            <p>Rouvrez le launcher :</p>
+            <ul>
+                <li><strong>Réparer</strong> retélécharge Strata et le réinstalle, si quelque chose ne fonctionne plus.</li>
+                <li><strong>Désinstaller</strong> rend à Discord son fichier d'origine et supprime les fichiers de Strata (<code>%APPDATA%\Strata</code>). Vos réglages Vencord (<code>%APPDATA%\Vencord\settings</code>) restent, au cas où vous réinstalleriez Strata ou Vencord.</li>
+            </ul>
+
+            <h2>Questions fréquentes</h2>
+            <dl>
+                <dt>J'utilise déjà Vencord.</dt>
+                <dd>Le launcher l'indique (« Vencord ou autre mod ») et propose « Remplacer par Strata ». Vos plugins et réglages Vencord sont repris tels quels.</dd>
+                <dt>Que modifie le launcher exactement ?</dt>
+                <dd>Dans le dossier de Discord, il renomme <code>resources\app.asar</code> en <code>_app.asar</code> et met à sa place une petite archive qui charge Strata, exactement comme l'installeur officiel de Vencord. Les fichiers de Strata vont dans <code>%APPDATA%\Strata\dist</code>. Rien d'autre n'est touché.</dd>
+                <dt>Et sur Mac ou Linux ?</dt>
+                <dd>Pas encore : le launcher est pour Windows uniquement.</dd>
+                <dt>Est-ce risqué pour mon compte Discord ?</dt>
+                <dd>Comme tout client modifié, Strata est contraire aux conditions d'utilisation de Discord. Aucun bannissement pour un simple thème n'est connu, mais si votre compte est très important pour vous, mieux vaut ne pas utiliser de client modifié.</dd>
+            </dl>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Strata · GPL-3.0 · par <a href="https://github.com/DevRedious">DevRedious</a></span>
+            <nav>
+                <a href="./">Accueil</a>
+                <a href="confidentialite.html">Confidentialité</a>
+                <a href="signature.html">Signature du code</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+                <a href="en/download.html" hreflang="en" lang="en">English</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Download and install Strata</title>
+    <meta name="description" content="Download the Strata launcher for Windows and install Strata on Discord in one click: steps, updates, repair and uninstall.">
+    <link rel="icon" href="../assets/icon.png">
+    <link rel="alternate" hreflang="fr" href="../telecharger.html">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Strata</a>
+            <nav>
+                <a href="./">Home</a>
+                <a href="download.html" aria-current="page">Download</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+            </nav>
+            <a class="lang" href="../telecharger.html" hreflang="fr" lang="fr">FR</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="wrap">
+            <h1>Download Strata</h1>
+            <p class="lead">Strata is installed with its launcher, a small Windows program that takes care of everything. It needs no administrator rights.</p>
+
+            <div class="download">
+                <a class="button primary" href="https://github.com/DevRedious/strata-launcher/releases/latest/download/strata-launcher.exe">Download the launcher (.exe)</a>
+                <p>Windows 10 or 11, with the Discord desktop app installed.<br>All versions and their SHA-256 checksums: <a href="https://github.com/DevRedious/strata-launcher/releases">releases page</a>.</p>
+            </div>
+
+            <div class="note">
+                <h3>Code signing policy</h3>
+                <p>Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>. The launcher is built by GitHub Actions from <a href="https://github.com/DevRedious/strata-launcher">its source code</a>. Details: <a href="code-signing.html">code signing policy</a>.</p>
+            </div>
+
+            <h2>Install</h2>
+            <ol class="steps">
+                <li><strong>Download</strong> <code>strata-launcher.exe</code> and run it. It does not need to be installed.</li>
+                <li><strong>If Windows shows "Windows protected your PC"</strong>, click "More info", then "Run anyway". This message appears as long as the launcher is not signed: Windows is wary of recent programs it does not know yet.</li>
+                <li><strong>On your Discord's card</strong>, click "Installer Strata" (Install Strata). Discord closes and restarts: an ongoing call will be cut.</li>
+                <li><strong>Done.</strong> The Strata button at the top right of Discord opens the settings: accent colour, background, spacing, drawer, theme parts.</li>
+            </ol>
+
+            <div class="note warn">
+                <p><strong>Antivirus software.</strong> An antivirus may be wary of the launcher: it is recent, and it modifies Discord's files, like Vencord's installer. If yours blocks it, check that the file comes from the <a href="https://github.com/DevRedious/strata-launcher/releases">releases page</a> (and its SHA-256 checksum), then report it to your antivirus as a false positive.</p>
+            </div>
+
+            <h2>Updates</h2>
+            <p>Strata updates itself from its <a href="https://github.com/DevRedious/strata/releases">releases on GitHub</a>. To check manually: Discord settings → Vencord → Updater. When Discord updates itself, Strata re-applies itself automatically.</p>
+
+            <h2>Repair or uninstall</h2>
+            <p>Open the launcher again:</p>
+            <ul>
+                <li><strong>Repair</strong> ("Réparer") downloads Strata again and reinstalls it, if something stopped working.</li>
+                <li><strong>Uninstall</strong> ("Désinstaller") restores Discord's original file and deletes Strata's files (<code>%APPDATA%\Strata</code>). Your Vencord settings (<code>%APPDATA%\Vencord\settings</code>) are kept, in case you reinstall Strata or Vencord.</li>
+            </ul>
+
+            <h2>Frequently asked questions</h2>
+            <dl>
+                <dt>I already use Vencord.</dt>
+                <dd>The launcher says so ("Vencord ou autre mod") and offers to replace it with Strata. Your Vencord plugins and settings are kept as they are.</dd>
+                <dt>What exactly does the launcher change?</dt>
+                <dd>In Discord's folder, it renames <code>resources\app.asar</code> to <code>_app.asar</code> and puts a tiny archive that loads Strata in its place, exactly like Vencord's official installer. Strata's files go to <code>%APPDATA%\Strata\dist</code>. Nothing else is touched.</dd>
+                <dt>What about macOS or Linux?</dt>
+                <dd>Not yet: the launcher is Windows-only.</dd>
+                <dt>Is it risky for my Discord account?</dt>
+                <dd>Like every modified client, Strata goes against Discord's Terms of Service. No ban for a simple theme is known, but if your account matters a lot to you, it is safer not to use a modified client.</dd>
+            </dl>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Strata · GPL-3.0 · by <a href="https://github.com/DevRedious">DevRedious</a></span>
+            <nav>
+                <a href="./">Home</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+                <a href="../telecharger.html" hreflang="fr" lang="fr">Français</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

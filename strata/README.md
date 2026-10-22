@@ -44,6 +44,7 @@ Le plugin vit hors de ce dossier, dans `src/plugins/strata/` : Vencord ne compil
 | Chemin (dans `strata/`) | Rôle |
 |---|---|
 | `assets/` | Logo Strata en SVG, noir et blanc. |
+| `site/` | Site public [devredious.github.io/strata](https://devredious.github.io/strata/), bilingue (français à la racine, anglais dans `en/`) : accueil, téléchargement et guide d'installation, confidentialité, politique de signature. HTML et CSS sans compilation, publié par `.github/workflows/strata-pages.yml`. Aucune capture du vrai Discord de l'utilisateur : elles montreraient ses conversations. |
 | `tools/discord-css.mjs` | Télécharge le CSS servi par Discord et le met en cache. |
 | `tools/check-selectors.mjs` | Vérifie que les classes du thème existent encore chez Discord. |
 | `tools/css-query.mjs` | Cherche des classes et des règles dans le CSS de Discord. |

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Strata privacy policy</title>
+    <meta name="description" content="Strata and its launcher collect no personal data. Every network connection they make, in detail.">
+    <link rel="icon" href="../assets/icon.png">
+    <link rel="alternate" hreflang="fr" href="../confidentialite.html">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Strata</a>
+            <nav>
+                <a href="./">Home</a>
+                <a href="download.html">Download</a>
+                <a href="privacy.html" aria-current="page">Privacy</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+            </nav>
+            <a class="lang" href="../confidentialite.html" hreflang="fr" lang="fr">FR</a>
+        </div>
+    </header>
+
+    <main class="page">
+        <div class="wrap">
+            <h1>Privacy policy</h1>
+            <p class="small">Last updated: 22 October 2026. It covers Strata and the Strata launcher.</p>
+
+            <div class="note">
+                <p><strong>In short:</strong> neither Strata nor its launcher collects personal data. No account, no telemetry, no usage statistics. The only connections are those described below, and none of them carries personal data.</p>
+            </div>
+
+            <p>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.</p>
+
+            <h2>The launcher</h2>
+            <ul>
+                <li><strong>On start-up</strong>, it asks <code>api.github.com</code> for the name of the latest Strata release, to display it.</li>
+                <li><strong>When you install or repair Strata</strong>, it downloads its files from <code>github.com</code>.</li>
+            </ul>
+            <p>These requests only carry the header <code>User-Agent: StrataLauncher/&lt;version&gt;</code>. As with any connection to a website, GitHub sees your IP address; its <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a> applies.</p>
+            <p>The launcher only writes to Discord's folder and to <code>%APPDATA%\Strata</code>. It does not read your messages, your Discord account or your files.</p>
+
+            <h2>Strata, inside Discord</h2>
+            <ul>
+                <li><strong>Settings.</strong> They stay on your computer, in <code>%APPDATA%\Vencord\settings</code>.</li>
+                <li><strong>Updates.</strong> Strata regularly checks <code>api.github.com</code> for a new version and downloads it from <code>github.com</code>. This can be turned off in Settings → Vencord → Updater.</li>
+                <li><strong>Badges.</strong> Vencord, which Strata is built on, downloads the public list of its contributors' badges from <code>badges.vencord.dev</code>.</li>
+                <li><strong>Discord's telemetry.</strong> Vencord blocks by default the telemetry and crash reports that Discord normally sends (NoTrack plugin).</li>
+            </ul>
+
+            <h2>What is up to you</h2>
+            <ul>
+                <li><strong>Settings sync.</strong> Vencord can sync your settings to its server (<code>api.vencord.dev</code>). It is off by default and only works if you set it up yourself.</li>
+                <li><strong>Vencord plugins.</strong> Some optional plugins contact third-party services (a translation plugin contacts a translation service, for example). They are off by default; each describes what it does.</li>
+                <li><strong>Discord.</strong> Discord is still Discord: your use of it is governed by its own <a href="https://discord.com/privacy">privacy policy</a>.</li>
+            </ul>
+
+            <h2>Contact</h2>
+            <p>Strata is maintained by <a href="https://github.com/DevRedious">DevRedious</a>. The source code of <a href="https://github.com/DevRedious/strata">Strata</a> and of the <a href="https://github.com/DevRedious/strata-launcher">launcher</a> is public: every statement above can be checked there.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Strata · GPL-3.0 · by <a href="https://github.com/DevRedious">DevRedious</a></span>
+            <nav>
+                <a href="./">Home</a>
+                <a href="download.html">Download</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+                <a href="../confidentialite.html" hreflang="fr" lang="fr">Français</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

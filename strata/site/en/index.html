@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Strata: a cleaner, calmer Discord</title>
+    <meta name="description" content="Strata is an open-source Vencord distribution for Discord: a dark theme with a single accent colour, floating panels, a channel drawer and a built-in settings menu. One-click install on Windows.">
+    <link rel="icon" href="../assets/icon.png">
+    <link rel="alternate" hreflang="fr" href="../">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="top">
+        <div class="wrap">
+            <a class="brand" href="./"><img src="../assets/logo.svg" alt="">Strata</a>
+            <nav>
+                <a href="./" aria-current="page">Home</a>
+                <a href="download.html">Download</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+            </nav>
+            <a class="lang" href="../" hreflang="fr" lang="fr">FR</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <div>
+                    <h1>A cleaner, calmer Discord.</h1>
+                    <p class="lead">Strata is a distribution of <a href="https://github.com/Vendicated/Vencord">Vencord</a> for Discord: a dark theme with a single accent colour, floating panels, a channel drawer and a built-in settings menu. Free, open source, and updated automatically.</p>
+                    <div class="actions">
+                        <a class="button primary" href="download.html">Download for Windows</a>
+                        <a class="button" href="https://github.com/DevRedious/strata">Source code</a>
+                    </div>
+                    <p class="small">Windows 10 and 11, Discord desktop app. Free, no account, no administrator rights.</p>
+                </div>
+                <div class="mock" role="img" aria-label="Diagram of Discord with Strata: separate rounded panels, channel list open as a drawer over the chat">
+                    <div class="mock-guilds"><span></span><span></span><span></span><span></span><span></span></div>
+                    <div class="mock-main">
+                        <div class="mock-card mock-header"><span class="mock-line title"></span></div>
+                        <div class="mock-body">
+                            <div class="mock-card mock-chat">
+                                <span class="mock-line" style="width: 70%"></span>
+                                <span class="mock-line" style="width: 55%"></span>
+                                <span class="mock-line mention" style="width: 80%"></span>
+                                <span class="mock-line" style="width: 62%"></span>
+                                <span class="mock-line" style="width: 48%"></span>
+                                <span class="mock-input"></span>
+                            </div>
+                            <div class="mock-card mock-members">
+                                <span class="mock-member"></span><span class="mock-member"></span><span class="mock-member"></span><span class="mock-member"></span>
+                            </div>
+                        </div>
+                        <div class="mock-card mock-drawer">
+                            <span class="mock-line title"></span>
+                            <span class="mock-line" style="width: 80%"></span>
+                            <span class="mock-line"></span>
+                            <span class="mock-line" style="width: 65%"></span>
+                            <span class="mock-line" style="width: 75%"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>What Strata changes</h2>
+                <p class="lead">Everything is set in a dedicated window, opened from a button in Discord's title bar. Each part can be turned on or off on its own, without restarting.</p>
+                <div class="grid">
+                    <article class="card"><div class="icon">●</div><h3>One accent colour</h3><p>A very dark background and a single colour for selection, buttons and mentions. Eight ready-made colours, or your own.</p></article>
+                    <article class="card"><div class="icon">▦</div><h3>Floating panels</h3><p>Channels, header, messages and members become rounded cards with adjustable spacing between them.</p></article>
+                    <article class="card"><div class="icon">⇥</div><h3>Channel drawer</h3><p>Folded away, the channel list leaves room for the chat; it opens when you hover the server bar.</p></article>
+                    <article class="card"><div class="icon">⚙</div><h3>Settings menu</h3><p>Colours, background, spacing, corner radius, drawer delays, theme parts: everything applies live.</p></article>
+                    <article class="card"><div class="icon">↻</div><h3>Automatic updates</h3><p>Strata updates itself, and re-applies itself when Discord updates.</p></article>
+                    <article class="card"><div class="icon">◇</div><h3>Vencord included</h3><p>All of Vencord's plugins remain available, and your existing Vencord settings are kept.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap split">
+                <img class="shot" src="../assets/launcher.png" width="760" height="560" alt="The Strata launcher (French interface): one card per installed Discord, with its state and an Install, Repair or Uninstall button">
+                <div>
+                    <h2>One-click install</h2>
+                    <p>The launcher finds the Discord clients installed on the PC and shows whether each one is original, already running Strata, or modified by something else. Its interface is in French for now.</p>
+                    <ul class="checks">
+                        <li>Install, repair or uninstall: one button per action.</li>
+                        <li>No administrator rights, nothing left running in the background.</li>
+                        <li>Uninstalling restores Discord to its original state.</li>
+                    </ul>
+                    <div class="actions"><a class="button primary" href="download.html">Download and install</a></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="wrap">
+                <h2>Open source and transparent</h2>
+                <ul class="checks">
+                    <li>Public source code under the <a href="https://github.com/DevRedious/strata/blob/main/LICENSE">GPL-3.0</a> licence: <a href="https://github.com/DevRedious/strata">Strata</a> and <a href="https://github.com/DevRedious/strata-launcher">its launcher</a>.</li>
+                    <li>Every distributed file is built by GitHub Actions from that code.</li>
+                    <li>No data collection, no telemetry: see the <a href="privacy.html">privacy policy</a>.</li>
+                </ul>
+                <div class="note">
+                    <h3>Code signing policy</h3>
+                    <p>Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>. Details are in our <a href="code-signing.html">code signing policy</a>. Signing is not active yet.</p>
+                </div>
+                <div class="note warn">
+                    <p>Like every modified client (Vencord, BetterDiscord…), Strata goes against Discord's Terms of Service. No ban for a simple theme is known, but everyone installs it knowingly. Strata is not affiliated with Discord Inc. or with the authors of Vencord.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Strata · GPL-3.0 · by <a href="https://github.com/DevRedious">DevRedious</a></span>
+            <nav>
+                <a href="download.html">Download</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="code-signing.html">Code signing</a>
+                <a href="https://github.com/DevRedious/strata">GitHub</a>
+                <a href="../" hreflang="fr" lang="fr">Français</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

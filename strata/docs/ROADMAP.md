@@ -37,8 +37,9 @@
 - [x] Test réel le 2026-10-22 sur le Discord de l'utilisateur : remplacer une installation Vencord (ici de développement), réparer, désinstaller. Les réglages et plugins Vencord sont repris, Discord revient à l'origine à la désinstallation.
 - [ ] Compiler et publier l'exe du launcher par GitHub Actions.
 - [ ] Signature : demande à SignPath Foundation (gratuit pour l'open source), puis soumission de l'exe à Norton et à Microsoft pour analyse.
-- [ ] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client.
+- [ ] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client. Les icônes du launcher en petite taille (16 à 32 px, logo agrandi pour rester lisible) sont faites (2026-10-22).
 - [x] Site public [devredious.github.io/strata](https://devredious.github.io/strata/), bilingue, avec le guide d'installation (SmartScreen et antivirus compris), la politique de confidentialité et la politique de signature, exigées par SignPath (2026-10-22).
+- [x] Favicons, manifeste web et images de partage (Open Graph, FR et EN) du site (2026-10-22).
 - [ ] Demande de signature à SignPath Foundation : suivi dans `strata-launcher/docs/SIGNPATH.md`.
 - [x] README de Strata à la racine du dépôt, au format des projets ark-management (2026-10-22). À compléter avec le guide d'installation.
 

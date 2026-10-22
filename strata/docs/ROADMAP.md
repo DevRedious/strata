@@ -33,8 +33,11 @@
 
 ## Phase 3 : installation par les collègues
 
-- [ ] Installeur Windows (fork de Vencord/Installer, ou script PowerShell).
-- [ ] Vérifier qu'une installation par-dessus un Vencord existant reprend les réglages.
+- [x] Installeur Windows : launcher Tauri dans le dépôt [DevRedious/strata-launcher](https://github.com/DevRedious/strata-launcher). Exe portable, sans droits administrateur ; installe la release dans `%APPDATA%\Strata\dist` et écrit le même `app.asar` que l'installeur officiel de Vencord. Choisi plutôt qu'un fork de Vencord/Installer (Go) ou un script PowerShell, pour l'interface aux couleurs de Strata et pour les antivirus.
+- [x] Test réel le 2026-10-22 sur le Discord de l'utilisateur : remplacer une installation Vencord (ici de développement), réparer, désinstaller. Les réglages et plugins Vencord sont repris, Discord revient à l'origine à la désinstallation.
+- [ ] Compiler et publier l'exe du launcher par GitHub Actions.
+- [ ] Signature : demande à SignPath Foundation (gratuit pour l'open source), puis soumission de l'exe à Norton et à Microsoft pour analyse.
+- [ ] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client.
 - [ ] Guide d'installation pour les collègues, mentionnant les conditions d'utilisation de Discord.
 - [x] README de Strata à la racine du dépôt, au format des projets ark-management (2026-10-22). À compléter avec le guide d'installation.
 

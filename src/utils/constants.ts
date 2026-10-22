@@ -51,6 +51,11 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         name: "V",
         id: 343383572805058560n
     },
+    // Strata (2026-10-22) : auteur du plugin Strata, voir strata/docs/ARCHITECTURE.md
+    DevRedious: {
+        name: "DevRedious",
+        id: 0n
+    },
     Apexo: {
         name: "Apexo",
         id: 228548952687902720n

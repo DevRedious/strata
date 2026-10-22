@@ -47,6 +47,7 @@ Conséquence : aucun secret ne doit être versionné ici. Les workflows de publi
   | Fichier | Modification | Depuis |
   |---|---|---|
   | `README.md` | Remplacé par le README de Strata, qui crédite Vencord et rappelle la licence. | 2026-10-22 |
+  | `src/utils/constants.ts` | Entrée `DevRedious` dans `Devs`, juste après `Ven`. `scripts/generatePluginList.ts` (lancé par `pnpm test` et par le workflow de build) n'accepte que des auteurs de la forme `Devs.Nom`. | 2026-10-22 |
 - **Mises à jour de Vencord.** On les récupère avec `git fetch upstream && git merge upstream/main` ; une tâche planifiée GitHub Actions le fera automatiquement.
 
 ## Installation chez un collègue (à construire)

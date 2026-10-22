@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { startTheme, stopTheme } from "./applyTheme";
@@ -13,7 +14,7 @@ import { renderTitlebarButton } from "./TitlebarButton";
 export default definePlugin({
     name: "Strata",
     description: "Thème Strata : fond sombre, un accent couleur, panneaux flottants et liste des salons en tiroir.",
-    authors: [{ name: "Redious", id: 0n }],
+    authors: [Devs.DevRedious],
     enabledByDefault: true,
     // Le thème s'active et se retire à chaud ; seul le bouton attend un redémarrage
     requiresRestart: false,

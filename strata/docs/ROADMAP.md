@@ -26,8 +26,9 @@
 - [x] Vérifier comment `gitRemote` et `gitHash` sont calculés, ainsi que le format attendu pour les releases (voir [ARCHITECTURE.md](ARCHITECTURE.md)).
 - [x] Workflow de compilation et de publication des releases : `strata-release.yml`.
 - [x] Workflow planifié qui fusionne `upstream/main`, compile, et ne publie que si la compilation réussit : `strata-sync-upstream.yml`.
-- [ ] Vérifier la première release sur GitHub, et que l'outil de mise à jour la lit correctement (nom, hash, fichiers).
-- [ ] Lancer une première fois la synchronisation à la main (`workflow_dispatch`) pour la valider.
+- [x] Première release `Strata 70860a5` publiée le 2026-10-22 et vérifiée en reproduisant la logique de `http.ts` : hash lu dans le nom, 8 fichiers retenus, bannière de `renderer.js` identique au nom (`Standalone: true`).
+- [x] Synchronisation lancée à la main le 2026-10-22 : récupération de Vencord et comparaison validées (« Rien de nouveau chez Vencord », release ignorée).
+- [ ] Vérifier le premier passage réel avec des commits de Vencord à fusionner (fusion, `pnpm test`, push, appel de la release) dans l'onglet Actions.
 - [x] Rebaptiser l'outil de mise à jour : inutile, le lien du dépôt vient de `gitRemote` et pointe déjà sur `DevRedious/strata`.
 
 ## Phase 3 : installation par les collègues

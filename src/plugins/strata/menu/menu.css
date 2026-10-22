@@ -1,0 +1,564 @@
+/* Fenêtre de réglages Strata. Elle suit les variables du thème (--ui-*) :
+   l'accent et le fond changent en direct, dans la fenêtre aussi. */
+
+.vc-strata-modal {
+    --strata-accent: var(--ui-accent, #7c6cff);
+    --strata-accent-soft: color-mix(in oklab, var(--strata-accent) 20%, transparent);
+    --strata-accent-faint: color-mix(in oklab, var(--strata-accent) 10%, transparent);
+    --strata-accent-strong: color-mix(in oklab, var(--strata-accent) 75%, white);
+    --strata-bg: var(--ui-bg, #0a0b0f);
+    --strata-s1: var(--ui-surface-1, #111318);
+    --strata-s2: var(--ui-surface-2, #171a21);
+    --strata-s3: var(--ui-surface-3, #1e222b);
+    --strata-text: var(--ui-text, #e4e6ec);
+    --strata-strong: var(--ui-text-strong, #fff);
+    --strata-muted: var(--ui-text-muted, #8a90a0);
+    --strata-border: rgb(255 255 255 / 6%);
+    --strata-border-2: rgb(255 255 255 / 10%);
+
+    /* Les calques de Discord sont en pointer-events: none : sans ceci, les clics
+       traversent la fenêtre, atteignent le fond et la referment */
+    pointer-events: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(820px, calc(100vw - 48px));
+    height: min(640px, calc(100vh - 48px));
+    display: grid;
+    grid-template: "head head" auto "nav main" 1fr / 210px 1fr;
+    background: var(--strata-s1);
+    border: 1px solid var(--strata-border-2);
+    border-radius: 18px;
+    box-shadow: 0 24px 80px rgb(0 0 0 / 60%), 0 0 0 1px rgb(0 0 0 / 40%);
+    overflow: hidden;
+    color: var(--strata-text);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    line-height: 1.4;
+    animation: vc-strata-in 0.16s ease-out;
+}
+
+@keyframes vc-strata-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.98);
+    }
+}
+
+/* Nos boutons seulement : ceux de Vencord (Copier, Appliquer) gardent leur style */
+.vc-strata-close,
+.vc-strata-nav-item,
+.vc-strata-swatch,
+.vc-strata-bg-option,
+.vc-strata-ghost {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* En-tête */
+.vc-strata-head {
+    grid-area: head;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px 18px 22px;
+    position: relative;
+    border-bottom: 1px solid var(--strata-border);
+    background:
+        radial-gradient(120% 140% at 0% 0%, var(--strata-accent-soft), transparent 55%),
+        var(--strata-s1);
+}
+
+.vc-strata-head::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--strata-accent), transparent 45%);
+    opacity: 0.6;
+}
+
+.vc-strata-logo {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(145deg, color-mix(in oklab, var(--strata-accent) 35%, var(--strata-s3)), var(--strata-s3));
+    border: 1px solid color-mix(in oklab, var(--strata-accent) 40%, transparent);
+    box-shadow: 0 6px 18px color-mix(in oklab, var(--strata-accent) 25%, transparent);
+    color: var(--strata-strong);
+}
+
+.vc-strata-title {
+    font-size: 17px;
+    font-weight: 650;
+    color: var(--strata-strong);
+}
+
+.vc-strata-subtitle {
+    font-size: 12.5px;
+    color: var(--strata-muted);
+}
+
+.vc-strata-modal .vc-strata-close {
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    color: var(--strata-muted);
+}
+
+.vc-strata-modal .vc-strata-close:hover {
+    background: rgb(255 255 255 / 6%);
+    color: var(--strata-strong);
+}
+
+/* Navigation */
+.vc-strata-nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 10px;
+    border-right: 1px solid var(--strata-border);
+    background: var(--strata-bg);
+}
+
+.vc-strata-nav-label {
+    padding: 4px 12px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--strata-muted);
+}
+
+.vc-strata-modal .vc-strata-nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    color: var(--strata-muted);
+    font-weight: 500;
+    text-align: left;
+}
+
+.vc-strata-modal .vc-strata-nav-item:hover {
+    background: rgb(255 255 255 / 4%);
+    color: var(--strata-text);
+}
+
+.vc-strata-modal .vc-strata-nav-item.vc-strata-active {
+    background: var(--strata-accent-soft);
+    color: var(--strata-strong);
+}
+
+.vc-strata-nav-item.vc-strata-active::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--strata-accent);
+}
+
+.vc-strata-nav-item.vc-strata-active svg {
+    color: var(--strata-accent-strong);
+}
+
+.vc-strata-nav-spacer {
+    flex: 1;
+}
+
+.vc-strata-modal .vc-strata-nav-reset {
+    font-size: 13px;
+}
+
+/* Contenu */
+.vc-strata-main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-height: 0;
+    padding: 22px 20px 22px 26px;
+    overflow-y: auto;
+
+    /* Place de la barre réservée : rien ne bouge quand un sélecteur se déplie */
+    scrollbar-gutter: stable;
+}
+
+/* Barre de défilement aux couleurs du thème (pas de scrollbar-width ni de
+   scrollbar-color : ils désactiveraient ces règles dans Chromium) */
+.vc-strata-main::-webkit-scrollbar {
+    width: 12px;
+}
+
+.vc-strata-main::-webkit-scrollbar-track {
+    margin: 10px 0;
+    background: transparent;
+}
+
+.vc-strata-main::-webkit-scrollbar-thumb {
+    min-height: 40px;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    background: rgb(255 255 255 / 16%) padding-box;
+}
+
+.vc-strata-main::-webkit-scrollbar-thumb:hover,
+.vc-strata-main::-webkit-scrollbar-thumb:active {
+    background: color-mix(in oklab, var(--strata-accent) 70%, transparent) padding-box;
+}
+
+.vc-strata-block {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.vc-strata-heading-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.vc-strata-heading-icon {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--strata-accent-faint);
+    border: 1px solid color-mix(in oklab, var(--strata-accent) 25%, transparent);
+    color: var(--strata-accent-strong);
+}
+
+.vc-strata-heading {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 650;
+    color: var(--strata-strong);
+}
+
+.vc-strata-hint {
+    margin: 2px 0 0;
+    font-size: 12.5px;
+    color: var(--strata-muted);
+}
+
+.vc-strata-card {
+    padding: 16px;
+    background: linear-gradient(180deg, rgb(255 255 255 / 2%), transparent 40%), var(--strata-s2);
+    border: 1px solid var(--strata-border);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 4%);
+}
+
+.vc-strata-card.vc-strata-list {
+    padding: 4px 14px;
+}
+
+/* Lignes à interrupteur */
+.vc-strata-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 4px;
+    border-bottom: 1px solid var(--strata-border);
+}
+
+.vc-strata-row:last-child {
+    border-bottom: none;
+}
+
+.vc-strata-row-icon {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--strata-s3);
+    color: var(--strata-accent-strong);
+}
+
+.vc-strata-row.vc-strata-off .vc-strata-row-icon {
+    color: var(--strata-muted);
+}
+
+.vc-strata-row-text {
+    flex: 1;
+}
+
+.vc-strata-row-title {
+    font-weight: 600;
+    color: var(--strata-strong);
+}
+
+.vc-strata-row-desc {
+    font-size: 12.5px;
+    color: var(--strata-muted);
+}
+
+/* Curseurs */
+.vc-strata-slider + .vc-strata-slider {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--strata-border);
+}
+
+.vc-strata-slider-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.vc-strata-slider.vc-strata-disabled {
+    opacity: 0.45;
+}
+
+/* Pastilles de couleur */
+.vc-strata-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.vc-strata-modal .vc-strata-swatch {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%);
+}
+
+.vc-strata-modal .vc-strata-swatch:hover {
+    transform: scale(1.08);
+}
+
+.vc-strata-modal .vc-strata-swatch.vc-strata-active {
+    outline: 2px solid var(--strata-strong);
+    outline-offset: 3px;
+}
+
+.vc-strata-modal .vc-strata-swatch-custom {
+    display: grid;
+    place-items: center;
+    background: conic-gradient(#ff5f6d, #ffc371, #7cf29c, #3ec5ff, #a86bff, #ff5f6d);
+}
+
+.vc-strata-swatch-custom span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--strata-s1);
+}
+
+/* Champ #rrggbb */
+.vc-strata-hex {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    margin-left: auto;
+    border-radius: 9px;
+    background: var(--strata-bg);
+    border: 1px solid var(--strata-border-2);
+}
+
+.vc-strata-hex.vc-strata-invalid {
+    border-color: var(--status-danger, #f23f43);
+}
+
+.vc-strata-hex i {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 25%);
+}
+
+.vc-strata-hex input {
+    width: 72px;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--strata-text);
+    font: 13px var(--font-code);
+    text-transform: uppercase;
+}
+
+/* Aperçu de l'accent */
+.vc-strata-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vc-strata-preview-button {
+    padding: 7px 16px;
+    border-radius: 9px;
+    background: var(--strata-accent);
+    color: var(--ui-accent-contrast, #fff);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.vc-strata-preview-mention {
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: var(--strata-accent-soft);
+    color: var(--strata-accent-strong);
+    font-weight: 600;
+}
+
+.vc-strata-preview-channel {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: var(--strata-accent-soft);
+    color: var(--strata-strong);
+    font-size: 13px;
+}
+
+.vc-strata-preview-link {
+    color: var(--strata-accent-strong);
+}
+
+/* Fonds */
+.vc-strata-bg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.vc-strata-modal .vc-strata-bg-option {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 8px;
+    border-radius: 11px;
+    border: 1px solid var(--strata-border-2);
+    background: var(--strata-bg);
+    text-align: left;
+}
+
+.vc-strata-modal .vc-strata-bg-option.vc-strata-active {
+    border-color: var(--strata-accent);
+    box-shadow: 0 0 0 3px var(--strata-accent-faint);
+}
+
+.vc-strata-bg-preview {
+    display: flex;
+    gap: 4px;
+    height: 42px;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.vc-strata-bg-preview b {
+    flex: 1;
+    border-radius: 4px;
+}
+
+.vc-strata-bg-preview b:first-child {
+    flex: 0 0 18px;
+}
+
+.vc-strata-bg-name {
+    font-size: 12.5px;
+}
+
+/* Partager */
+.vc-strata-action {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.vc-strata-import {
+    min-height: 90px;
+    padding: 10px 12px;
+    resize: vertical;
+    border-radius: 10px;
+    background: var(--strata-bg);
+    border: 1px solid var(--strata-border-2);
+    color: var(--strata-text);
+    font: 12.5px var(--font-code);
+    outline: none;
+}
+
+.vc-strata-import:focus {
+    border-color: var(--strata-accent);
+}
+
+/* Pied de section */
+.vc-strata-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 4px;
+    font-size: 12.5px;
+    color: var(--strata-muted);
+}
+
+.vc-strata-modal .vc-strata-ghost {
+    padding: 7px 12px;
+    border-radius: 9px;
+    border: 1px solid var(--strata-border-2);
+    color: var(--strata-text);
+}
+
+.vc-strata-modal .vc-strata-ghost:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.vc-strata-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 4%);
+    border: 1px solid var(--strata-border);
+}
+
+.vc-strata-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--strata-muted);
+}
+
+.vc-strata-status.vc-strata-changed {
+    color: var(--strata-text);
+    border-color: color-mix(in oklab, var(--strata-accent) 35%, transparent);
+}
+
+.vc-strata-status.vc-strata-changed::before {
+    background: var(--strata-accent);
+    box-shadow: 0 0 6px var(--strata-accent);
+}
+
+.vc-strata-modal .vc-strata-ghost:hover:not(:disabled) {
+    background: rgb(255 255 255 / 5%);
+}

@@ -26,6 +26,8 @@ Le plugin vit hors de ce dossier, dans `src/plugins/strata/` : Vencord ne compil
 | `src/plugins/strata/TitlebarButton.tsx` | Bouton Strata de la barre de titre. Le patch l'insère en tête de la zone de droite, sans remplacer le `Fragment` comme VencordToolbox : les deux plugins cohabitent. |
 | `src/plugins/strata/titlebar.css` | Style du bouton (`no-drag`, sinon la barre de titre intercepte le clic). |
 | `src/plugins/strata/StrataIcon.tsx` | Logo en icône, à la couleur des icônes de Discord (`currentColor`). |
+| `src/plugins/strata/colors.ts` | Validation des couleurs, surfaces dérivées du fond, couleur du texte posé sur l'accent. |
+| `src/plugins/strata/menu/` | Fenêtre de réglages Strata : `StrataModal.tsx` (fenêtre et navigation), `sections/` (Couleurs, Disposition, Tiroir, Parties, Partager), `controls.tsx` (titres, interrupteurs, curseurs avec présélections), `Slider.tsx` et `ColorPicker.tsx` (curseur et sélecteur de couleur maison), `LayoutPreview.tsx` (aperçu miniature qui suit les réglages), `drag.ts` (glisser et écriture espacée des réglages), `state.ts` (valeurs par défaut, réinitialisation), `transfer.ts` (export et import), `presets.ts`, `icons.tsx`. Chaque composant a son fichier CSS ; `menu.css` porte la fenêtre. |
 | `src/plugins/strata/settings.ts` | Options du plugin et leurs valeurs par défaut. |
 | `src/plugins/strata/applyTheme.ts` | Active ou retire chaque fichier du thème, et pose les valeurs choisies en variables CSS sur `<html>`. |
 | `src/plugins/strata/styles/10-settings.css` | Valeurs par défaut des variables du thème (couleurs, espacements, arrondis, tiroir). |
@@ -85,3 +87,5 @@ Ces requêtes travaillent sur un cache dans `strata/.cache/`, qui n'est pas vers
 `tools/screenshot/shot.ps1 <nom>` capture l'écran le plus à droite, celui où tourne Discord sur le poste de développement, dans `%TEMP%\strata-shots\<nom>.png`.
 
 `tools/screenshot/hover-shot.ps1 <nom> "x1,y1;x2,y2"` déplace le curseur par petits pas jusqu'aux points donnés (coordonnées relatives à cet écran), fait la capture, puis remet le curseur où il était. Ça permet de vérifier les états de survol, comme le tiroir ouvert, sans demander à l'utilisateur de bouger la souris.
+
+`tools/screenshot/click-shot.ps1 <nom> "x1,y1;x2,y2"` clique sur chaque point tour à tour, fait la capture, puis remet le curseur. Il sert à parcourir la fenêtre de réglages. Avant de cliquer, vérifier que Discord est au premier plan et que l'utilisateur ne travaille pas sur cet écran : un clic peut sinon atterrir dans une autre fenêtre.

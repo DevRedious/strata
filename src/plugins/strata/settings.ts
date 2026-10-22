@@ -8,9 +8,9 @@ import { definePluginSettings } from "@api/Settings";
 import { OptionType } from "@utils/types";
 
 import { applyParts, applyVars } from "./applyTheme";
+import { isHexColor } from "./colors";
 
-const HEX_COLOR = /^#[0-9a-f]{6}$/i;
-const isHexColor = (value: string) => HEX_COLOR.test(value) || "Couleur au format #rrggbb attendue";
+const validColor = (value: string) => isHexColor(value) || "Couleur au format #rrggbb attendue";
 
 // Un interrupteur par fichier de styles/ (hors 10 et 20, toujours actifs)
 const part = (displayName: string, description: string) => ({
@@ -27,7 +27,15 @@ export const settings = definePluginSettings({
         displayName: "Couleur d'accent",
         description: "Au format #rrggbb",
         default: "#7c6cff",
-        isValid: isHexColor,
+        isValid: validColor,
+        onChange: () => applyVars(),
+    },
+    background: {
+        type: OptionType.STRING,
+        displayName: "Fond",
+        description: "Au format #rrggbb, de préférence sombre. Les panneaux en sont dérivés.",
+        default: "#0a0b0f",
+        isValid: validColor,
         onChange: () => applyVars(),
     },
     gap: {

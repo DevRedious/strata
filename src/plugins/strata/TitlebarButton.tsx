@@ -6,12 +6,11 @@
 
 import "./titlebar.css";
 
-import { plugins } from "@api/PluginManager";
 import { useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { openPluginModal } from "@components/settings";
 import { findComponentByCodeLazy } from "@webpack";
 
+import { openStrataModal } from "./menu/StrataModal";
 import { settings } from "./settings";
 import { StrataIcon } from "./StrataIcon";
 
@@ -27,7 +26,7 @@ function StrataButton() {
     return (
         <HeaderBarIcon
             className="vc-strata-titlebar-btn"
-            onClick={() => openPluginModal(plugins.Strata)}
+            onClick={openStrataModal}
             tooltip="Réglages Strata"
             icon={() => <StrataIcon />}
         />

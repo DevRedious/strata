@@ -1,0 +1,163 @@
+/* Aperçu miniature : schéma de Discord qui suit les réglages */
+.vc-strata-pv {
+    position: relative;
+    display: grid;
+    grid-template-columns: 22px 108px 1fr;
+    gap: var(--pv-gap);
+    height: 168px;
+    padding: var(--pv-gap);
+    border-radius: 14px;
+    background: var(--strata-bg);
+    border: 1px solid var(--strata-border-2);
+    overflow: hidden;
+    transition: gap 0.2s ease, padding 0.2s ease;
+}
+
+.vc-strata-pv-guilds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding-top: 4px;
+}
+
+.vc-strata-pv-guild {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--strata-s3);
+}
+
+.vc-strata-pv-guild.vc-strata-active {
+    border-radius: 5px;
+    background: var(--strata-accent);
+}
+
+.vc-strata-pv-channels,
+.vc-strata-pv-header,
+.vc-strata-pv-chat,
+.vc-strata-pv-members {
+    background: var(--strata-s1);
+    border: 1px solid var(--strata-border);
+    border-radius: var(--pv-radius);
+    transition: border-radius 0.2s ease;
+}
+
+.vc-strata-pv-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+}
+
+.vc-strata-pv-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--pv-gap);
+    min-width: 0;
+}
+
+.vc-strata-pv-header {
+    flex: none;
+    height: 24px;
+    padding: 8px 10px;
+}
+
+.vc-strata-pv-body {
+    flex: 1;
+    display: flex;
+    gap: var(--pv-gap);
+    min-height: 0;
+}
+
+.vc-strata-pv-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+}
+
+.vc-strata-pv-members {
+    flex: none;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+}
+
+.vc-strata-pv-title,
+.vc-strata-pv-line {
+    display: block;
+    height: 5px;
+    border-radius: 3px;
+    background: rgb(255 255 255 / 10%);
+}
+
+.vc-strata-pv-title {
+    width: 50%;
+    background: rgb(255 255 255 / 22%);
+}
+
+.vc-strata-pv-line.vc-strata-accent {
+    height: 12px;
+    border-radius: 4px;
+    background: var(--strata-accent-soft);
+}
+
+.vc-strata-pv-input {
+    margin-top: auto;
+    height: 14px;
+    border-radius: calc(var(--pv-radius) * 0.6);
+    background: var(--strata-s2);
+    border: 1px solid var(--strata-border);
+}
+
+.vc-strata-pv-member {
+    display: block;
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--strata-s3) 10px, rgb(255 255 255 / 8%) 10px);
+}
+
+/* Mode tiroir : la liste des salons se replie et s'ouvre au survol de l'aperçu */
+.vc-strata-pv.vc-strata-drawer {
+    grid-template-columns: 22px 1fr;
+}
+
+.vc-strata-pv.vc-strata-drawer .vc-strata-pv-channels {
+    position: absolute;
+    top: var(--pv-gap);
+    bottom: var(--pv-gap);
+    left: calc(22px + var(--pv-gap) * 2);
+    width: 108px;
+    z-index: 1;
+    opacity: 0;
+    transform: translateX(-8px);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 55%);
+    transition: opacity 0.15s ease var(--pv-close), transform 0.15s ease var(--pv-close);
+}
+
+.vc-strata-pv.vc-strata-drawer:hover .vc-strata-pv-channels {
+    opacity: 1;
+    transform: none;
+    transition-delay: var(--pv-open);
+}
+
+.vc-strata-pv-hint {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 45%);
+    color: var(--strata-muted);
+    font-size: 11px;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.vc-strata-pv.vc-strata-drawer:hover .vc-strata-pv-hint {
+    opacity: 0;
+}

@@ -1,0 +1,47 @@
+/* Sélecteur de couleur : carré saturation/luminosité et barre de teinte */
+.vc-strata-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+    background: var(--strata-s2);
+    border: 1px solid var(--strata-border);
+    border-radius: 14px;
+}
+
+.vc-strata-picker-area,
+.vc-strata-picker-hue {
+    position: relative;
+    touch-action: none;
+    outline: none;
+}
+
+.vc-strata-picker-area {
+    height: 150px;
+    border-radius: 10px;
+    cursor: crosshair;
+    background-image: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent);
+}
+
+.vc-strata-picker-hue {
+    height: 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+}
+
+.vc-strata-picker-area:focus-visible,
+.vc-strata-picker-hue:focus-visible {
+    box-shadow: 0 0 0 2px var(--strata-accent);
+}
+
+.vc-strata-picker-handle {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 40%), 0 2px 6px rgb(0 0 0 / 50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}

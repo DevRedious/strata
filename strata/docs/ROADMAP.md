@@ -11,13 +11,15 @@
 
 - [x] Étudier le fonctionnement interne de Vencord : `definePlugin` et `definePluginSettings`, types d'options, injection de CSS (`?managed`), ouverture de la fenêtre de réglages d'un plugin, et la façon dont VencordToolbox ajoute son bouton dans la barre du haut.
 - [x] Créer `src/plugins/strata/` : plugin activé par défaut, thème déplacé dans `styles/` (un style `?managed` par fichier), réglages posés en variables CSS sur `<html>`. Rendu vérifié sur capture le 2026-10-22.
-- [ ] Fenêtre de réglages sur mesure (centrée) : pastilles d'accent et sélecteur libre, couleur de fond (surfaces dérivées), réinitialisation, export / import. Les options existent déjà dans `settings.ts` ; reste la fenêtre. Options : couleur d'accent (et couleur du texte posé dessus), tiroir activé ou non, délais d'ouverture et de fermeture, espacement, arrondis, et un interrupteur par partie du thème (panneaux, tiroir, panneau compact, pastilles de fenêtre…).
+- [x] Fenêtre de réglages sur mesure (`menu/`), d'après la maquette validée : Couleurs (pastilles d'accent, sélecteur libre, 4 fonds dont les surfaces sont dérivées), Disposition, Tiroir, Parties du thème, Partager (export / import). Ouverte par le bouton de la barre de titre, et par un bouton en tête de la liste standard de Vencord, gardée en secours.
 - [x] Bouton dans la barre de titre (logo Strata) qui ouvre les réglages. Vérifié sur capture : icône, infobulle, clic. Reste à le vérifier avec VencordToolbox activé (les deux patches ont été testés sur le code de Discord, dans les deux ordres).
 - [x] Adapter `check-selectors.mjs` au nouvel emplacement du CSS.
 - [x] Compiler (`pnpm install`, `pnpm build`) puis injecter (`pnpm inject`) chez l'utilisateur. **Demander son accord avant** : l'injection remplace son Vencord officiel, et Discord doit redémarrer, ce qui coupe un appel en cours.
 - [x] Désactiver l'ancien thème `nocturne.theme.css`, ainsi que l'entrée `midnight.theme.css`, dont le fichier n'existait plus.
 - [ ] Supprimer le fichier `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, puis `strata/tools/build-theme.mjs`, devenu inutile.
-- [ ] Vérifier sur capture que chaque option s'applique en direct (accent, espacement, arrondis, délais, interrupteurs).
+- [x] Vérifié sur capture le 2026-10-22 : les 5 sections, l'accent en direct (texte sombre sur un accent clair), un interrupteur de partie, un curseur et « Réinitialiser la section ».
+- [x] Sélecteur de couleur maison (carré saturation/luminosité et barre de teinte), curseurs maison avec présélections, aperçu miniature (le survol ouvre le tiroir avec les délais réglés), barre de défilement visible, finitions. Validés par l'utilisateur dans Discord le 2026-10-22.
+- [ ] Reste à vérifier : export puis import, champ `#rrggbb`, fermeture par Échap, bouton « Ouvrir la fenêtre Strata » dans la liste de Vencord.
 
 ## Phase 2 : releases automatiques
 

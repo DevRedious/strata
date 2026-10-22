@@ -6,6 +6,7 @@
 
 import { disableStyle, enableStyle } from "@api/Styles";
 
+import { contrastFor, surfacesFor } from "./colors";
 import { settings } from "./settings";
 import baseSettings from "./styles/10-settings.css?managed";
 import discordTokens from "./styles/20-discord-tokens.css?managed";
@@ -32,29 +33,25 @@ const STYLES: [style: string, part: PartKey | null][] = [
     [windowDots, "windowDots"],
 ];
 
-const VARS = ["--ui-accent", "--ui-accent-contrast", "--ui-gap", "--ui-radius", "--ui-radius-sm", "--ui-drawer-open-delay", "--ui-drawer-close-delay"];
+const VARS = [
+    "--ui-accent", "--ui-accent-contrast", "--ui-bg", "--ui-surface-1", "--ui-surface-2", "--ui-surface-3",
+    "--ui-gap", "--ui-radius", "--ui-radius-sm", "--ui-drawer-open-delay", "--ui-drawer-close-delay",
+];
 
 // Les écouteurs onChange des réglages tournent même plugin désactivé
 let active = false;
 
-function channel(value: number) {
-    const c = value / 255;
-    return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-}
-
-// Texte posé sur l'accent : blanc, sauf sur un accent clair (jaune, turquoise…)
-function contrastFor(hex: string) {
-    const [r, g, b] = [1, 3, 5].map(i => channel(parseInt(hex.slice(i, i + 2), 16)));
-    const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    return luminance > 0.4 ? `color-mix(in oklab, ${hex} 15%, black)` : "#fff";
-}
-
 export function applyVars() {
     if (!active) return;
-    const { accent, gap, radius, drawerOpenDelay, drawerCloseDelay } = settings.store;
+    const { accent, background, gap, radius, drawerOpenDelay, drawerCloseDelay } = settings.store;
+    const [surface1, surface2, surface3] = surfacesFor(background);
     const values: Record<string, string> = {
         "--ui-accent": accent,
         "--ui-accent-contrast": contrastFor(accent),
+        "--ui-bg": background,
+        "--ui-surface-1": surface1,
+        "--ui-surface-2": surface2,
+        "--ui-surface-3": surface3,
         "--ui-gap": `${gap}px`,
         "--ui-radius": `${radius}px`,
         "--ui-radius-sm": `${Math.min(radius, 8)}px`,

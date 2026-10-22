@@ -8,6 +8,7 @@ import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 import { startTheme, stopTheme } from "./applyTheme";
+import { OpenMenuButton } from "./menu/StrataModal";
 import { settings } from "./settings";
 import { renderTitlebarButton } from "./TitlebarButton";
 
@@ -19,6 +20,7 @@ export default definePlugin({
     // Le thème s'active et se retire à chaud ; seul le bouton attend un redémarrage
     requiresRestart: false,
     settings,
+    settingsAboutComponent: OpenMenuButton,
 
     patches: [
         {

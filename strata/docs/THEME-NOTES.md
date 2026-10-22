@@ -10,6 +10,10 @@ Ce document rassemble ce qui a été appris en construisant le thème : pièges,
 
 ## Pièges
 
+- **Pas de JSX au chargement d'un module.** Vencord compile le JSX en `VencordCreateElement`, qui va chercher le React de Discord au premier appel. Un élément créé au niveau du module (par exemple `const Icone = icon(<path/>)`) s'exécute avant que React n'existe : tout `renderer.js` plante et Discord se recharge sans Vencord. Toujours passer par une fonction (`icon(() => <path/>)`).
+- **Fenêtres sur mesure et clics.** Les conteneurs de calques de Discord sont en `pointer-events: none`. Une fenêtre ouverte avec `openModal` sans le conteneur standard doit poser `pointer-events: auto` sur sa racine, sinon les clics la traversent, atteignent le fond et la referment.
+- **Pas de fichiers `.js` téléchargés dans le dépôt.** `pnpm lint` passe sur tous les `.js` du dépôt, y compris ceux de `strata/.cache/` pourtant ignorés par Git : 18 Mo de JavaScript minifié de Discord lui ont fait dépasser 4 Go de mémoire. Pour étudier le code de Discord, télécharger dans `%TEMP%`.
+- **`eslint --fix` sous Windows.** La règle de Vencord qui remplace les imports `../` par des alias `@plugins/…` écrit des antislashs (`@plugins\strata\…`), ce qui casse les chemins. Les remettre en `/` après chaque `--fix`.
 - **Ordre de chargement.** Les feuilles chargées à la demande par Discord arrivent **après** le thème : à spécificité égale, Discord gagne. On passe devant avec `:not(#_)`, qui ajoute la spécificité d'un ID sans rien cibler.
 - **Variables de couleur.** Elles sont définies sur `.theme-dark` (et des classes `.theme-midnight` / `.theme-darker` apparaissent sur certains sous-arbres, comme la zone d'appel). Elles sont surchargées sur `:is(.theme-dark, .theme-darker, .theme-midnight):not(#_)`. La gamme `--brand-*` (blurple) est définie sur `:root` et `.visual-refresh`.
 - **Styles inline.** Le compteur d'appel reçoit `font-family: var(--font-code)` directement sur l'élément. Il faut le viser avec `[style*="--font-code"]` et `!important`.

@@ -16,7 +16,7 @@
 - [x] Adapter `check-selectors.mjs` au nouvel emplacement du CSS.
 - [x] Compiler (`pnpm install`, `pnpm build`) puis injecter (`pnpm inject`) chez l'utilisateur. **Demander son accord avant** : l'injection remplace son Vencord officiel, et Discord doit redémarrer, ce qui coupe un appel en cours.
 - [x] Désactiver l'ancien thème `nocturne.theme.css`, ainsi que l'entrée `midnight.theme.css`, dont le fichier n'existait plus.
-- [ ] Supprimer le fichier `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, puis `strata/tools/build-theme.mjs`, devenu inutile.
+- [x] Supprimer le fichier `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, puis `strata/tools/build-theme.mjs`, devenu inutile (2026-10-22).
 - [x] Vérifié sur capture le 2026-10-22 : les 5 sections, l'accent en direct (texte sombre sur un accent clair), un interrupteur de partie, un curseur et « Réinitialiser la section ».
 - [x] Sélecteur de couleur maison (carré saturation/luminosité et barre de teinte), curseurs maison avec présélections, aperçu miniature (le survol ouvre le tiroir avec les délais réglés), barre de défilement visible, finitions. Validés par l'utilisateur dans Discord le 2026-10-22.
 - [ ] Reste à vérifier : export puis import, champ `#rrggbb`, fermeture par Échap, bouton « Ouvrir la fenêtre Strata » dans la liste de Vencord.
@@ -35,9 +35,9 @@
 
 - [x] Installeur Windows : launcher Tauri dans le dépôt [DevRedious/strata-launcher](https://github.com/DevRedious/strata-launcher). Exe portable, sans droits administrateur ; installe la release dans `%APPDATA%\Strata\dist` et écrit le même `app.asar` que l'installeur officiel de Vencord. Choisi plutôt qu'un fork de Vencord/Installer (Go) ou un script PowerShell, pour l'interface aux couleurs de Strata et pour les antivirus.
 - [x] Test réel le 2026-10-22 sur le Discord de l'utilisateur : remplacer une installation Vencord (ici de développement), réparer, désinstaller. Les réglages et plugins Vencord sont repris, Discord revient à l'origine à la désinstallation.
-- [ ] Compiler et publier l'exe du launcher par GitHub Actions.
+- [x] Compiler et publier l'exe du launcher par GitHub Actions : vérifications, compilation et empreinte SHA-256 à chaque push, release à chaque tag `vX.Y.Z` (première : `v0.1.0`, non signée, 2026-10-22).
 - [ ] Signature : demande à SignPath Foundation (gratuit pour l'open source), puis soumission de l'exe à Norton et à Microsoft pour analyse.
-- [ ] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client. Les icônes du launcher en petite taille (16 à 32 px, logo agrandi pour rester lisible) sont faites (2026-10-22).
+- [x] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client, icônes du launcher en petite taille (16 à 32 px, logo agrandi pour rester lisible) (2026-10-22).
 - [x] Site public [devredious.github.io/strata](https://devredious.github.io/strata/), bilingue, avec le guide d'installation (SmartScreen et antivirus compris), la politique de confidentialité et la politique de signature, exigées par SignPath (2026-10-22).
 - [x] Favicons, manifeste web et images de partage (Open Graph, FR et EN) du site (2026-10-22).
 - [ ] Demande de signature à SignPath Foundation : suivi dans `strata-launcher/docs/SIGNPATH.md`.

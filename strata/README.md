@@ -6,7 +6,7 @@ Ce dossier `strata/` contient tout ce qui est propre au projet. Le reste du dép
 
 ## État actuel
 
-Le thème est appliqué par le plugin `src/plugins/strata/`, activé par défaut, et vérifié visuellement dans Discord. Ses réglages (accent, espacement, arrondis, délais du tiroir, un interrupteur par partie) s'ouvrent depuis le bouton Strata de la barre de titre. Ce bouton affiche pour l'instant la liste standard de Vencord (aussi accessible par Paramètres → Vencord → Plugins → Strata). La fenêtre de réglages sur mesure, les releases et l'installeur ne sont pas encore faits.
+Le thème est appliqué par le plugin `src/plugins/strata/`, activé par défaut, et vérifié visuellement dans Discord. Ses réglages (accent, fonds, espacement, arrondis, délais du tiroir, un interrupteur par partie, export et import) s'ouvrent dans une fenêtre sur mesure, depuis le bouton Strata de la barre de titre ; la liste standard de Vencord (Paramètres → Vencord → Plugins → Strata) reste disponible en secours. Chaque modification de `src/` publie une release que l'outil de mise à jour de Vencord récupère, et le launcher [DevRedious/strata-launcher](https://github.com/DevRedious/strata-launcher) installe Strata sans ligne de commande.
 
 Ce que fait le thème :
 
@@ -48,7 +48,6 @@ Le plugin vit hors de ce dossier, dans `src/plugins/strata/` : Vencord ne compil
 | `tools/discord-css.mjs` | Télécharge le CSS servi par Discord et le met en cache. |
 | `tools/check-selectors.mjs` | Vérifie que les classes du thème existent encore chez Discord. |
 | `tools/css-query.mjs` | Cherche des classes et des règles dans le CSS de Discord. |
-| `tools/build-theme.mjs` | Assemble les styles en un thème Vencord classique. Ne plus l'installer : le plugin applique déjà le thème, qui s'appliquerait deux fois. À supprimer. |
 | `tools/screenshot/` | Captures de l'écran où tourne Discord, pour vérifier un rendu. |
 | `docs/` | Architecture, feuille de route, notes sur le CSS de Discord. |
 

@@ -1,6 +1,6 @@
 /* Disposition en panneaux flottants : liste des salons, en-tête, chat et membres
    deviennent des cartes séparées par --ui-gap sur le fond --ui-bg.
-   Les classes hachées (_5e434, _f75fb0…) sont vérifiées par `npm run check`. */
+   Les classes hachées (_5e434, _f75fb0…) sont vérifiées par strata/tools/check-selectors.mjs. */
 
 .base__5e434,
 .sidebar__5e434,
@@ -26,7 +26,7 @@
   background: var(--ui-surface-2);
   border-color: var(--ui-border);
   border-radius: var(--ui-radius);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 35%);
 }
 
 /* Zone principale : marge autour, chaque enfant devient une carte */
@@ -56,6 +56,7 @@
    :not(#_) pour passer devant `.theme-dark .themed__9293f`, chargé après le thème */
 .chat_f75fb0 .container__9293f:not(#_) {
   --__header-bar-background: var(--ui-surface-1);
+
   background: var(--ui-surface-1);
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius);

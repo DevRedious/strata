@@ -9,13 +9,15 @@
 
 ## Phase 1 : le plugin et le menu, testés en local
 
-- [ ] Étudier le fonctionnement interne de Vencord : `definePlugin` et `definePluginSettings`, types d'options, injection de CSS (`?managed`), ouverture de la fenêtre de réglages d'un plugin, et la façon dont VencordToolbox ajoute son bouton dans la barre du haut.
-- [ ] Créer `src/plugins/strata/` : un plugin activé par défaut, qui injecte le thème (déplacer `strata/theme/` dedans, ou l'importer) et applique les réglages en posant des variables CSS sur `:root`.
-- [ ] Options du menu, construites à partir de `theme/10-settings.css` : couleur d'accent (et couleur du texte posé dessus), tiroir activé ou non, délais d'ouverture et de fermeture, espacement, arrondis, et un interrupteur par partie du thème (panneaux, tiroir, panneau compact, pastilles de fenêtre…).
-- [ ] Bouton dans la barre de titre qui ouvre le menu.
-- [ ] Adapter `check-selectors.mjs` au nouvel emplacement du CSS.
-- [ ] Compiler (`pnpm install`, `pnpm build`) puis injecter (`pnpm inject`) chez l'utilisateur. **Demander son accord avant** : l'injection remplace son Vencord officiel, et Discord doit redémarrer, ce qui coupe un appel en cours.
-- [ ] Une fois le plugin en place, désactiver puis supprimer l'ancien thème `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, pour ne pas appliquer le thème deux fois.
+- [x] Étudier le fonctionnement interne de Vencord : `definePlugin` et `definePluginSettings`, types d'options, injection de CSS (`?managed`), ouverture de la fenêtre de réglages d'un plugin, et la façon dont VencordToolbox ajoute son bouton dans la barre du haut.
+- [x] Créer `src/plugins/strata/` : plugin activé par défaut, thème déplacé dans `styles/` (un style `?managed` par fichier), réglages posés en variables CSS sur `<html>`. Rendu vérifié sur capture le 2026-10-22.
+- [ ] Fenêtre de réglages sur mesure (centrée) : pastilles d'accent et sélecteur libre, couleur de fond (surfaces dérivées), réinitialisation, export / import. Les options existent déjà dans `settings.ts` ; reste la fenêtre. Options : couleur d'accent (et couleur du texte posé dessus), tiroir activé ou non, délais d'ouverture et de fermeture, espacement, arrondis, et un interrupteur par partie du thème (panneaux, tiroir, panneau compact, pastilles de fenêtre…).
+- [x] Bouton dans la barre de titre (logo Strata) qui ouvre les réglages. Vérifié sur capture : icône, infobulle, clic. Reste à le vérifier avec VencordToolbox activé (les deux patches ont été testés sur le code de Discord, dans les deux ordres).
+- [x] Adapter `check-selectors.mjs` au nouvel emplacement du CSS.
+- [x] Compiler (`pnpm install`, `pnpm build`) puis injecter (`pnpm inject`) chez l'utilisateur. **Demander son accord avant** : l'injection remplace son Vencord officiel, et Discord doit redémarrer, ce qui coupe un appel en cours.
+- [x] Désactiver l'ancien thème `nocturne.theme.css`, ainsi que l'entrée `midnight.theme.css`, dont le fichier n'existait plus.
+- [ ] Supprimer le fichier `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, puis `strata/tools/build-theme.mjs`, devenu inutile.
+- [ ] Vérifier sur capture que chaque option s'applique en direct (accent, espacement, arrondis, délais, interrupteurs).
 
 ## Phase 2 : releases automatiques
 
@@ -29,7 +31,7 @@
 - [ ] Installeur Windows (fork de Vencord/Installer, ou script PowerShell).
 - [ ] Vérifier qu'une installation par-dessus un Vencord existant reprend les réglages.
 - [ ] Guide d'installation pour les collègues, mentionnant les conditions d'utilisation de Discord.
-- [ ] README de Strata à la racine du dépôt (celui de Vencord y est encore).
+- [x] README de Strata à la racine du dépôt, au format des projets ark-management (2026-10-22). À compléter avec le guide d'installation.
 
 ## Idées en attente
 

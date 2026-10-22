@@ -1,4 +1,4 @@
-// Concatène strata/theme/*.css en un thème Vencord autonome, en attendant que le
+// Concatène src/plugins/strata/styles/*.css en un thème Vencord autonome, en attendant que le
 // plugin Strata injecte lui-même le thème.
 //   node strata/tools/build-theme.mjs            -> strata/.cache/strata.theme.css
 //   node strata/tools/build-theme.mjs --install  -> copie aussi dans %APPDATA%\Vencord\themes
@@ -8,7 +8,7 @@ import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, watch, 
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const themeDir = fileURLToPath(new URL('../theme', import.meta.url));
+const themeDir = fileURLToPath(new URL('../../src/plugins/strata/styles', import.meta.url));
 const outDir = fileURLToPath(new URL('../.cache', import.meta.url));
 const outFile = join(outDir, 'strata.theme.css');
 const args = new Set(process.argv.slice(2));
@@ -52,5 +52,5 @@ if (args.has('--watch')) {
       }
     }, 100);
   });
-  console.log('[watch] en attente de modifications dans strata/theme/ (Ctrl+C pour arrêter)');
+  console.log('[watch] en attente de modifications dans src/plugins/strata/styles/ (Ctrl+C pour arrêter)');
 }

@@ -1,21 +1,22 @@
-/* Réglages du thème : c'est le seul fichier à modifier pour changer l'apparence.
-   Pour surcharger sans rebuild, recopier le bloc :root dans le QuickCSS de Vencord. */
+/* Valeurs par défaut du thème. Le plugin pose par-dessus, sur <html>, celles
+   choisies dans ses réglages (accent, espacement, arrondis, délais du tiroir) :
+   les défauts de settings.ts doivent rester identiques à ceux d'ici. */
 :root {
   /* Couleur d'accent (sélection, boutons, mentions, focus) */
   --ui-accent: #7c6cff;
+
   /* Texte posé sur l'accent (boutons pleins) */
-  --ui-accent-contrast: #ffffff;
+  --ui-accent-contrast: #fff;
 
   /* Fond de l'application et surfaces, du plus sombre au plus clair */
   --ui-bg: #0a0b0f;
   --ui-surface-1: #111318;
   --ui-surface-2: #171a21;
   --ui-surface-3: #1e222b;
-
   --ui-text: #e4e6ec;
-  --ui-text-strong: #ffffff;
+  --ui-text-strong: #fff;
   --ui-text-muted: #8a90a0;
-  --ui-border: rgb(255 255 255 / 0.06);
+  --ui-border: rgb(255 255 255 / 6%);
 
   /* Disposition */
   --ui-gap: 8px;

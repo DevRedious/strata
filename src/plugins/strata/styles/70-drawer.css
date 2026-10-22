@@ -9,6 +9,7 @@
     /* Discord fixe la largeur en ligne quand on redimensionne : !important nécessaire */
     width: var(--custom-guild-list-width) !important;
     overflow: visible;
+
     /* Au-dessus de l'en-tête du chat (.title_f75fb0, z-index 100) */
     z-index: 110;
   }
@@ -24,7 +25,7 @@
     inset-inline-start: var(--custom-guild-list-width);
     width: calc(var(--custom-guild-sidebar-width) - var(--custom-guild-list-width) - 1px);
     z-index: 1;
-    box-shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+    box-shadow: 0 16px 48px rgb(0 0 0 / 55%);
   }
 
   /* Plugin Vencord BetterFolders : un dossier ouvert ajoute une colonne de la
@@ -72,6 +73,7 @@
      devant les largeurs du panneau ouvert, BetterFolders compris. */
   .sidebar__5e434:not([data-collapsed="true"]):not(:hover) .panels__5e434:not(#_) {
     width: calc(var(--custom-guild-list-width) - var(--custom-panels-spacing) * 2);
+
     /* La nameplate dépasserait des coins arrondis */
     overflow: hidden;
   }

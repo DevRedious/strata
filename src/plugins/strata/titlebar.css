@@ -1,0 +1,13 @@
+/* La barre de titre déplace la fenêtre : sans no-drag, le bouton ne reçoit pas le clic */
+.vc-strata-titlebar-btn,
+.vc-strata-titlebar-btn svg {
+    -webkit-app-region: no-drag;
+}
+
+.vc-strata-titlebar-btn {
+    color: var(--interactive-icon-default);
+}
+
+.vc-strata-titlebar-btn:hover {
+    color: var(--interactive-icon-hover);
+}

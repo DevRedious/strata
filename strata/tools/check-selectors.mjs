@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CLASS_RE, discordSheets } from './discord-css.mjs';
 
-const themeDir = fileURLToPath(new URL('../theme', import.meta.url));
+const themeDir = fileURLToPath(new URL('../../src/plugins/strata/styles', import.meta.url));
 
 function themeClasses() {
   const used = new Map();

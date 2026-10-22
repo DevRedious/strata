@@ -6,7 +6,7 @@ Ce dossier `strata/` contient tout ce qui est propre au projet. Le reste du dép
 
 ## État actuel
 
-Le thème est terminé et vérifié visuellement dans Discord, mais il fonctionne encore comme un thème Vencord classique (un fichier CSS). Le plugin, le menu de réglages, les releases et l'installeur ne sont pas encore faits.
+Le thème est appliqué par le plugin `src/plugins/strata/`, activé par défaut, et vérifié visuellement dans Discord. Ses réglages (accent, espacement, arrondis, délais du tiroir, un interrupteur par partie) s'ouvrent depuis le bouton Strata de la barre de titre. Ce bouton affiche pour l'instant la liste standard de Vencord (aussi accessible par Paramètres → Vencord → Plugins → Strata). La fenêtre de réglages sur mesure, les releases et l'installeur ne sont pas encore faits.
 
 Ce que fait le thème :
 
@@ -18,21 +18,34 @@ Ce que fait le thème :
 
 ## Structure
 
-| Chemin | Rôle |
+Le plugin vit hors de ce dossier, dans `src/plugins/strata/` : Vencord ne compile que les plugins de `src/plugins/`.
+
+| Chemin (depuis la racine du dépôt) | Rôle |
 |---|---|
-| `theme/10-settings.css` | Réglages : couleurs, espacements, arrondis, tiroir. Ce sont eux qui deviendront les options du menu. |
-| `theme/20-discord-tokens.css` | Branche les réglages sur les variables de couleur de Discord. |
-| `theme/30-layout.css` | Disposition en panneaux flottants. |
-| `theme/40-chat.css` | Messages et barre de saisie. |
-| `theme/50-settings.css` | Paramètres utilisateur de Discord. |
-| `theme/60-voice.css` | Salons vocaux et appels. |
-| `theme/70-drawer.css` | Liste des salons en tiroir et panneau utilisateur compact. |
-| `theme/80-panel.css` | Panneau utilisateur et bloc « Voix connectée ». |
-| `theme/90-titlebar.css` | Barre de titre. |
+| `src/plugins/strata/index.ts` | Déclaration du plugin et patch de la barre de titre. |
+| `src/plugins/strata/TitlebarButton.tsx` | Bouton Strata de la barre de titre. Le patch l'insère en tête de la zone de droite, sans remplacer le `Fragment` comme VencordToolbox : les deux plugins cohabitent. |
+| `src/plugins/strata/titlebar.css` | Style du bouton (`no-drag`, sinon la barre de titre intercepte le clic). |
+| `src/plugins/strata/StrataIcon.tsx` | Logo en icône, à la couleur des icônes de Discord (`currentColor`). |
+| `src/plugins/strata/settings.ts` | Options du plugin et leurs valeurs par défaut. |
+| `src/plugins/strata/applyTheme.ts` | Active ou retire chaque fichier du thème, et pose les valeurs choisies en variables CSS sur `<html>`. |
+| `src/plugins/strata/styles/10-settings.css` | Valeurs par défaut des variables du thème (couleurs, espacements, arrondis, tiroir). |
+| `src/plugins/strata/styles/20-discord-tokens.css` | Branche ces variables sur celles de Discord. Toujours actif, comme `10`. |
+| `src/plugins/strata/styles/30-layout.css` | Disposition en panneaux flottants. |
+| `src/plugins/strata/styles/40-chat.css` | Messages et barre de saisie. |
+| `src/plugins/strata/styles/50-settings.css` | Paramètres utilisateur de Discord. |
+| `src/plugins/strata/styles/60-voice.css` | Salons vocaux et appels. |
+| `src/plugins/strata/styles/70-drawer.css` | Liste des salons en tiroir et panneau utilisateur compact. |
+| `src/plugins/strata/styles/80-panel.css` | Panneau utilisateur et bloc « Voix connectée ». |
+| `src/plugins/strata/styles/90-titlebar.css` | Barre de titre. |
+| `src/plugins/strata/styles/.stylelintrc.json` | Assouplit le stylelint de Vencord pour un thème : classes hachées de Discord, `:not(#_)`, spécificité. |
+
+| Chemin (dans `strata/`) | Rôle |
+|---|---|
+| `assets/` | Logo Strata en SVG, noir et blanc. |
 | `tools/discord-css.mjs` | Télécharge le CSS servi par Discord et le met en cache. |
 | `tools/check-selectors.mjs` | Vérifie que les classes du thème existent encore chez Discord. |
 | `tools/css-query.mjs` | Cherche des classes et des règles dans le CSS de Discord. |
-| `tools/build-theme.mjs` | Assemble le thème en un fichier et l'installe dans Vencord. |
+| `tools/build-theme.mjs` | Assemble les styles en un thème Vencord classique. Ne plus l'installer : le plugin applique déjà le thème, qui s'appliquerait deux fois. À supprimer. |
 | `tools/screenshot/` | Captures de l'écran où tourne Discord, pour vérifier un rendu. |
 | `docs/` | Architecture, feuille de route, notes sur le CSS de Discord. |
 
@@ -41,10 +54,12 @@ Ce que fait le thème :
 Toutes les commandes se lancent depuis la racine du dépôt.
 
 ```bash
-node strata/tools/build-theme.mjs --install --watch
+pnpm watch
 ```
 
-Cette commande reconstruit `strata.theme.css` à chaque modification de `strata/theme/` et le copie dans `%APPDATA%\Vencord\themes`. Vencord recharge un thème installé dès que le fichier change ; il faut seulement l'activer une fois dans Paramètres → Vencord → Thèmes.
+Cette commande recompile Vencord, et donc le plugin et son CSS, à chaque modification. Il suffit ensuite de recharger Discord (`Ctrl+R`). Cela suppose que Discord charge la version compilée de ce dépôt, ce que fait `pnpm inject -branch stable` une fois pour toutes. **Demander l'accord de l'utilisateur avant** : l'injection remplace son Vencord et redémarre Discord, ce qui coupe un appel en cours. Discord charge ensuite Vencord directement depuis `dist/` : supprimer ce dossier le laisse sans Vencord ni Strata jusqu'à la prochaine compilation.
+
+Les fichiers de `styles/` passent par le stylelint de Vencord (`pnpm lint-styles`), lancé par `pnpm test`.
 
 Après une mise à jour de Discord, ou avant de publier :
 

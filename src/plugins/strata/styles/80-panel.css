@@ -10,7 +10,7 @@
 
 /* Nom et statut lisibles sur une nameplate (bannière décorative) */
 .plated__37e49 :is(.panelTitleContainer__37e49, .panelSubtextContainer__37e49) {
-  text-shadow: 0 1px 2px rgb(0 0 0 / 0.85), 0 0 8px rgb(0 0 0 / 0.5);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 85%), 0 0 8px rgb(0 0 0 / 50%);
 }
 
 .plated__37e49 .panelSubtextContainer__37e49 {

@@ -25,7 +25,19 @@ L'outil de mise à jour de Vencord (`src/main/updater/http.ts`) interroge `https
 - **La version.** Le hash de commit est lu dans le **dernier mot du nom de la release**, puis comparé au hash compilé.
 - **Les fichiers.** Les fichiers de la release dont le nom commence par une entrée de `VENCORD_FILES` sont téléchargés, puis écrits à la place des fichiers en cours d'utilisation.
 
-À vérifier avant de mettre en place les releases : la manière exacte dont `scripts/build/common.mjs` calcule `gitRemote` (remote `origin` ou `package.json`), le format exact du nom des releases, et les fichiers attendus. Le workflow GitHub Actions de Vencord qui publie ses « devbuild » dans `.github/workflows/` sert de modèle.
+Vérifié dans le code le 2026-10-22 :
+
+- **`gitRemote`** vient de la variable `VENCORD_REMOTE`, sinon de `git remote get-url origin` (`scripts/build/common.mjs`). Dans GitHub Actions, c'est donc `DevRedious/strata`.
+- **`gitHash`** vient de `VENCORD_HASH`, sinon de `git rev-parse --short HEAD`. Il est écrit dans la bannière de chaque fichier compilé (`// Vencord <hash>`).
+- **Deux outils de mise à jour.** Une version compilée avec `--standalone` (celle des collègues) utilise `http.ts` : la release décrite ci-dessus. Une installation de développement (`pnpm build` puis `pnpm inject`, celle de l'utilisateur) utilise `git.ts`, qui met à jour le dépôt local.
+
+### Les workflows de Strata
+
+Ce sont des fichiers à nous dans `.github/workflows/`, aucun fichier de Vencord n'est modifié.
+
+- **`strata-release.yml`** : à chaque push sur `main` qui touche le code, ou à la main. Il lance `pnpm test` (compilation `--standalone`, types, lint, liste des plugins), vérifie que la bannière porte le hash du commit, puis met à jour la release unique `build`, nommée `Strata <hash>` et marquée « latest ». Les fichiers sont envoyés avant que le nom ne change, pour qu'un client ne voie la nouvelle version qu'une fois tout en ligne.
+- **`strata-sync-upstream.yml`** : toutes les 6 heures, ou à la main. Il fusionne `Vendicated/Vencord/main` ; en cas de conflit ou d'échec de `pnpm test`, il s'arrête sans rien pousser et GitHub prévient par e-mail. Sinon il pousse et appelle directement `strata-release.yml`, car un push fait avec `GITHUB_TOKEN` ne déclenche pas les autres workflows.
+- **Limite connue.** `GITHUB_TOKEN` ne peut pas pousser une modification de `.github/workflows/`. Quand Vencord modifie ses propres workflows, la synchronisation échoue au push : il faut alors fusionner à la main (`git fetch upstream && git merge upstream/main`, puis `git push`).
 
 ## Pourquoi un dépôt public
 
@@ -48,7 +60,7 @@ Conséquence : aucun secret ne doit être versionné ici. Les workflows de publi
   |---|---|---|
   | `README.md` | Remplacé par le README de Strata, qui crédite Vencord et rappelle la licence. | 2026-10-22 |
   | `src/utils/constants.ts` | Entrée `DevRedious` dans `Devs`, juste après `Ven`. `scripts/generatePluginList.ts` (lancé par `pnpm test` et par le workflow de build) n'accepte que des auteurs de la forme `Devs.Nom`. | 2026-10-22 |
-- **Mises à jour de Vencord.** On les récupère avec `git fetch upstream && git merge upstream/main` ; une tâche planifiée GitHub Actions le fera automatiquement.
+- **Mises à jour de Vencord.** `strata-sync-upstream.yml` les fusionne toutes les 6 heures (voir plus haut). À la main : `git fetch upstream && git merge upstream/main`.
 
 ## Installation chez un collègue (à construire)
 

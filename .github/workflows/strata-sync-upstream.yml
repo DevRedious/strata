@@ -1,0 +1,86 @@
+# Strata : fusionne Vendicated/Vencord dans main, vérifie, pousse puis publie.
+# S'il y a un conflit (fichiers de Vencord modifiés par Strata, listés dans
+# strata/docs/ARCHITECTURE.md) ou si un test échoue, rien n'est poussé : GitHub
+# signale l'échec par e-mail et la fusion se fait à la main.
+name: Strata sync with Vencord
+
+on:
+    schedule:
+        - cron: "17 */6 * * *"
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: strata-sync
+    cancel-in-progress: false
+
+env:
+    FORCE_COLOR: true
+
+jobs:
+    sync:
+        if: github.repository == 'DevRedious/strata'
+        runs-on: ubuntu-latest
+        outputs:
+            merged: ${{ steps.merge.outputs.merged }}
+            sha: ${{ steps.merge.outputs.sha }}
+
+        steps:
+            - uses: actions/checkout@v7
+              with:
+                  fetch-depth: 0
+
+            - name: Merge Vencord
+              id: merge
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git remote add upstream https://github.com/Vendicated/Vencord.git
+                  git fetch upstream main
+
+                  if git merge-base --is-ancestor upstream/main HEAD; then
+                      echo "Rien de nouveau chez Vencord."
+                      echo "merged=false" >> "$GITHUB_OUTPUT"
+                      exit 0
+                  fi
+
+                  git log --oneline HEAD..upstream/main
+                  # Un conflit fait échouer l'étape : rien n'est poussé
+                  git merge --no-edit upstream/main
+                  echo "merged=true" >> "$GITHUB_OUTPUT"
+                  echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+            - uses: pnpm/action-setup@v6
+              if: steps.merge.outputs.merged == 'true'
+
+            - name: Use Node.js 24
+              if: steps.merge.outputs.merged == 'true'
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              if: steps.merge.outputs.merged == 'true'
+              run: pnpm install --frozen-lockfile
+
+            - name: Build and test
+              if: steps.merge.outputs.merged == 'true'
+              run: pnpm test
+
+            # Si Vencord a modifié ses propres workflows, GitHub refuse ce push
+            # (GITHUB_TOKEN ne peut pas modifier .github/workflows) : fusionner à la main
+            - name: Push
+              if: steps.merge.outputs.merged == 'true'
+              run: git push origin HEAD:main
+
+    release:
+        needs: sync
+        if: needs.sync.outputs.merged == 'true'
+        uses: ./.github/workflows/strata-release.yml
+        with:
+            ref: ${{ needs.sync.outputs.sha }}
+        permissions:
+            contents: write

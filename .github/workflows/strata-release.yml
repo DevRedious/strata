@@ -1,0 +1,91 @@
+# Strata : compile la version distribuable et la publie dans la release « build ».
+# L'outil de mise à jour de Vencord (src/main/updater/http.ts) lit releases/latest,
+# prend le dernier mot du nom de la release comme hash de commit et télécharge
+# les fichiers dont le nom commence par patcher.js, preload.js, renderer.js ou
+# renderer.css. Voir strata/docs/ARCHITECTURE.md.
+name: Strata release
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - src/**
+            - scripts/build/**
+            - package.json
+            - pnpm-lock.yaml
+            - .github/workflows/strata-release.yml
+    workflow_dispatch:
+    # Appelé par strata-sync-upstream.yml : un push fait avec GITHUB_TOKEN ne
+    # déclenche pas les autres workflows
+    workflow_call:
+        inputs:
+            ref:
+                description: Commit à publier
+                type: string
+                required: true
+
+permissions:
+    contents: write
+
+concurrency:
+    group: strata-release
+    cancel-in-progress: false
+
+env:
+    FORCE_COLOR: true
+    RELEASE_TAG: build
+
+jobs:
+    release:
+        if: github.repository == 'DevRedious/strata'
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v7
+              with:
+                  ref: ${{ inputs.ref || github.sha }}
+
+            - uses: pnpm/action-setup@v6 # Version de pnpm lue dans package.json (packageManager)
+
+            - name: Use Node.js 24
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            # Compilation distribuable (--standalone), types, lint, liste des plugins :
+            # rien n'est publié si une étape échoue
+            - name: Build and test
+              run: pnpm test
+
+            - name: Check the compiled hash
+              run: |
+                  HASH=$(git rev-parse --short HEAD)
+                  echo "HASH=$HASH" >> "$GITHUB_ENV"
+                  # La bannière de chaque fichier compilé porte le hash : il doit être
+                  # celui qu'on mettra dans le nom de la release
+                  grep -q "^// Vencord $HASH$" dist/renderer.js
+                  grep -q "^// Standalone: true$" dist/renderer.js
+
+            - name: Publish the release
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  FILES="dist/patcher.js dist/preload.js dist/renderer.js dist/renderer.css"
+                  FILES="$FILES dist/patcher.js.map dist/preload.js.map dist/renderer.js.map dist/renderer.css.map"
+                  NOTES="Version distribuable de Strata, publiée automatiquement depuis ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/$(git rev-parse HEAD). L'outil de mise à jour de Vencord l'installe tout seul."
+
+                  if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+                      # Fichiers d'abord, nom ensuite : un client qui vérifie pendant
+                      # l'envoi ne voit la nouvelle version qu'une fois tout en ligne
+                      gh release upload "$RELEASE_TAG" --clobber $FILES
+                      gh release edit "$RELEASE_TAG" --title "Strata $HASH" --notes "$NOTES" --latest
+                  else
+                      # Première publication : brouillon, puis publication une fois les fichiers envoyés
+                      gh release create "$RELEASE_TAG" --draft --target "$(git rev-parse HEAD)" --title "Strata $HASH" --notes "$NOTES" $FILES
+                      gh release edit "$RELEASE_TAG" --draft=false --latest
+                  fi

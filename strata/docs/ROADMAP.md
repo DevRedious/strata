@@ -23,10 +23,12 @@
 
 ## Phase 2 : releases automatiques
 
-- [ ] Vérifier comment `gitRemote` et `gitHash` sont calculés, ainsi que le format attendu pour les releases (voir [ARCHITECTURE.md](ARCHITECTURE.md)).
-- [ ] Workflow de compilation et de publication des releases, sur le modèle de celui de Vencord, avec le bon nom de release et les bons fichiers.
-- [ ] Workflow planifié qui fusionne `upstream/main`, compile, et ne publie que si la compilation réussit.
-- [ ] Rebaptiser l'outil de mise à jour (nom affiché, lien vers le dépôt) si nécessaire.
+- [x] Vérifier comment `gitRemote` et `gitHash` sont calculés, ainsi que le format attendu pour les releases (voir [ARCHITECTURE.md](ARCHITECTURE.md)).
+- [x] Workflow de compilation et de publication des releases : `strata-release.yml`.
+- [x] Workflow planifié qui fusionne `upstream/main`, compile, et ne publie que si la compilation réussit : `strata-sync-upstream.yml`.
+- [ ] Vérifier la première release sur GitHub, et que l'outil de mise à jour la lit correctement (nom, hash, fichiers).
+- [ ] Lancer une première fois la synchronisation à la main (`workflow_dispatch`) pour la valider.
+- [x] Rebaptiser l'outil de mise à jour : inutile, le lien du dépôt vient de `gitRemote` et pointe déjà sur `DevRedious/strata`.
 
 ## Phase 3 : installation par les collègues
 

@@ -1,0 +1,45 @@
+/* Mode translucide, actif seulement avec le fond « Translucide » (et les panneaux
+   flottants) : nos panneaux reprennent les calques des thèmes Nitro de Discord.
+   Chaque calque repeint le dégradé, fixé sur la fenêtre, sous un voile de la teinte
+   du fond : les panneaux semblent transparents sans s'assombrir en s'empilant.
+   Les variables --background-gradient-* n'existent qu'avec la classe
+   custom-theme-background, posée sur <html> par le plugin (applyTheme.ts). */
+
+/* Cadre (barre de titre, espaces entre panneaux) : même calque que la barre des
+   serveurs, que Discord peint avec --background-gradient-app-frame (.tree_ef3116).
+   Sans ça, le cadre montrait le dégradé brut à côté d'une barre des serveurs voilée. */
+.base__5e434 {
+  background: var(--background-gradient-app-frame, var(--ui-bg));
+}
+
+/* Discord donne un fond à la piste de défilement des thèmes Nitro : un rail visible */
+.custom-theme-background .customTheme_d125d2.auto_d125d2:not(#_)::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.sidebarList__5e434,
+.page__5e434 > :not(:has(.chat_f75fb0)),
+.container_c8ffbb {
+  background: var(--background-gradient-lower, var(--ui-surface-1));
+}
+
+.panels__5e434 {
+  background: var(--background-gradient-high, var(--ui-surface-2));
+}
+
+.chat_f75fb0 .container__9293f:not(#_) {
+  --__header-bar-background: transparent;
+
+  background: var(--background-gradient-lower, var(--ui-surface-1));
+}
+
+.chatContent_f75fb0 {
+  background: var(--background-gradient-chat, var(--ui-surface-1));
+}
+
+/* Zone d'appel (60-voice.css la peint avec :not(#_), chargé après nous) */
+.callContainer__722ff:not(#_):not(#_),
+.wrapper_cb9592:not(.fullScreen_cb9592) .callContainer_cb9592:not(#_):not(#_),
+.wrapper_cb9592:not(.fullScreen_cb9592) .root_bfe55a:not(#_):not(#_) {
+  background: var(--background-gradient-lower, var(--ui-surface-1));
+}

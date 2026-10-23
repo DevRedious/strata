@@ -1,0 +1,42 @@
+/* Boutons de fenêtre « Pilule » : les trois icônes dans une capsule légèrement
+   teintée. Survol à l'accent, rouge pour fermer.
+   :not(#_) pour passer devant les règles de Discord (taille, survol de fermer). */
+.winButtons_c38106 {
+  box-sizing: border-box;
+  height: 28px;
+  gap: 0;
+  padding: 2px;
+  margin-inline-end: 6px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid var(--ui-border);
+}
+
+/* Le séparateur de Discord se retrouverait dans la capsule */
+.winButtonsWithDivider_c38106::before {
+  display: none;
+}
+
+.winButton_c38106:not(#_) {
+  width: 34px;
+  height: 22px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ui-text-muted);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.winButton_c38106 svg {
+  width: 12px;
+  height: 12px;
+}
+
+.winButton_c38106:hover:not(#_) {
+  background: var(--ui-accent-soft);
+  color: var(--ui-text-strong);
+}
+
+.winButton_c38106.winButtonClose_c38106:hover:not(#_) {
+  background: #e5484d;
+  color: #fff;
+}

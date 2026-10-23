@@ -1,0 +1,39 @@
+/* Accent en dégradé : --ui-accent-image vaut none tant que l'option est coupée.
+   Boutons principaux, accueil et serveur survolés, salon sélectionné, liseré des
+   messages qui te mentionnent. */
+.lookFilled__201d5.colorBrand__201d5:not(#_),
+.primary__75098:not(#_),
+.primary_a22cb0:not(#_),
+.tabBar__133bf .addFriend__133bf:not([aria-selected="true"], #_),
+.wrapper__6e9f8.selected__6e9f8 .childWrapper__6e9f8:not(#_),
+.wrapper__6e9f8:hover .childWrapper__6e9f8:not(#_),
+.mentioned__5126c::before {
+  background-image: var(--ui-accent-image, none);
+}
+
+.modeSelected__2ea32 .link__2ea32:not(#_) {
+  background-image: var(--ui-accent-image-soft, none);
+}
+
+/* Pastilles de statut des avatars : Discord écrit leur couleur en dur dans l'attribut
+   fill du SVG (relevé le 2026-10-22, plus les anciennes valeurs) ; la propriété CSS
+   fill passe devant. [mask] : seules les pastilles, découpées par un masque. */
+rect[mask][fill="#45a366"],
+rect[mask][fill="#23a55a"] {
+  fill: var(--ui-status-online);
+}
+
+rect[mask][fill="#ffc04e"],
+rect[mask][fill="#f0b232"] {
+  fill: var(--ui-status-idle);
+}
+
+rect[mask][fill="#da3e44"],
+rect[mask][fill="#f23f43"] {
+  fill: var(--ui-status-dnd);
+}
+
+rect[mask][fill="#84858d"],
+rect[mask][fill="#80848e"] {
+  fill: var(--ui-status-offline);
+}

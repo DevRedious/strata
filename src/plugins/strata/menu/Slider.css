@@ -24,7 +24,8 @@
     cursor: not-allowed;
 }
 
-.vc-strata-modal .vc-strata-chip:hover:not(:disabled) {
+/* :not(.vc-strata-active) : sans lui, ce survol (plus spécifique) effaçait l'accent du choix actif */
+.vc-strata-modal .vc-strata-chip:hover:not(:disabled, .vc-strata-active) {
     color: var(--strata-text);
     background: rgb(255 255 255 / 5%);
 }

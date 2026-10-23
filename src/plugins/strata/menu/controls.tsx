@@ -53,6 +53,44 @@ export function ToggleRow({ setting, title, description, Icon }: ToggleRowProps)
     );
 }
 
+export type Choice = [label: string, value: string];
+
+// Pastilles à choix unique, liées à un réglage
+export function Chips({ setting, choices, label }: { setting: SettingKey; choices: Choice[]; label: string; }) {
+    const current = getValue<string>(setting);
+    return (
+        <div className={cl("chips")} role="group" aria-label={label}>
+            {choices.map(([text, value]) => (
+                <button key={value} className={cl("chip", { active: current === value })} onClick={() => setValue(setting, value)}>
+                    {text}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+interface ChoiceRowProps {
+    setting: SettingKey;
+    title: string;
+    description: string;
+    Icon: ComponentType;
+    choices: Choice[];
+}
+
+// Ligne à choix : comme ToggleRow, avec des pastilles au lieu de l'interrupteur
+export function ChoiceRow({ setting, title, description, Icon, choices }: ChoiceRowProps) {
+    return (
+        <div className={cl("row")}>
+            <div className={cl("row-icon")}><Icon /></div>
+            <div className={cl("row-text")}>
+                <div className={cl("row-title")}>{title}</div>
+                <div className={cl("row-desc")}>{description}</div>
+            </div>
+            <Chips setting={setting} choices={choices} label={title} />
+        </div>
+    );
+}
+
 export type SliderPreset = [label: string, value: number];
 
 interface SliderRowProps {

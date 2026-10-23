@@ -1,6 +1,7 @@
-/* Valeurs par défaut du thème. Le plugin pose par-dessus, sur <html>, celles
-   choisies dans ses réglages (accent, espacement, arrondis, délais du tiroir) :
-   les défauts de settings.ts doivent rester identiques à ceux d'ici. */
+/* Valeurs par défaut du thème. Le plugin pose par-dessus, dans sa balise
+   <style id="vc-strata-vars">, celles choisies dans ses réglages (accent, fond,
+   espacement, arrondis, délais du tiroir) : les défauts de settings.ts doivent
+   rester identiques à ceux d'ici. */
 :root {
   /* Couleur d'accent (sélection, boutons, mentions, focus) */
   --ui-accent: #7c6cff;
@@ -10,6 +11,9 @@
 
   /* Fond de l'application et surfaces, du plus sombre au plus clair */
   --ui-bg: #0a0b0f;
+
+  /* Dégradé peint derrière les panneaux, par-dessus --ui-bg (none : fond uni) */
+  --ui-bg-image: none;
   --ui-surface-1: #111318;
   --ui-surface-2: #171a21;
   --ui-surface-3: #1e222b;

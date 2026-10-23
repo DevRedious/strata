@@ -94,6 +94,17 @@
   --input-border-hover: rgb(255 255 255 / 12%);
   --input-border-active: var(--ui-accent);
 
+  /* Couleurs des statuts (texte et icônes ; les pastilles des avatars : 25-accent.css) */
+  --status-online: var(--ui-status-online);
+  --icon-status-online: var(--ui-status-online);
+  --text-status-online: var(--ui-status-online);
+  --icon-status-idle: var(--ui-status-idle);
+  --text-status-idle: var(--ui-status-idle);
+  --icon-status-dnd: var(--ui-status-dnd);
+  --text-status-dnd: var(--ui-status-dnd);
+  --icon-status-offline: var(--ui-status-offline);
+  --text-status-offline: var(--ui-status-offline);
+
   /* Barres de défilement */
   --scrollbar-thin-thumb: rgb(255 255 255 / 12%);
   --scrollbar-thin-track: transparent;

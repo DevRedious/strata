@@ -27,18 +27,24 @@ Le plugin vit hors de ce dossier, dans `src/plugins/strata/` : Vencord ne compil
 | `src/plugins/strata/titlebar.css` | Style du bouton (`no-drag`, sinon la barre de titre intercepte le clic). |
 | `src/plugins/strata/StrataIcon.tsx` | Logo en icône, à la couleur des icônes de Discord (`currentColor`). |
 | `src/plugins/strata/colors.ts` | Validation des couleurs, surfaces dérivées du fond, couleur du texte posé sur l'accent. |
-| `src/plugins/strata/menu/` | Fenêtre de réglages Strata : `StrataModal.tsx` (fenêtre et navigation), `sections/` (Couleurs, Disposition, Tiroir, Parties, Partager), `controls.tsx` (titres, interrupteurs, curseurs avec présélections), `Slider.tsx` et `ColorPicker.tsx` (curseur et sélecteur de couleur maison), `LayoutPreview.tsx` (aperçu miniature qui suit les réglages), `drag.ts` (glisser et écriture espacée des réglages), `state.ts` (valeurs par défaut, réinitialisation), `transfer.ts` (export et import), `presets.ts`, `icons.tsx`. Chaque composant a son fichier CSS ; `menu.css` porte la fenêtre. |
+| `src/plugins/strata/menu/` | Fenêtre de réglages Strata : `StrataModal.tsx` (fenêtre et navigation), `sections/` (Thèmes, Couleurs, Texte, Disposition, Effets, Tiroir, Mode épuré, Parties, Partager), `controls.tsx` (titres, interrupteurs, pastilles à choix, curseurs avec présélections), `Slider.tsx` et `ColorPicker.tsx` (curseur et sélecteur de couleur maison), `LayoutPreview.tsx` (aperçu miniature qui suit les réglages), `drag.ts` (glisser et écriture espacée des réglages), `state.ts` (valeurs par défaut, réinitialisation), `transfer.ts` (export et import, avec la validation de chaque réglage), `themes.ts` (galerie et thèmes enregistrés dans le DataStore), `presets.ts`, `icons.tsx`. Chaque composant a son fichier CSS ; `menu.css` porte la fenêtre. |
 | `src/plugins/strata/settings.ts` | Options du plugin et leurs valeurs par défaut. |
-| `src/plugins/strata/applyTheme.ts` | Active ou retire chaque fichier du thème, et pose les valeurs choisies en variables CSS sur `<html>`. |
+| `src/plugins/strata/image.ts` | Image de fond choisie sur l'ordinateur : réduite à 2 560 px, gardée dans le DataStore de Vencord (IndexedDB, pas dans `settings.json` ni la synchronisation cloud), affichée par une adresse `blob:`. Calcule aussi sa couleur moyenne, qui teinte les panneaux. |
+| `src/plugins/strata/applyTheme.ts` | Active ou retire chaque fichier du thème, et écrit les valeurs choisies en variables CSS dans sa propre balise `<style>` (pas dans l'attribut `style` de `<html>`, que Discord réécrit quand la fenêtre perd le focus). |
 | `src/plugins/strata/styles/10-settings.css` | Valeurs par défaut des variables du thème (couleurs, espacements, arrondis, tiroir). |
 | `src/plugins/strata/styles/20-discord-tokens.css` | Branche ces variables sur celles de Discord. Toujours actif, comme `10`. |
-| `src/plugins/strata/styles/30-layout.css` | Disposition en panneaux flottants. |
+| `src/plugins/strata/styles/25-accent.css` | Accent en dégradé (boutons principaux, accueil, salon actif, mentions) et couleurs des pastilles de statut. Toujours actif ; sans réglage modifié, ne change rien. |
+| `src/plugins/strata/styles/30-layout.css` | Disposition en panneaux flottants, avec leurs bordures, ombres et la lueur du chat (section Effets). |
+| `src/plugins/strata/styles/35-glass.css` | Fonds « Translucide » et « Image » : les panneaux reprennent les calques des thèmes Nitro de Discord (`--background-gradient-*`), actifs avec la classe `custom-theme-background` que le plugin pose sur `<html>`. Activé seulement dans ce mode. |
 | `src/plugins/strata/styles/40-chat.css` | Messages et barre de saisie. |
+| `src/plugins/strata/styles/45-text.css` | Section Texte : taille du texte des messages, espacement, forme des avatars et des icônes de serveur. Aux valeurs par défaut, Discord garde ses propres réglages d'accessibilité. |
 | `src/plugins/strata/styles/50-settings.css` | Paramètres utilisateur de Discord. |
 | `src/plugins/strata/styles/60-voice.css` | Salons vocaux et appels. |
 | `src/plugins/strata/styles/70-drawer.css` | Liste des salons en tiroir et panneau utilisateur compact. |
 | `src/plugins/strata/styles/80-panel.css` | Panneau utilisateur et bloc « Voix connectée ». |
-| `src/plugins/strata/styles/90-titlebar.css` | Barre de titre. |
+| `src/plugins/strata/styles/85-effects.css` | Lueur du champ de saisie et animations, activées par des requêtes `@container style(--ui-…: on)`. |
+| `src/plugins/strata/styles/95-clean.css` | Mode épuré : un bloc `@container style(--ui-hide-…: on)` par élément masquable. |
+| `src/plugins/strata/styles/90-winbuttons-*.css` | Boutons de fenêtre (réduire, agrandir, fermer), un fichier par style : `mac` (pastilles), `strata` (boutons arrondis, par défaut), `pill` (capsule). Le style « Discord » n'en active aucun. |
 | `src/plugins/strata/styles/.stylelintrc.json` | Assouplit le stylelint de Vencord pour un thème : classes hachées de Discord, `:not(#_)`, spécificité. |
 
 | Chemin (dans `strata/`) | Rôle |
@@ -89,3 +95,7 @@ Ces requêtes travaillent sur un cache dans `strata/.cache/`, qui n'est pas vers
 `tools/screenshot/hover-shot.ps1 <nom> "x1,y1;x2,y2"` déplace le curseur par petits pas jusqu'aux points donnés (coordonnées relatives à cet écran), fait la capture, puis remet le curseur où il était. Ça permet de vérifier les états de survol, comme le tiroir ouvert, sans demander à l'utilisateur de bouger la souris.
 
 `tools/screenshot/click-shot.ps1 <nom> "x1,y1;x2,y2"` clique sur chaque point tour à tour, fait la capture, puis remet le curseur. Il sert à parcourir la fenêtre de réglages. Avant de cliquer, vérifier que Discord est au premier plan et que l'utilisateur ne travaille pas sur cet écran : un clic peut sinon atterrir dans une autre fenêtre.
+
+`tools/screenshot/scroll-shot.ps1 <nom> "x,y" -Notches -5` tourne la molette au point donné (négatif : vers le bas), puis capture : pour voir le bas d'une section de la fenêtre.
+
+Les quatre scripts prennent `-Screen left` quand Discord est sur l'écran le plus à gauche. Les positions des boutons bougent avec les réglages (une police plus large décale la fenêtre, masquer l'aide décale le bouton Strata) : refaire une capture avant chaque série de clics.

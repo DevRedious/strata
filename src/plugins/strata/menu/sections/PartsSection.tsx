@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { cl, Heading, ToggleRow } from "@plugins/strata/menu/controls";
+import { ChoiceRow, cl, Heading, ToggleRow } from "@plugins/strata/menu/controls";
 import { ButtonIcon, ChatIcon, DotsIcon, DrawerIcon, PanelsIcon, PartsIcon, SettingsIcon, UserIcon, VoiceIcon } from "@plugins/strata/menu/icons";
 
 export function PartsSection() {
@@ -19,7 +19,13 @@ export function PartsSection() {
                     <ToggleRow setting="discordSettings" title="Paramètres de Discord" description="Onglet sélectionné à la couleur d'accent" Icon={SettingsIcon} />
                     <ToggleRow setting="voice" title="Vocal" description="Zone d'appel en carte, aux couleurs du thème" Icon={VoiceIcon} />
                     <ToggleRow setting="userPanel" title="Panneau utilisateur" description="Survol à l'accent, nom lisible sur une nameplate" Icon={UserIcon} />
-                    <ToggleRow setting="windowDots" title="Pastilles de fenêtre" description="Boutons réduire, agrandir et fermer façon macOS" Icon={DotsIcon} />
+                    <ChoiceRow
+                        setting="windowButtons"
+                        title="Boutons de fenêtre"
+                        description="Réduire, agrandir et fermer"
+                        Icon={DotsIcon}
+                        choices={[["Strata", "strata"], ["Pilule", "pill"], ["macOS", "mac"], ["Discord", "discord"]]}
+                    />
                 </div>
             </section>
 

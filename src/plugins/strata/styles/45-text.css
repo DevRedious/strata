@@ -1,0 +1,38 @@
+/* Typographie et densité (section « Texte » de la fenêtre Strata). Tant qu'un réglage
+   garde sa valeur par défaut, sa variable n'est pas posée : Discord garde alors ses
+   propres valeurs, y compris celles de ses paramètres d'accessibilité. */
+
+.messageContent_c19a55:not(#_) {
+  font-size: var(--ui-chat-font-size, 1rem);
+  line-height: calc(var(--ui-chat-font-size, 1rem) * 1.375);
+}
+
+.groupStart__5126c:not(#_) {
+  margin-top: var(--ui-message-spacing, var(--custom-group-spacing-start));
+}
+
+.avatar_c19a55:not(#_),
+.replyAvatar_c19a55:not(#_) {
+  border-radius: var(--ui-avatar-radius, 50%);
+}
+
+/* Icônes de serveur : Discord les découpe avec un masque SVG (sa forme arrondie).
+   Pour une autre forme, on retire le masque et on arrondit l'icône nous-mêmes. */
+@container style(--ui-guild-shape: custom) {
+  .wrapper_cc5dd2 foreignObject {
+    mask: none;
+  }
+
+  .wrapper__6e9f8,
+  .childWrapper__6e9f8,
+  .wrapper__6e9f8 img,
+  .folderButtonInner__48112,
+  .folderPreviewWrapper__48112,
+  .folderIcon__48112 {
+    border-radius: var(--ui-guild-radius);
+  }
+
+  .wrapper__6e9f8 {
+    overflow: hidden;
+  }
+}

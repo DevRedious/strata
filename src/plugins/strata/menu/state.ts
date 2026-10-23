@@ -7,14 +7,24 @@
 import { settings } from "@plugins/strata/settings";
 
 export type SettingKey = Extract<keyof typeof settings.def, string>;
-export type SectionId = "colors" | "layout" | "drawer" | "parts" | "share";
+export type SectionId = "colors" | "text" | "layout" | "effects" | "drawer" | "clean" | "parts" | "themes" | "share";
 
 // Réglages de chaque section : sert à réinitialiser et à compter ce qui a changé
 export const SECTION_KEYS: Record<SectionId, SettingKey[]> = {
-    colors: ["accent", "background"],
+    colors: [
+        "accent", "accentGradient", "accentTo", "background", "backgroundMode", "gradientFrom", "gradientTo", "gradientAngle",
+        "glassOpacity", "imageBlur", "imageBrightness", "statusOnline", "statusIdle", "statusDnd", "statusOffline",
+    ],
+    text: ["fontFamily", "fontCustom", "chatFontSize", "messageSpacing", "avatarSize", "avatarShape", "guildShape"],
+    effects: ["borderWidth", "panelShadow", "accentGlow", "animations"],
+    clean: [
+        "hideNitro", "hideShop", "hideQuests", "hideGift", "hideGif", "hideStickers",
+        "hideApps", "hideActiveNow", "hideClanTags", "hideHelp", "hideGuildActions",
+    ],
+    themes: [],
     layout: ["gap", "radius"],
     drawer: ["drawer", "drawerOpenDelay", "drawerCloseDelay"],
-    parts: ["panels", "chat", "drawer", "discordSettings", "voice", "userPanel", "windowDots", "titlebarButton"],
+    parts: ["panels", "chat", "drawer", "discordSettings", "voice", "userPanel", "windowButtons", "titlebarButton"],
     share: [],
 };
 
@@ -22,7 +32,16 @@ export const ALL_KEYS = Object.keys(settings.def) as SettingKey[];
 
 const store = () => settings.store as unknown as Record<SettingKey, unknown>;
 
-export const defaultOf = (key: SettingKey) => (settings.def[key] as { default: unknown; }).default;
+interface SettingDef {
+    default?: unknown;
+    options?: { value: unknown; default?: boolean; }[];
+}
+
+// Les listes (SELECT) n'ont pas de default : c'est l'option marquée default
+export function defaultOf(key: SettingKey) {
+    const def = settings.def[key] as SettingDef;
+    return def.options ? def.options.find(o => o.default)?.value : def.default;
+}
 
 export const getValue = <T>(key: SettingKey) => store()[key] as T;
 

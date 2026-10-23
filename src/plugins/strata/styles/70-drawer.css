@@ -50,9 +50,9 @@
     pointer-events: none;
     transform: translateX(-12px);
     transition:
-      opacity 0.15s ease var(--ui-drawer-close-delay),
-      transform 0.15s ease var(--ui-drawer-close-delay),
-      visibility 0s linear calc(var(--ui-drawer-close-delay) + 0.15s);
+      opacity var(--ui-anim-duration, 0.15s) ease var(--ui-drawer-close-delay),
+      transform var(--ui-anim-duration, 0.15s) ease var(--ui-drawer-close-delay),
+      visibility 0s linear calc(var(--ui-drawer-close-delay) + var(--ui-anim-duration, 0.15s));
   }
 
   .sidebar__5e434:not([data-collapsed="true"]):hover .sidebarList__5e434 {
@@ -61,8 +61,8 @@
     pointer-events: auto;
     transform: none;
     transition:
-      opacity 0.15s ease var(--ui-drawer-open-delay),
-      transform 0.15s ease var(--ui-drawer-open-delay),
+      opacity var(--ui-anim-duration, 0.15s) ease var(--ui-drawer-open-delay),
+      transform var(--ui-anim-duration, 0.15s) ease var(--ui-drawer-open-delay),
       visibility 0s linear var(--ui-drawer-open-delay);
   }
 

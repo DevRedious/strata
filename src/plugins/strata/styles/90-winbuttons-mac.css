@@ -1,4 +1,4 @@
-/* Barre de titre : boutons de fenêtre en pastilles façon macOS.
+/* Boutons de fenêtre « Pastilles macOS » : pastilles de couleur, icônes au survol.
    Ordre Discord : réduire, agrandir, fermer ; ordre macOS : fermer, réduire, agrandir.
    La zone cliquable garde la hauteur de la barre, seule la pastille est dessinée. */
 .winButtons_c38106 {

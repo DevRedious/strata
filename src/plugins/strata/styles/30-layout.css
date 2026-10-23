@@ -2,10 +2,16 @@
    deviennent des cartes séparées par --ui-gap sur le fond --ui-bg.
    Les classes hachées (_5e434, _f75fb0…) sont vérifiées par strata/tools/check-selectors.mjs. */
 
-.base__5e434,
+/* Le fond (uni ou dégradé) est peint une seule fois, sur toute la fenêtre ;
+   les colonnes posées dessus restent transparentes pour que le dégradé soit continu */
+.base__5e434 {
+  background-color: var(--ui-bg);
+  background-image: var(--ui-bg-image);
+}
+
 .sidebar__5e434,
 .guilds__5e434 {
-  background: var(--ui-bg);
+  background: transparent;
 }
 
 /* Bande sombre que Discord ajoute sous la colonne de gauche */
@@ -17,8 +23,9 @@
 .sidebarList__5e434 {
   box-sizing: border-box;
   background: var(--ui-surface-1);
-  border: 1px solid var(--ui-border) !important;
+  border: var(--ui-border-width, 1px) solid var(--ui-border) !important;
   border-radius: var(--ui-radius);
+  box-shadow: var(--ui-panel-shadow, none);
 }
 
 /* Panneau utilisateur (micro, casque, réglages) */
@@ -32,14 +39,15 @@
 /* Zone principale : marge autour, chaque enfant devient une carte */
 .page__5e434 {
   padding: 0 var(--ui-gap) var(--ui-gap);
-  background: var(--ui-bg);
+  background: transparent;
   border: none !important;
 }
 
 .page__5e434 > :not(:has(.chat_f75fb0)) {
   background: var(--ui-surface-1);
-  border: 1px solid var(--ui-border);
+  border: var(--ui-border-width, 1px) solid var(--ui-border);
   border-radius: var(--ui-radius);
+  box-shadow: var(--ui-panel-shadow, none);
   overflow: hidden;
 }
 
@@ -58,8 +66,9 @@
   --__header-bar-background: var(--ui-surface-1);
 
   background: var(--ui-surface-1);
-  border: 1px solid var(--ui-border);
+  border: var(--ui-border-width, 1px) solid var(--ui-border);
   border-radius: var(--ui-radius);
+  box-shadow: var(--ui-panel-shadow, none);
   margin-bottom: var(--ui-gap);
 }
 
@@ -67,10 +76,12 @@
   gap: var(--ui-gap);
 }
 
+/* Le chat porte aussi la lueur d'accent (réglage « Lueur d'accent ») */
 .chatContent_f75fb0 {
   background: var(--ui-surface-1);
-  border: 1px solid var(--ui-border);
+  border: var(--ui-border-width, 1px) solid var(--ui-border);
   border-radius: var(--ui-radius);
+  box-shadow: var(--ui-panel-shadow, 0 0 #0000), var(--ui-chat-glow, 0 0 #0000);
   overflow: hidden;
 }
 
@@ -78,7 +89,8 @@
    flex-shrink: 0 la garde entière quand la zone centrale réclame de la place (forums) */
 .container_c8ffbb {
   background: var(--ui-surface-1);
-  border: 1px solid var(--ui-border);
+  border: var(--ui-border-width, 1px) solid var(--ui-border);
+  box-shadow: var(--ui-panel-shadow, none);
   border-radius: var(--ui-radius);
   overflow: hidden;
   flex-shrink: 0;

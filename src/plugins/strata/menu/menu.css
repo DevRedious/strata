@@ -486,6 +486,26 @@
     font-size: 12.5px;
 }
 
+/* Titre « Fond » et choix Uni / Dégradé sur la même ligne */
+.vc-strata-heading-split {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.vc-strata-heading-split .vc-strata-chips {
+    flex: none;
+}
+
+/* Début / Fin devant les pastilles du dégradé personnalisé */
+.vc-strata-gradient-label {
+    width: 44px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--strata-muted);
+}
+
 /* Partager */
 .vc-strata-action {
     display: inline-flex;
@@ -561,4 +581,216 @@
 
 .vc-strata-modal .vc-strata-ghost:hover:not(:disabled) {
     background: rgb(255 255 255 / 5%);
+}
+
+/* Image de fond : aperçu (cible du glisser-déposer) et boutons */
+.vc-strata-image-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.vc-strata-image-preview {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 200px;
+    aspect-ratio: 16 / 10;
+    border-radius: 11px;
+    border: 1px solid var(--strata-border-2);
+    background: var(--strata-bg) center / cover no-repeat;
+}
+
+.vc-strata-image-preview.vc-strata-empty {
+    border-style: dashed;
+    color: var(--strata-muted);
+    font-size: 12.5px;
+}
+
+.vc-strata-image-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vc-strata-image-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vc-strata-image-error {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--status-danger, #f23f43);
+}
+
+/* Sous-titre de groupe (mode épuré) */
+.vc-strata-subheading {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--strata-muted);
+}
+
+/* Champ de texte libre (nom de police, nom de thème) */
+.vc-strata-text-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 9px;
+    background: var(--strata-bg);
+    border: 1px solid var(--strata-border-2);
+    color: var(--strata-text);
+    font: 13.5px var(--font-primary);
+    outline: none;
+}
+
+.vc-strata-text-input:focus {
+    border-color: var(--strata-accent);
+}
+
+.vc-strata-text-input.vc-strata-invalid {
+    border-color: var(--status-danger, #f23f43);
+}
+
+/* Aperçu de la police choisie (la fenêtre suit --font-primary) */
+.vc-strata-font-sample {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--strata-bg);
+    border: 1px solid var(--strata-border);
+    color: var(--strata-strong);
+    font-size: 15px;
+}
+
+/* Pastille de couleur devant le nom d'un statut */
+.vc-strata-status-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: 104px;
+}
+
+.vc-strata-status-label i {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Thèmes : galerie et thèmes enregistrés */
+.vc-strata-theme-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.vc-strata-theme-card {
+    position: relative;
+}
+
+.vc-strata-modal .vc-strata-theme-apply {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 11px;
+    border: 1px solid var(--strata-border-2);
+    background: var(--strata-bg);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.vc-strata-modal .vc-strata-theme-card.vc-strata-active .vc-strata-theme-apply {
+    border-color: var(--strata-accent);
+    box-shadow: 0 0 0 3px var(--strata-accent-faint);
+}
+
+.vc-strata-theme-preview {
+    display: flex;
+    gap: 4px;
+    height: 46px;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.vc-strata-modal .vc-strata-theme-preview b {
+    position: relative;
+    flex: 1;
+    border-radius: 4px;
+}
+
+.vc-strata-modal .vc-strata-theme-preview b:first-child {
+    flex: 0 0 18px;
+}
+
+.vc-strata-modal .vc-strata-theme-preview i {
+    position: absolute;
+    left: 6px;
+    right: 40%;
+    bottom: 6px;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.vc-strata-theme-name {
+    overflow: hidden;
+    font-size: 12.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-strata-modal .vc-strata-theme-delete {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    border-radius: 7px;
+    background: rgb(0 0 0 / 55%);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+}
+
+.vc-strata-theme-card:hover .vc-strata-theme-delete,
+.vc-strata-modal .vc-strata-theme-delete:focus-visible {
+    opacity: 1;
+}
+
+.vc-strata-modal .vc-strata-theme-delete:hover {
+    background: #e5484d;
+}
+
+.vc-strata-modal .vc-strata-theme-delete svg {
+    width: 14px;
+    height: 14px;
+}
+
+.vc-strata-theme-save {
+    display: flex;
+    gap: 8px;
+}
+
+/* Le champ prend la place, le bouton garde sa largeur */
+.vc-strata-theme-save .vc-strata-text-input {
+    flex: 1;
+}
+
+/* Accent en dégradé : l'aperçu et les choix actifs de la fenêtre le suivent */
+.vc-strata-preview-button,
+.vc-strata-modal .vc-strata-chip.vc-strata-active {
+    background-image: var(--ui-accent-image, none);
 }

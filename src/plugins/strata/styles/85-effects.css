@@ -1,0 +1,44 @@
+/* Effets (section « Effets » de la fenêtre Strata). Bordures et ombres des panneaux :
+   variables de 30-layout.css ; lueur du chat : --ui-chat-glow. */
+
+/* Lueur d'accent autour du champ de saisie actif */
+@container style(--ui-glow: on) {
+  .channelTextArea__74017:focus-within:not(#_) {
+    box-shadow: 0 0 0 3px var(--ui-accent-soft), 0 0 24px var(--ui-accent-faint);
+  }
+}
+
+/* Animations : survols en douceur et apparition des menus */
+@keyframes vc-strata-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@container style(--ui-anim: on) {
+  .message__5126c {
+    transition: background-color 0.15s ease;
+  }
+
+  .link__2ea32 {
+    transition: background-color 0.15s ease, translate 0.15s ease;
+  }
+
+  .wrapper__2ea32:not(.modeSelected__2ea32):hover .link__2ea32 {
+    translate: 2px 0;
+  }
+
+  .listItem__650eb .wrapper_cc5dd2 {
+    transition: translate 0.15s ease;
+  }
+
+  .listItem__650eb:hover .wrapper_cc5dd2 {
+    translate: 0 -1px;
+  }
+
+  .menu_c1e9c4 {
+    animation: vc-strata-pop 0.12s ease-out;
+    transform-origin: top;
+  }
+}

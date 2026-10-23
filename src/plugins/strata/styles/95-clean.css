@@ -1,0 +1,74 @@
+/* Mode épuré : chaque élément n'est masqué que si son interrupteur est activé
+   (--ui-hide-… : on, posé par applyTheme.ts). Les liens de la liste des messages
+   privés sont reconnus à leur adresse, qui ne dépend pas de la langue. */
+
+@container style(--ui-hide-nitro: on) {
+  .channel__972a0:has(a[href="/store"]):not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-shop: on) {
+  .channel__972a0:has(a[href="/shop"]):not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-quests: on) {
+  .channel__972a0:has(a[href="/quest-home"]):not(#_) {
+    display: none;
+  }
+}
+
+/* Barre de saisie. Le bouton GIF n'a pas de classe à lui : c'est le seul sélecteur
+   d'expressions sans bouton autocollants ni émojis (hors boutons ajoutés par Vencord). */
+@container style(--ui-hide-gift: on) {
+  .buttons__74017 > .container__5287f:not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-gif: on) {
+  .buttons__74017 > .expression-picker-chat-input-button:not(.vc-chatbar-button, :has(.stickerButton__74017, .emojiButton__74017)):not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-stickers: on) {
+  .buttons__74017 > .expression-picker-chat-input-button:has(.stickerButton__74017):not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-apps: on) {
+  .buttons__74017 > .app-launcher-entrypoint:not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-active-now: on) {
+  .nowPlayingColumn__133bf:not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-clan-tags: on) {
+  /* Conteneur commun aux tags (messages, listes) ; :not(#_) passe devant son
+     display: inline-flex, chargé après le thème */
+  .chipletContainerInner__10651:not(#_),
+  span.clanTag__5d473:not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-help: on) {
+  .trailing_c38106 > .anchor__14d82:not(#_) {
+    display: none;
+  }
+}
+
+@container style(--ui-hide-guild-actions: on) {
+  .listItem__650eb:has([data-list-item-id="guildsnav___create-join-button"], [data-list-item-id="guildsnav___guild-discover-button"]):not(#_) {
+    display: none;
+  }
+}

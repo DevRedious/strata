@@ -1,0 +1,39 @@
+/* Boutons de fenêtre « Strata » : trois boutons carrés arrondis, icônes toujours
+   visibles. Survol à l'accent pour réduire et agrandir, rouge pour fermer.
+   :not(#_) pour passer devant les règles de Discord (taille, survol de fermer). */
+.winButtons_c38106 {
+  gap: 4px;
+  padding-inline-end: 6px;
+}
+
+.winButton_c38106:not(#_) {
+  width: 32px;
+  height: 24px;
+  border-radius: 7px;
+  background: rgb(255 255 255 / 4%);
+  color: var(--ui-text-muted);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.winButton_c38106 svg {
+  width: 12px;
+  height: 12px;
+}
+
+.winButton_c38106:hover:not(#_) {
+  background: var(--ui-accent-soft);
+  color: var(--ui-text-strong);
+}
+
+.winButton_c38106:active:not(#_) {
+  background: color-mix(in oklab, var(--ui-accent) 32%, transparent);
+}
+
+.winButton_c38106.winButtonClose_c38106:hover:not(#_) {
+  background: #e5484d;
+  color: #fff;
+}
+
+.winButton_c38106.winButtonClose_c38106:active:not(#_) {
+  background: #c73a3f;
+}

@@ -19,7 +19,14 @@
 - [x] Supprimer le fichier `nocturne.theme.css` de `%APPDATA%\Vencord\themes`, puis `strata/tools/build-theme.mjs`, devenu inutile (2026-10-22).
 - [x] Vérifié sur capture le 2026-10-22 : les 5 sections, l'accent en direct (texte sombre sur un accent clair), un interrupteur de partie, un curseur et « Réinitialiser la section ».
 - [x] Sélecteur de couleur maison (carré saturation/luminosité et barre de teinte), curseurs maison avec présélections, aperçu miniature (le survol ouvre le tiroir avec les délais réglés), barre de défilement visible, finitions. Validés par l'utilisateur dans Discord le 2026-10-22.
-- [ ] Reste à vérifier : export puis import, champ `#rrggbb`, fermeture par Échap, bouton « Ouvrir la fenêtre Strata » dans la liste de Vencord.
+- [ ] Reste à vérifier : export puis import, champ `#rrggbb`, bouton « Ouvrir la fenêtre Strata » dans la liste de Vencord. Fermeture par Échap vérifiée le 2026-10-22.
+- [x] Réglages qui sautaient quand Discord perdait le focus : les variables sont maintenant dans notre propre `<style>` (2026-10-22, vérifié sur capture).
+- [x] Trois types de fond : Uni, Dégradé (derrière les panneaux) et Translucide (façon thèmes Nitro, avec l'opacité des panneaux), 4 dégradés tout faits et un dégradé personnalisé. Vérifiés sur capture le 2026-10-22 (conversation, tiroir, salon vocal).
+- [x] Fond en image choisie sur l'ordinateur (bouton ou glisser-déposer), visible à travers les panneaux. Validé par l'utilisateur dans Discord le 2026-10-22.
+- [x] Boutons de fenêtre au choix : Strata (boutons arrondis, par défaut), Pilule, pastilles macOS ou ceux de Discord. Strata vérifié sur capture le 2026-10-22, survol compris ; Pilule et macOS validés par l'utilisateur.
+- [x] Thèmes (galerie de 8 thèmes et thèmes enregistrés), Texte (police installée, taille, espacement, taille et forme des avatars, forme des serveurs et des dossiers), Effets (bordures, ombres, lueur d'accent, animations), Mode épuré (11 éléments), accent en dégradé, couleurs des statuts, flou et luminosité de l'image. Vérifiés un par un dans Discord le 2026-10-22, avec rechargements et clics ; réglages de l'utilisateur remis à l'identique ensuite par l'import. Non vérifié à l'écran : la colonne « En ligne maintenant », que Discord masque déjà sur une fenêtre de 1 080 px de large.
+- [ ] Fonds clairs : textes et texte secondaire choisis selon le contraste avec les panneaux (au moins 4,5:1 pour le texte secondaire quand c'est possible). Codé (`textColorsFor` dans `colors.ts`), pas encore vérifié dans Discord ; certains textes de Discord non reliés au thème resteront clairs.
+- [ ] Translucide : vérifier un salon textuel avec la liste des membres, les paramètres de Discord, les profils et les fenêtres (« Nouveautés »…).
 
 ## Phase 2 : releases automatiques
 

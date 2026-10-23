@@ -5,6 +5,7 @@
  */
 
 import { gradientBase, gradientCss, surfacesFor } from "@plugins/strata/colors";
+import { tr } from "@plugins/strata/i18n";
 import { cl, Heading } from "@plugins/strata/menu/controls";
 import { SaveIcon, ThemesIcon, TrashIcon } from "@plugins/strata/menu/icons";
 import { applyTheme, BUILTIN_THEMES, deleteTheme, isCurrentTheme, loadSavedThemes, saveTheme, Theme, themeValue } from "@plugins/strata/menu/themes";
@@ -31,16 +32,19 @@ function ThemePreview({ theme }: { theme: Theme; }) {
     );
 }
 
-function ThemeCard({ theme, onDelete }: { theme: Theme; onDelete?: () => void; }) {
+// Thèmes de la galerie : nom traduit ; thèmes enregistrés : le nom donné par l'utilisateur
+const themeName = (theme: Theme) => (theme.en ? tr(theme.name, theme.en) : theme.name);
+
+export function ThemeCard({ theme, onDelete }: { theme: Theme; onDelete?: () => void; }) {
     const active = isCurrentTheme(theme);
     return (
         <div className={cl("theme-card", { active })}>
-            <button className={cl("theme-apply")} onClick={() => applyTheme(theme)} title={`Appliquer « ${theme.name} »`}>
+            <button className={cl("theme-apply")} onClick={() => applyTheme(theme)} title={tr(`Appliquer « ${themeName(theme)} »`, `Apply “${themeName(theme)}”`)}>
                 <ThemePreview theme={theme} />
-                <span className={cl("theme-name")}>{theme.name}</span>
+                <span className={cl("theme-name")}>{themeName(theme)}</span>
             </button>
             {onDelete && (
-                <button className={cl("theme-delete")} onClick={onDelete} aria-label={`Supprimer « ${theme.name} »`} title="Supprimer">
+                <button className={cl("theme-delete")} onClick={onDelete} aria-label={tr(`Supprimer « ${theme.name} »`, `Delete “${theme.name}”`)} title={tr("Supprimer", "Delete")}>
                     <TrashIcon />
                 </button>
             )}
@@ -59,15 +63,15 @@ export function ThemesSection() {
         const trimmed = name.trim();
         setSaved(await saveTheme(trimmed));
         setName("");
-        showToast({ text: `Thème « ${trimmed} » enregistré`, variant: "success" });
+        showToast({ text: tr(`Thème « ${trimmed} » enregistré`, `Theme “${trimmed}” saved`), variant: "success" });
     }
 
     return (
         <>
             <section className={cl("block")}>
                 <Heading
-                    title="Galerie"
-                    hint="Des thèmes tout faits : couleurs, texte, disposition et effets. Les parties, le tiroir et le mode épuré ne changent pas."
+                    title={tr("Galerie", "Gallery")}
+                    hint={tr("Des thèmes tout faits : couleurs, texte, disposition et effets. Les parties, le tiroir et le mode épuré ne changent pas.", "Ready-made themes: colours, text, layout and effects. Theme parts, the drawer and clean mode don't change.")}
                     Icon={ThemesIcon}
                 />
                 <div className={cl("theme-grid")}>
@@ -77,14 +81,14 @@ export function ThemesSection() {
 
             <section className={cl("block")}>
                 <Heading
-                    title="Mes thèmes"
-                    hint="Enregistre tes réglages actuels pour y revenir en un clic. L'image de fond n'est pas incluse."
+                    title={tr("Mes thèmes", "My themes")}
+                    hint={tr("Enregistre tes réglages actuels pour y revenir en un clic. L'image de fond n'est pas incluse.", "Save your current settings to come back to them in one click. The background picture is not included.")}
                     Icon={SaveIcon}
                 />
                 <div className={cl("theme-save")}>
                     <input
                         className={cl("text-input")}
-                        placeholder="Nom du thème"
+                        placeholder={tr("Nom du thème", "Theme name")}
                         maxLength={40}
                         value={name}
                         onChange={e => setName(e.currentTarget.value)}
@@ -92,7 +96,7 @@ export function ThemesSection() {
                             if (e.key === "Enter" && name.trim()) save();
                         }}
                     />
-                    <button className={cl("ghost")} disabled={!name.trim()} onClick={save}>Enregistrer</button>
+                    <button className={cl("ghost")} disabled={!name.trim()} onClick={save}>{tr("Enregistrer", "Save")}</button>
                 </div>
                 {saved.length
                     ? (
@@ -102,7 +106,7 @@ export function ThemesSection() {
                             ))}
                         </div>
                     )
-                    : <p className={cl("hint")}>Aucun thème enregistré pour l'instant.</p>}
+                    : <p className={cl("hint")}>{tr("Aucun thème enregistré pour l'instant.", "No saved theme yet.")}</p>}
             </section>
         </>
     );

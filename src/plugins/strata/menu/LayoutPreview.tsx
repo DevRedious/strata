@@ -6,6 +6,7 @@
 
 import "./LayoutPreview.css";
 
+import { tr } from "@plugins/strata/i18n";
 import type { CSSProperties } from "react";
 
 import { cl } from "./controls";
@@ -59,7 +60,7 @@ export function LayoutPreview({ drawerMode = false }: { drawerMode?: boolean; })
                     </div>
                 </div>
             </div>
-            {drawer && <span className={cl("pv-hint")}>Survole pour ouvrir le tiroir</span>}
+            {drawer && <span className={cl("pv-hint")}>{tr("Survole pour ouvrir le tiroir", "Hover to open the drawer")}</span>}
         </div>
     );
 }

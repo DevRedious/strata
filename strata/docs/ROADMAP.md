@@ -25,6 +25,8 @@
 - [x] Fond en image choisie sur l'ordinateur (bouton ou glisser-déposer), visible à travers les panneaux. Validé par l'utilisateur dans Discord le 2026-10-22.
 - [x] Boutons de fenêtre au choix : Strata (boutons arrondis, par défaut), Pilule, pastilles macOS ou ceux de Discord. Strata vérifié sur capture le 2026-10-22, survol compris ; Pilule et macOS validés par l'utilisateur.
 - [x] Thèmes (galerie de 8 thèmes et thèmes enregistrés), Texte (police installée, taille, espacement, taille et forme des avatars, forme des serveurs et des dossiers), Effets (bordures, ombres, lueur d'accent, animations), Mode épuré (11 éléments), accent en dégradé, couleurs des statuts, flou et luminosité de l'image. Vérifiés un par un dans Discord le 2026-10-22, avec rechargements et clics ; réglages de l'utilisateur remis à l'identique ensuite par l'import. Non vérifié à l'écran : la colonne « En ligne maintenant », que Discord masque déjà sur une fenêtre de 1 080 px de large.
+- [x] Fenêtre de bienvenue au premier lancement (choix d'un thème) et fenêtre des nouveautés après une mise à jour (`menu/changelog.ts`). Vérifiées dans Discord le 2026-10-23 : thème appliqué en direct depuis la bienvenue, bouton « Voir » des nouveautés, affichage une seule fois.
+- [x] Fenêtre Strata, bienvenue et nouveautés en français et en anglais, avec une liste déroulante à drapeaux (Automatique = langue de Discord). Vérifié dans Discord le 2026-10-23, toutes les sections.
 - [ ] Fonds clairs : textes et texte secondaire choisis selon le contraste avec les panneaux (au moins 4,5:1 pour le texte secondaire quand c'est possible). Codé (`textColorsFor` dans `colors.ts`), pas encore vérifié dans Discord ; certains textes de Discord non reliés au thème resteront clairs.
 - [ ] Translucide : vérifier un salon textuel avec la liste des membres, les paramètres de Discord, les profils et les fenêtres (« Nouveautés »…).
 
@@ -45,6 +47,8 @@
 - [x] Compiler et publier l'exe du launcher par GitHub Actions : vérifications, compilation et empreinte SHA-256 à chaque push, release à chaque tag `vX.Y.Z` (première : `v0.1.0`, non signée, 2026-10-22).
 - [ ] Signature : demande à SignPath Foundation (gratuit pour l'open source), puis soumission de l'exe à Norton et à Microsoft pour analyse.
 - [x] Passe visuelle du launcher : icône réelle de chaque Discord (`app.ico` de l'installation), version du client, icônes du launcher en petite taille (16 à 32 px, logo agrandi pour rester lisible) (2026-10-22).
+- [x] Launcher en français et en anglais : liste déroulante à drapeaux à la première étape, puis en haut à droite ; messages des opérations traduits aussi (2026-10-23, vérifié sur l'exe compilé en mode démo).
+- [x] Site : fonctionnalités à jour (thèmes, fonds, texte, mode épuré…), captures de la fenêtre de réglages, pages françaises entièrement en français (2026-10-23).
 - [x] Site public [devredious.github.io/strata](https://devredious.github.io/strata/), bilingue, avec le guide d'installation (SmartScreen et antivirus compris), la politique de confidentialité et la politique de signature, exigées par SignPath (2026-10-22).
 - [x] Favicons, manifeste web et images de partage (Open Graph, FR et EN) du site (2026-10-22).
 - [ ] Demande de signature à SignPath Foundation : suivi dans `strata-launcher/docs/SIGNPATH.md`.

@@ -7,6 +7,7 @@
 import "./ColorPicker.css";
 
 import { hexToHsv, Hsv, hsvToHex } from "@plugins/strata/colors";
+import { tr } from "@plugins/strata/i18n";
 import { useEffect, useRef, useState } from "@webpack/common";
 import type { KeyboardEvent, PointerEvent } from "react";
 
@@ -75,7 +76,7 @@ export function ColorPicker({ value, onChange }: ColorPickerProps) {
                 className={cl("picker-area")}
                 style={{ backgroundColor: `hsl(${hsv.h} 100% 50%)` }}
                 role="slider"
-                aria-label="Saturation et luminosité"
+                aria-label={tr("Saturation et luminosité", "Saturation and brightness")}
                 aria-valuetext={emitted.current}
                 tabIndex={0}
                 onKeyDown={areaKeys}
@@ -89,7 +90,7 @@ export function ColorPicker({ value, onChange }: ColorPickerProps) {
             <div
                 className={cl("picker-hue")}
                 role="slider"
-                aria-label="Teinte"
+                aria-label={tr("Teinte", "Hue")}
                 aria-valuemin={0}
                 aria-valuemax={360}
                 aria-valuenow={Math.round(hsv.h)}

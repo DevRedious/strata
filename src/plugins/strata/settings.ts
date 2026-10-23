@@ -325,6 +325,31 @@ export const settings = definePluginSettings({
     hideClanTags: hide("Tags de serveur", "Petites étiquettes à côté des pseudos"),
     hideHelp: hide("Bouton d'aide", "Dans la barre de titre"),
     hideGuildActions: hide("Ajouter et Découvrir", "Boutons en bas de la barre des serveurs"),
+    language: {
+        type: OptionType.SELECT,
+        displayName: "Langue / Language",
+        description: "Langue de la fenêtre Strata / Language of the Strata window",
+        options: [
+            { label: "Automatique (langue de Discord) / Automatic (Discord's language)", value: "auto", default: true },
+            { label: "Français", value: "fr" },
+            { label: "English", value: "en" },
+        ],
+    },
+    // Ce que l'utilisateur a déjà vu : fenêtre de bienvenue et dernière nouveauté présentée
+    welcomed: {
+        type: OptionType.BOOLEAN,
+        displayName: "Bienvenue vue",
+        description: "La fenêtre de bienvenue a déjà été montrée",
+        default: false,
+        hidden: true,
+    },
+    seenChangelog: {
+        type: OptionType.STRING,
+        displayName: "Dernière nouveauté vue",
+        description: "Identifiant de la dernière nouveauté présentée",
+        default: "",
+        hidden: true,
+    },
     titlebarButton: {
         type: OptionType.BOOLEAN,
         displayName: "Bouton dans la barre de titre",

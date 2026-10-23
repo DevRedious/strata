@@ -5,12 +5,13 @@
  */
 
 import { gradientBase, gradientCss, isHexColor, surfacesFor } from "@plugins/strata/colors";
+import { tr } from "@plugins/strata/i18n";
 import { removeBackgroundImage, saveBackgroundImage, useBackgroundImage } from "@plugins/strata/image";
 import { ColorPicker } from "@plugins/strata/menu/ColorPicker";
 import { cl, Heading, SliderPreset, SliderRow, ToggleRow } from "@plugins/strata/menu/controls";
 import { useThrottledSetter } from "@plugins/strata/menu/drag";
 import { LayoutIcon, PaletteIcon, UserIcon } from "@plugins/strata/menu/icons";
-import { ACCENTS, BACKGROUNDS, GLASS_GRADIENTS, GradientPreset, GRADIENTS, Preset } from "@plugins/strata/menu/presets";
+import { ACCENTS, BACKGROUNDS, GLASS_GRADIENTS, GradientPreset, GRADIENTS, nameOf, Preset } from "@plugins/strata/menu/presets";
 import { getValue, SettingKey, setValue } from "@plugins/strata/menu/state";
 import { useEffect, useRef, useState } from "@webpack/common";
 import type { ReactNode } from "react";
@@ -55,8 +56,8 @@ function CustomColor({ setting, isPreset, children }: CustomColorProps) {
                 {children}
                 <button
                     className={cl("swatch", "swatch-custom", { active: !isPreset || open })}
-                    title="Couleur personnalisée"
-                    aria-label="Couleur personnalisée"
+                    title={tr("Couleur personnalisée", "Custom colour")}
+                    aria-label={tr("Couleur personnalisée", "Custom colour")}
                     aria-expanded={open}
                     onClick={() => setOpen(o => !o)}
                 >
@@ -77,7 +78,7 @@ function BackgroundOption({ preset, active }: { preset: Preset; active: boolean;
                 <b style={{ background: s1 }} />
                 <b style={{ background: s2 }} />
             </span>
-            <span className={cl("bg-name")}>{preset.name}</span>
+            <span className={cl("bg-name")}>{nameOf(preset)}</span>
         </button>
     );
 }
@@ -91,24 +92,30 @@ function GradientOption({ preset, active }: { preset: GradientPreset; active: bo
                 <b style={{ background: s1 }} />
                 <b style={{ background: s2 }} />
             </span>
-            <span className={cl("bg-name")}>{preset.name}</span>
+            <span className={cl("bg-name")}>{nameOf(preset)}</span>
         </button>
     );
 }
 
 const ANGLES: SliderPreset[] = [["→", 90], ["↘", 135], ["↓", 180], ["↙", 225]];
-const OPACITIES: SliderPreset[] = [["Verre", 50], ["Voilé", 70], ["Nitro", 100]];
+const opacities = (): SliderPreset[] => [[tr("Verre", "Glass"), 50], [tr("Voilé", "Veiled"), 70], ["Nitro", 100]];
 
 type Mode = "solid" | "gradient" | "glass" | "image";
 
-const MODES: [label: string, mode: Mode][] = [["Uni", "solid"], ["Dégradé", "gradient"], ["Translucide", "glass"], ["Image", "image"]];
+const modes = (): [label: string, mode: Mode][] => [
+    [tr("Uni", "Solid"), "solid"], [tr("Dégradé", "Gradient"), "gradient"], [tr("Translucide", "Translucent"), "glass"], ["Image", "image"],
+];
 
-const HINTS: Record<Mode, string> = {
-    solid: "Les panneaux sont éclaircis à partir du fond, pour garder le même contraste. Préférer une couleur sombre.",
-    gradient: "Le dégradé est peint derrière les panneaux, qui en prennent la teinte. Préférer des couleurs sombres.",
-    glass: "Le dégradé se voit à travers les panneaux, comme les thèmes Nitro. Préférer des couleurs vives.",
-    image: "Une image de ton choix, visible à travers les panneaux comme les thèmes Nitro. Les panneaux prennent sa teinte.",
-};
+const hints = (): Record<Mode, string> => ({
+    solid: tr("Les panneaux sont éclaircis à partir du fond, pour garder le même contraste. Préférer une couleur sombre.",
+        "Panels are lightened from the background, to keep the same contrast. A dark colour works best."),
+    gradient: tr("Le dégradé est peint derrière les panneaux, qui en prennent la teinte. Préférer des couleurs sombres.",
+        "The gradient is painted behind the panels, which take on its tint. Dark colours work best."),
+    glass: tr("Le dégradé se voit à travers les panneaux, comme les thèmes Nitro. Préférer des couleurs vives.",
+        "The gradient shows through the panels, like Nitro themes. Bright colours work best."),
+    image: tr("Une image de ton choix, visible à travers les panneaux comme les thèmes Nitro. Les panneaux prennent sa teinte.",
+        "A picture of your choice, showing through the panels like Nitro themes. Panels take on its tint."),
+});
 
 const presetsFor = (mode: Mode) => mode === "glass" ? GLASS_GRADIENTS : GRADIENTS;
 
@@ -132,7 +139,7 @@ function switchMode(mode: Mode) {
 }
 
 // Un composant et non une constante JSX : pas de JSX évalué au chargement du module
-const OpacityRow = () => <SliderRow setting="glassOpacity" title="Opacité des panneaux" unit=" %" min={30} max={100} presets={OPACITIES} />;
+const OpacityRow = () => <SliderRow setting="glassOpacity" title={tr("Opacité des panneaux", "Panel opacity")} unit=" %" min={30} max={100} presets={opacities()} />;
 
 function GradientControls({ mode }: { mode: Mode; }) {
     const from = getValue<string>("gradientFrom");
@@ -147,10 +154,10 @@ function GradientControls({ mode }: { mode: Mode; }) {
                 ))}
             </div>
             <CustomColor setting="gradientFrom" isPreset={presets.some(p => p.from === from)}>
-                <span className={cl("gradient-label")}>Début</span>
+                <span className={cl("gradient-label")}>{tr("Début", "Start")}</span>
             </CustomColor>
             <CustomColor setting="gradientTo" isPreset={presets.some(p => p.to === to)}>
-                <span className={cl("gradient-label")}>Fin</span>
+                <span className={cl("gradient-label")}>{tr("Fin", "End")}</span>
             </CustomColor>
             <SliderRow setting="gradientAngle" title="Angle" unit="°" min={0} max={360} presets={ANGLES} />
             {mode === "glass" && <OpacityRow />}
@@ -172,7 +179,7 @@ function ImageControls() {
         try {
             await saveBackgroundImage(file);
         } catch {
-            setError("Cette image n'a pas pu être lue. Essaie un fichier JPEG, PNG ou WebP.");
+            setError(tr("Cette image n'a pas pu être lue. Essaie un fichier JPEG, PNG ou WebP.", "This picture could not be read. Try a JPEG, PNG or WebP file."));
         } finally {
             setBusy(false);
         }
@@ -190,16 +197,16 @@ function ImageControls() {
                         pick(e.dataTransfer.files[0]);
                     }}
                 >
-                    {!url && <span>Glisse une image ici</span>}
+                    {!url && <span>{tr("Glisse une image ici", "Drop a picture here")}</span>}
                 </div>
                 <div className={cl("image-actions")}>
                     <div className={cl("image-buttons")}>
                         <button className={cl("ghost")} disabled={busy} onClick={() => input.current?.click()}>
-                            {busy ? "Préparation…" : url ? "Changer d'image…" : "Choisir une image…"}
+                            {busy ? tr("Préparation…", "Preparing…") : url ? tr("Changer d'image…", "Change picture…") : tr("Choisir une image…", "Choose a picture…")}
                         </button>
-                        {url && <button className={cl("ghost")} disabled={busy} onClick={() => removeBackgroundImage()}>Retirer</button>}
+                        {url && <button className={cl("ghost")} disabled={busy} onClick={() => removeBackgroundImage()}>{tr("Retirer", "Remove")}</button>}
                     </div>
-                    <p className={cl("hint")}>L'image reste sur cet ordinateur : l'export des réglages ne la contient pas.</p>
+                    <p className={cl("hint")}>{tr("L'image reste sur cet ordinateur : l'export des réglages ne la contient pas.", "The picture stays on this computer: exported settings do not include it.")}</p>
                     {error && <p className={cl("image-error")}>{error}</p>}
                 </div>
                 <input
@@ -216,48 +223,50 @@ function ImageControls() {
             <OpacityRow />
             {url && (
                 <>
-                    <SliderRow setting="imageBlur" title="Flou" unit="px" min={0} max={30} presets={[["Net", 0], ["Doux", 8], ["Fort", 20]]} />
-                    <SliderRow setting="imageBrightness" title="Luminosité" unit=" %" min={40} max={120} presets={[["Sombre", 60], ["Normale", 100], ["Claire", 115]]} />
+                    <SliderRow setting="imageBlur" title={tr("Flou", "Blur")} unit="px" min={0} max={30} presets={[[tr("Net", "Sharp"), 0], [tr("Doux", "Soft"), 8], [tr("Fort", "Strong"), 20]]} />
+                    <SliderRow setting="imageBrightness" title={tr("Luminosité", "Brightness")} unit=" %" min={40} max={120} presets={[[tr("Sombre", "Dark"), 60], [tr("Normale", "Normal"), 100], [tr("Claire", "Bright"), 115]]} />
                 </>
             )}
         </>
     );
 }
 
-const STATUSES: [setting: SettingKey, label: string][] = [
-    ["statusOnline", "En ligne"],
-    ["statusIdle", "Absent"],
-    ["statusDnd", "Occupé"],
-    ["statusOffline", "Hors ligne"],
+const STATUS_KEYS: SettingKey[] = ["statusOnline", "statusIdle", "statusDnd", "statusOffline"];
+
+const statuses = (): [setting: SettingKey, label: string][] => [
+    ["statusOnline", tr("En ligne", "Online")],
+    ["statusIdle", tr("Absent", "Idle")],
+    ["statusDnd", tr("Occupé", "Do not disturb")],
+    ["statusOffline", tr("Hors ligne", "Offline")],
 ];
 
 // Jeux de couleurs tout faits, dans l'ordre de STATUSES
-const STATUS_PALETTES: [name: string, colors: string[]][] = [
-    ["Discord", ["#45a366", "#ffc04e", "#da3e44", "#84858d"]],
-    ["Vives", ["#22c55e", "#facc15", "#ef4444", "#71717a"]],
-    ["Douces", ["#86efac", "#fde68a", "#fca5a5", "#a1a1aa"]],
+const STATUS_PALETTES: [name: string, en: string, colors: string[]][] = [
+    ["Discord", "Discord", ["#45a366", "#ffc04e", "#da3e44", "#84858d"]],
+    ["Vives", "Vivid", ["#22c55e", "#facc15", "#ef4444", "#71717a"]],
+    ["Douces", "Soft", ["#86efac", "#fde68a", "#fca5a5", "#a1a1aa"]],
 ];
 
 function StatusColors() {
-    const current = STATUSES.map(([setting]) => getValue<string>(setting));
+    const current = STATUS_KEYS.map(setting => getValue<string>(setting));
     return (
         <section className={cl("block")}>
             <div className={cl("heading-split")}>
-                <Heading title="Statuts" hint="Pastilles de statut des avatars et textes de statut." Icon={UserIcon} />
-                <div className={cl("chips")} role="group" aria-label="Couleurs des statuts">
-                    {STATUS_PALETTES.map(([name, colors]) => (
+                <Heading title={tr("Statuts", "Statuses")} hint={tr("Pastilles de statut des avatars et textes de statut.", "Status dots on avatars and status texts.")} Icon={UserIcon} />
+                <div className={cl("chips")} role="group" aria-label={tr("Couleurs des statuts", "Status colours")}>
+                    {STATUS_PALETTES.map(([name, en, colors]) => (
                         <button
                             key={name}
                             className={cl("chip", { active: colors.every((c, i) => c === current[i]) })}
-                            onClick={() => STATUSES.forEach(([setting], i) => setValue(setting, colors[i]))}
+                            onClick={() => STATUS_KEYS.forEach((setting, i) => setValue(setting, colors[i]))}
                         >
-                            {name}
+                            {tr(name, en)}
                         </button>
                     ))}
                 </div>
             </div>
-            {STATUSES.map(([setting, label]) => (
-                <CustomColor key={setting} setting={setting} isPreset={STATUS_PALETTES.some(([, colors]) => colors.includes(getValue<string>(setting)))}>
+            {statuses().map(([setting, label]) => (
+                <CustomColor key={setting} setting={setting} isPreset={STATUS_PALETTES.some(([, , colors]) => colors.includes(getValue<string>(setting)))}>
                     <span className={cl("gradient-label", "status-label")}>
                         <i style={{ background: getValue<string>(setting) }} />{label}
                     </span>
@@ -276,9 +285,13 @@ export function ColorsSection() {
     return (
         <>
             <section className={cl("block")}>
-                <Heading title="Couleur d'accent" hint="Sélection, boutons, mentions, salon actif. Le texte posé dessus s'adapte tout seul." Icon={PaletteIcon} />
+                <Heading
+                    title={tr("Couleur d'accent", "Accent colour")}
+                    hint={tr("Sélection, boutons, mentions, salon actif. Le texte posé dessus s'adapte tout seul.", "Selection, buttons, mentions, active channel. Text on top of it adapts on its own.")}
+                    Icon={PaletteIcon}
+                />
                 <CustomColor setting="accent" isPreset={ACCENTS.some(p => p.hex === accent)}>
-                    {ACCENTS.map(({ name, hex }) => (
+                    {ACCENTS.map(preset => ({ ...preset, name: nameOf(preset) })).map(({ name, hex }) => (
                         <button
                             key={hex}
                             className={cl("swatch", { active: hex === accent })}
@@ -292,15 +305,15 @@ export function ColorsSection() {
                 <div className={cl("card", "list")}>
                     <ToggleRow
                         setting="accentGradient"
-                        title="Accent en dégradé"
-                        description="Boutons, serveur survolé, salon actif et mentions en dégradé"
+                        title={tr("Accent en dégradé", "Gradient accent")}
+                        description={tr("Boutons, serveur survolé, salon actif et mentions en dégradé", "Buttons, hovered server, active channel and mentions as a gradient")}
                         Icon={PaletteIcon}
                     />
                 </div>
-                {accentGradient && <span className={cl("subheading")}>Seconde couleur du dégradé</span>}
+                {accentGradient && <span className={cl("subheading")}>{tr("Seconde couleur du dégradé", "Second gradient colour")}</span>}
                 {accentGradient && (
                     <CustomColor setting="accentTo" isPreset={ACCENTS.some(p => p.hex === accentTo)}>
-                        {ACCENTS.map(({ name, hex }) => (
+                        {ACCENTS.map(preset => ({ ...preset, name: nameOf(preset) })).map(({ name, hex }) => (
                             <button
                                 key={hex}
                                 className={cl("swatch", { active: hex === accentTo })}
@@ -313,18 +326,18 @@ export function ColorsSection() {
                     </CustomColor>
                 )}
                 <div className={cl("preview")}>
-                    <span className={cl("preview-button")}>Bouton</span>
+                    <span className={cl("preview-button")}>{tr("Bouton", "Button")}</span>
                     <span className={cl("preview-mention")}>@Strata</span>
-                    <span className={cl("preview-channel")}># général</span>
-                    <span className={cl("preview-link")}>un lien</span>
+                    <span className={cl("preview-channel")}>{tr("# général", "# general")}</span>
+                    <span className={cl("preview-link")}>{tr("un lien", "a link")}</span>
                 </div>
             </section>
 
             <section className={cl("block")}>
                 <div className={cl("heading-split")}>
-                    <Heading title="Fond" hint={HINTS[mode]} Icon={LayoutIcon} />
-                    <div className={cl("chips")} role="group" aria-label="Type de fond">
-                        {MODES.map(([label, value]) => (
+                    <Heading title={tr("Fond", "Background")} hint={hints()[mode]} Icon={LayoutIcon} />
+                    <div className={cl("chips")} role="group" aria-label={tr("Type de fond", "Background type")}>
+                        {modes().map(([label, value]) => (
                             <button key={value} className={cl("chip", { active: mode === value })} onClick={() => switchMode(value)}>
                                 {label}
                             </button>

@@ -4,39 +4,40 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { tr } from "@plugins/strata/i18n";
 import { cl, Heading, ToggleRow } from "@plugins/strata/menu/controls";
 import { ChatIcon, EyeOffIcon, UserIcon } from "@plugins/strata/menu/icons";
 import type { SettingKey } from "@plugins/strata/menu/state";
 import type { ComponentType } from "react";
 
-const GROUPS: { title: string; Icon: ComponentType; items: [setting: SettingKey, title: string, description: string][]; }[] = [
+const groups = (): { title: string; Icon: ComponentType; items: [setting: SettingKey, title: string, description: string][]; }[] => [
     {
-        title: "Messages privés",
+        title: tr("Messages privés", "Direct messages"),
         Icon: UserIcon,
         items: [
-            ["hideNitro", "Nitro", "Lien en haut de la liste des messages privés"],
-            ["hideShop", "Boutique", "Lien en haut de la liste des messages privés"],
-            ["hideQuests", "Quêtes", "Lien en haut de la liste des messages privés"],
+            ["hideNitro", "Nitro", tr("Lien en haut de la liste des messages privés", "Link at the top of the direct messages list")],
+            ["hideShop", tr("Boutique", "Shop"), tr("Lien en haut de la liste des messages privés", "Link at the top of the direct messages list")],
+            ["hideQuests", tr("Quêtes", "Quests"), tr("Lien en haut de la liste des messages privés", "Link at the top of the direct messages list")],
         ],
     },
     {
-        title: "Barre de saisie",
+        title: tr("Barre de saisie", "Chat bar"),
         Icon: ChatIcon,
         items: [
-            ["hideGift", "Cadeau", "Offrir Nitro"],
-            ["hideGif", "GIF", "Sélecteur de GIF"],
-            ["hideStickers", "Autocollants", "Sélecteur d'autocollants"],
-            ["hideApps", "Applications", "Lanceur d'applications et d'activités"],
+            ["hideGift", tr("Cadeau", "Gift"), tr("Offrir Nitro", "Gift Nitro")],
+            ["hideGif", "GIF", tr("Sélecteur de GIF", "GIF picker")],
+            ["hideStickers", tr("Autocollants", "Stickers"), tr("Sélecteur d'autocollants", "Sticker picker")],
+            ["hideApps", tr("Applications", "Apps"), tr("Lanceur d'applications et d'activités", "App and activity launcher")],
         ],
     },
     {
-        title: "Ailleurs",
+        title: tr("Ailleurs", "Elsewhere"),
         Icon: EyeOffIcon,
         items: [
-            ["hideActiveNow", "« En ligne maintenant »", "Colonne d'activité de la page Amis"],
-            ["hideClanTags", "Tags de serveur", "Étiquettes à côté des pseudos"],
-            ["hideHelp", "Aide", "Bouton d'aide de la barre de titre"],
-            ["hideGuildActions", "Ajouter et Découvrir", "Boutons en bas de la barre des serveurs"],
+            ["hideActiveNow", tr("« En ligne maintenant »", "“Active Now”"), tr("Colonne d'activité de la page Amis", "Activity column of the Friends page")],
+            ["hideClanTags", tr("Tags de serveur", "Server tags"), tr("Étiquettes à côté des pseudos", "Labels next to usernames")],
+            ["hideHelp", tr("Aide", "Help"), tr("Bouton d'aide de la barre de titre", "Help button in the title bar")],
+            ["hideGuildActions", tr("Ajouter et Découvrir", "Add and Discover"), tr("Boutons en bas de la barre des serveurs", "Buttons at the bottom of the server bar")],
         ],
     },
 ];
@@ -45,9 +46,13 @@ export function CleanSection() {
     return (
         <>
             <section className={cl("block")}>
-                <Heading title="Mode épuré" hint="Masque des éléments de Discord dont tu ne te sers pas. Rien n'est supprimé : il suffit de rallumer." Icon={EyeOffIcon} />
+                <Heading
+                    title={tr("Mode épuré", "Clean mode")}
+                    hint={tr("Masque des éléments de Discord dont tu ne te sers pas. Rien n'est supprimé : il suffit de rallumer.", "Hides Discord elements you don't use. Nothing is deleted: just turn them back on.")}
+                    Icon={EyeOffIcon}
+                />
             </section>
-            {GROUPS.map(({ title, Icon, items }) => (
+            {groups().map(({ title, Icon, items }) => (
                 <section key={title} className={cl("block")}>
                     <h3 className={cl("subheading")}>{title}</h3>
                     <div className={cl("card", "list")}>

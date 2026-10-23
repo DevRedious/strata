@@ -1,0 +1,121 @@
+/* Liste déroulante de langue, dans l'en-tête des fenêtres Strata */
+.vc-strata-lang {
+    position: relative;
+    margin-left: auto;
+}
+
+.vc-strata-modal .vc-strata-lang-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px 6px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--strata-border-2);
+    background: rgb(255 255 255 / 3%);
+    color: var(--strata-text);
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.vc-strata-modal .vc-strata-lang-button:hover,
+.vc-strata-lang.vc-strata-open .vc-strata-lang-button {
+    border-color: color-mix(in oklab, var(--strata-accent) 50%, transparent);
+    background: var(--strata-accent-faint);
+}
+
+.vc-strata-lang-flag {
+    flex: none;
+    display: block;
+    width: 20px;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 15%);
+}
+
+.vc-strata-lang-flag svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Globe d'« Automatique » : pas de cadre de drapeau */
+.vc-strata-lang-flag.vc-strata-globe {
+    width: 16px;
+    height: 16px;
+    margin: 0 2px;
+    box-shadow: none;
+    color: var(--strata-accent-strong);
+}
+
+.vc-strata-lang-caret {
+    width: 6px;
+    height: 6px;
+    margin: -3px 2px 0;
+    border-right: 1.5px solid currentcolor;
+    border-bottom: 1.5px solid currentcolor;
+    transform: rotate(45deg);
+    opacity: 0.7;
+}
+
+.vc-strata-lang.vc-strata-open .vc-strata-lang-caret {
+    margin-top: 3px;
+    transform: rotate(225deg);
+}
+
+.vc-strata-lang-list {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 10;
+    min-width: 210px;
+    margin: 0;
+    padding: 4px;
+    list-style: none;
+    border-radius: 12px;
+    border: 1px solid var(--strata-border-2);
+    background: var(--strata-s2);
+    box-shadow: 0 12px 32px rgb(0 0 0 / 50%);
+}
+
+.vc-strata-modal .vc-strata-lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    color: var(--strata-text);
+    font: inherit;
+    font-size: 13.5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.vc-strata-modal .vc-strata-lang-option:hover {
+    background: rgb(255 255 255 / 6%);
+}
+
+.vc-strata-lang-list [aria-selected="true"] .vc-strata-lang-option {
+    background: var(--strata-accent-faint);
+    color: var(--strata-strong);
+}
+
+.vc-strata-lang-option-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.vc-strata-lang-option-text small {
+    color: var(--strata-muted);
+    font-size: 11.5px;
+}
+
+/* Le bouton fermer suit la liste de langue, sans repartir à droite */
+.vc-strata-modal .vc-strata-lang + .vc-strata-close {
+    margin-left: 4px;
+}

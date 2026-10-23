@@ -28,7 +28,9 @@ export const SECTION_KEYS: Record<SectionId, SettingKey[]> = {
     share: [],
 };
 
-export const ALL_KEYS = Object.keys(settings.def) as SettingKey[];
+// Réglages visibles : les réglages masqués (bienvenue vue, teinte de l'image…) ne sont
+// ni réinitialisés ni exportés
+export const ALL_KEYS = (Object.keys(settings.def) as SettingKey[]).filter(key => !(settings.def[key] as { hidden?: boolean; }).hidden);
 
 const store = () => settings.store as unknown as Record<SettingKey, unknown>;
 

@@ -427,6 +427,19 @@ section + section {
     margin-bottom: 0;
 }
 
+/* Mentions que SignPath exige mot pour mot, en anglais, sur les pages françaises :
+   présentées comme une citation, à part du texte */
+.legal {
+    padding-left: 12px;
+    border-left: 2px solid var(--border-2);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.legal [lang="en"] {
+    font-style: italic;
+}
+
 /* Pages de texte (téléchargement, confidentialité, signature) */
 .page {
     padding: 56px 0 72px;
@@ -538,5 +551,38 @@ footer a {
 
     .top nav {
         display: none;
+    }
+}
+
+/* Captures de la fenêtre de réglages, deux par ligne */
+.screens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.screens figure {
+    min-width: 0;
+    margin: 0;
+}
+
+.screens .shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+}
+
+.screens figcaption {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14.5px;
+    text-align: center;
+}
+
+@media (width <= 860px) {
+    .screens {
+        grid-template-columns: minmax(0, 1fr);
     }
 }

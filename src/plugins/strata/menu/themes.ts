@@ -20,38 +20,40 @@ export type ThemeValues = Partial<Record<SettingKey, unknown>>;
 
 export interface Theme {
     name: string;
+    /** Nom anglais, pour les thèmes de la galerie */
+    en?: string;
     values: ThemeValues;
 }
 
 // Galerie : seules les valeurs qui s'écartent des défauts
 export const BUILTIN_THEMES: Theme[] = [
-    { name: "Strata", values: {} },
-    { name: "Encre", values: { background: "#0b0f1a", accent: "#5b8cff" } },
-    { name: "Émeraude", values: { background: "#0e0e10", accent: "#34d399", panelShadow: "soft" } },
+    { name: "Strata", en: "Strata", values: {} },
+    { name: "Encre", en: "Ink", values: { background: "#0b0f1a", accent: "#5b8cff" } },
+    { name: "Émeraude", en: "Emerald", values: { background: "#0e0e10", accent: "#34d399", panelShadow: "soft" } },
     {
-        name: "Braise",
+        name: "Braise", en: "Ember",
         values: { backgroundMode: "gradient", gradientFrom: "#4a1420", gradientTo: "#3a2208", accent: "#f43f5e", panelShadow: "soft" },
     },
     {
-        name: "Crépuscule",
+        name: "Crépuscule", en: "Dusk",
         values: {
             backgroundMode: "glass", gradientFrom: "#ff7a45", gradientTo: "#7b2ff7", accent: "#fb923c",
             accentGradient: true, accentTo: "#a855f7",
         },
     },
     {
-        name: "Boréal",
+        name: "Boréal", en: "Boreal",
         values: { backgroundMode: "glass", gradientFrom: "#00c9a7", gradientTo: "#4f46e5", gradientAngle: 160, accent: "#2dd4bf", accentGlow: true },
     },
     {
-        name: "Sakura",
+        name: "Sakura", en: "Sakura",
         values: {
             backgroundMode: "glass", gradientFrom: "#f472b6", gradientTo: "#6d28d9", accent: "#e879f9",
             avatarShape: "rounded", guildShape: "round", radius: 20,
         },
     },
     {
-        name: "Compact",
+        name: "Compact", en: "Compact",
         values: { gap: 4, radius: 8, chatFontSize: 14, messageSpacing: 4, avatarSize: 32, borderWidth: 0 },
     },
 ];

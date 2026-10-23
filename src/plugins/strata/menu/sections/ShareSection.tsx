@@ -5,6 +5,7 @@
  */
 
 import { Button } from "@components/Button";
+import { tr } from "@plugins/strata/i18n";
 import { cl, Heading } from "@plugins/strata/menu/controls";
 import { CopyIcon, ImportIcon, ShareIcon } from "@plugins/strata/menu/icons";
 import { exportSettings, importSettings } from "@plugins/strata/menu/transfer";
@@ -16,7 +17,7 @@ export function ShareSection() {
 
     async function copy() {
         await copyToClipboard(exportSettings());
-        showToast({ text: "Réglages Strata copiés", variant: "success" });
+        showToast({ text: tr("Réglages Strata copiés", "Strata settings copied"), variant: "success" });
     }
 
     function apply() {
@@ -26,22 +27,22 @@ export function ShareSection() {
             return;
         }
         setText("");
-        showToast({ text: `${result.count} réglages importés`, variant: "success" });
+        showToast({ text: tr(`${result.count} réglages importés`, `${result.count} settings imported`), variant: "success" });
     }
 
     return (
         <>
             <section className={cl("block")}>
-                <Heading title="Exporter" hint="Copie tous tes réglages Strata sous forme de texte, à envoyer à un collègue." Icon={ShareIcon} />
+                <Heading title={tr("Exporter", "Export")} hint={tr("Copie tous tes réglages Strata sous forme de texte, à envoyer à un collègue.", "Copies all your Strata settings as text, to send to a colleague.")} Icon={ShareIcon} />
                 <div>
                     <Button variant="primary" size="small" className={cl("action")} onClick={copy}>
-                        <CopyIcon />Copier mes réglages
+                        <CopyIcon />{tr("Copier mes réglages", "Copy my settings")}
                     </Button>
                 </div>
             </section>
 
             <section className={cl("block")}>
-                <Heading title="Importer" hint="Colle le texte reçu. Les réglages sont vérifiés avant d'être appliqués." Icon={ImportIcon} />
+                <Heading title={tr("Importer", "Import")} hint={tr("Colle le texte reçu. Les réglages sont vérifiés avant d'être appliqués.", "Paste the text you received. Settings are checked before being applied.")} Icon={ImportIcon} />
                 <textarea
                     className={cl("import")}
                     placeholder='{"strata":1,"settings":{…}}'
@@ -51,7 +52,7 @@ export function ShareSection() {
                 />
                 <div>
                     <Button variant="secondary" size="small" className={cl("action")} disabled={!text.trim()} onClick={apply}>
-                        <ImportIcon />Appliquer
+                        <ImportIcon />{tr("Appliquer", "Apply")}
                     </Button>
                 </div>
             </section>

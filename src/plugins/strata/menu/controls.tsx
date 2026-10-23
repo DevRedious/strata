@@ -5,6 +5,7 @@
  */
 
 import { Switch } from "@components/Switch";
+import { tr } from "@plugins/strata/i18n";
 import { classNameFactory } from "@utils/css";
 import type { ComponentType, ReactNode } from "react";
 
@@ -110,7 +111,7 @@ export function SliderRow({ setting, title, unit, min, max, presets, disabled }:
         <div className={cl("slider", { disabled })}>
             <div className={cl("slider-head")}>
                 <span className={cl("row-title")}>{title}</span>
-                <div className={cl("chips")} role="group" aria-label={`Présélections : ${title}`}>
+                <div className={cl("chips")} role="group" aria-label={tr(`Présélections : ${title}`, `Presets: ${title}`)}>
                     {presets.map(([label, preset]) => (
                         <button
                             key={label}

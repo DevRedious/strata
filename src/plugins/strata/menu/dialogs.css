@@ -1,0 +1,74 @@
+/* Fenêtres de bienvenue et de nouveautés : la fenêtre Strata (menu.css) sans sa
+   navigation, en une colonne */
+
+.vc-strata-modal.vc-strata-dialog {
+    grid-template: "head" auto "body" 1fr "foot" auto / 1fr;
+    width: min(680px, calc(100vw - 48px));
+    height: auto;
+    max-height: min(640px, calc(100vh - 48px));
+}
+
+.vc-strata-dialog-body {
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+    padding: 20px 22px;
+    overflow-y: auto;
+}
+
+.vc-strata-dialog-foot {
+    grid-area: foot;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-top: 1px solid var(--strata-border);
+    background: var(--strata-bg);
+}
+
+.vc-strata-dialog-hint {
+    flex: 1;
+    font-size: 12.5px;
+    color: var(--strata-muted);
+}
+
+.vc-strata-modal .vc-strata-primary {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 9px;
+    background: var(--strata-accent);
+    background-image: var(--ui-accent-image, none);
+    color: var(--ui-accent-contrast, #fff);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.vc-strata-modal .vc-strata-primary:hover {
+    filter: brightness(1.08);
+}
+
+/* Nouveautés */
+.vc-strata-changelog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* list-style : Discord remet les listes à zéro */
+.vc-strata-changelog-list {
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding-left: 20px;
+    color: var(--strata-text);
+}
+
+.vc-strata-changelog-list li::marker {
+    color: var(--strata-accent);
+}

@@ -9,6 +9,7 @@ import definePlugin from "@utils/types";
 
 import { startTheme, stopTheme } from "./applyTheme";
 import { OpenMenuButton } from "./menu/StrataModal";
+import { startOnboarding, stopOnboarding } from "./onboarding";
 import { settings } from "./settings";
 import { renderTitlebarButton } from "./TitlebarButton";
 
@@ -37,6 +38,12 @@ export default definePlugin({
 
     renderTitlebarButton,
 
-    start: startTheme,
-    stop: stopTheme,
+    start() {
+        startTheme();
+        startOnboarding();
+    },
+    stop() {
+        stopOnboarding();
+        stopTheme();
+    },
 });

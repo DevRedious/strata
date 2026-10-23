@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Politique de signature du code · Strata</title>
-    <meta name="description" content="Code signing policy du launcher Strata : ce qui est signé, par qui, comment, et ce que fait le programme.">
+    <meta name="description" content="Politique de signature du code du lanceur Strata : ce qui est signé, par qui, comment, et ce que fait le programme.">
     <link rel="icon" href="assets/favicon.ico" sizes="48x48">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -15,7 +15,7 @@
     <meta property="og:locale" content="fr_FR">
     <meta property="og:url" content="https://devredious.github.io/strata/signature.html">
     <meta property="og:title" content="Politique de signature du code · Strata">
-    <meta property="og:description" content="Code signing policy du launcher Strata : ce qui est signé, par qui, comment, et ce que fait le programme.">
+    <meta property="og:description" content="Politique de signature du code du lanceur Strata : ce qui est signé, par qui, comment, et ce que fait le programme.">
     <meta property="og:image" content="https://devredious.github.io/strata/assets/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -41,16 +41,17 @@
 
     <main class="page">
         <div class="wrap">
-            <h1>Code signing policy</h1>
-            <p class="lead">Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>.</p>
+            <h1>Politique de signature du code</h1>
+            <p class="lead">La signature est offerte par <a href="https://about.signpath.io">SignPath.io</a>, avec un certificat de <a href="https://signpath.org">SignPath Foundation</a>.</p>
+            <p class="legal"><span>Intitulé et mention officiels, en anglais :</span> <span lang="en">Code signing policy. Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>.</span></p>
 
             <div class="note warn">
-                <p>La signature n'est pas encore active : la demande à SignPath Foundation est en préparation. En attendant, les exe publiés ne sont pas signés.</p>
+                <p>La signature n'est pas encore active : la demande à SignPath Foundation est en préparation. En attendant, les exécutables publiés ne sont pas signés.</p>
             </div>
 
             <h2>Ce qui est signé</h2>
-            <p>Uniquement <code>strata-launcher.exe</code>, le launcher de Strata pour Windows. Il est compilé par GitHub Actions, sur des machines hébergées par GitHub, à partir du code de son dépôt (<a href="https://github.com/DevRedious/strata-launcher/blob/main/.github/workflows/build.yml">workflow de compilation</a>), pour chaque version publiée. Aucun binaire compilé sur un poste de développement n'est signé ni distribué.</p>
-            <p>Le launcher télécharge ensuite les fichiers de Strata (JavaScript et CSS chargés par Discord) depuis les <a href="https://github.com/DevRedious/strata/releases">releases de Strata</a>, elles aussi compilées par GitHub Actions. Ce ne sont pas des exécutables Windows : ils ne sont pas couverts par cette signature.</p>
+            <p>Uniquement <code>strata-launcher.exe</code>, le lanceur de Strata pour Windows. Il est compilé par GitHub Actions, sur des machines hébergées par GitHub, à partir du code de son dépôt (<a href="https://github.com/DevRedious/strata-launcher/blob/main/.github/workflows/build.yml">script de compilation</a>), pour chaque version publiée. Aucun binaire compilé sur un poste de développement n'est signé ni distribué.</p>
+            <p>Le lanceur télécharge ensuite les fichiers de Strata (JavaScript et CSS chargés par Discord) depuis les <a href="https://github.com/DevRedious/strata/releases">versions publiées de Strata</a>, elles aussi compilées par GitHub Actions. Ce ne sont pas des exécutables Windows : ils ne sont pas couverts par cette signature.</p>
 
             <h2>Rôles</h2>
             <dl>
@@ -60,7 +61,7 @@
             <p>Toute contribution extérieure est relue avant d'être fusionnée. Chaque demande de signature est approuvée à la main. L'authentification à deux facteurs est exigée sur GitHub et sur SignPath.</p>
 
             <h2>Ce que fait le programme</h2>
-            <p>Le launcher installe, répare ou désinstalle Strata sur les clients Discord de l'ordinateur, à la demande de l'utilisateur, avec un bouton par opération :</p>
+            <p>Le lanceur installe, répare ou désinstalle Strata sur les clients Discord de l'ordinateur, à la demande de l'utilisateur, avec un bouton par opération :</p>
             <ul>
                 <li>il ferme le client Discord concerné, après avoir prévenu qu'un appel en cours sera coupé ;</li>
                 <li>il renomme <code>resources\app.asar</code> en <code>_app.asar</code> dans le dossier de Discord, et écrit à sa place une petite archive qui charge Strata, comme l'installeur officiel de Vencord ;</li>
@@ -69,7 +70,8 @@
             </ul>
 
             <h2>Confidentialité</h2>
-            <p>This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it. Le détail des connexions est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+            <p>Ce programme ne transmet aucune information à d'autres systèmes en réseau, sauf à la demande expresse de la personne qui l'utilise, l'installe ou le fait fonctionner. Le détail des connexions est dans la <a href="confidentialite.html">politique de confidentialité</a>.</p>
+            <p class="legal"><span>Engagement officiel, en anglais :</span> <span lang="en">This program will not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.</span></p>
         </div>
     </main>
 

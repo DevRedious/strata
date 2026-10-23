@@ -10,6 +10,7 @@ import { useSettings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { findComponentByCodeLazy } from "@webpack";
 
+import { tr } from "./i18n";
 import { openStrataModal } from "./menu/StrataModal";
 import { settings } from "./settings";
 import { StrataIcon } from "./StrataIcon";
@@ -26,8 +27,8 @@ function StrataButton() {
     return (
         <HeaderBarIcon
             className="vc-strata-titlebar-btn"
-            onClick={openStrataModal}
-            tooltip="Réglages Strata"
+            onClick={() => openStrataModal()}
+            tooltip={tr("Réglages Strata", "Strata settings")}
             icon={() => <StrataIcon />}
         />
     );

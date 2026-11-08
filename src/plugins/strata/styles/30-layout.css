@@ -4,23 +4,23 @@
 
 /* Le fond (uni ou dégradé) est peint une seule fois, sur toute la fenêtre ;
    les colonnes posées dessus restent transparentes pour que le dégradé soit continu */
-.base__5e434 {
+.base_pog62O {
   background-color: var(--ui-bg);
   background-image: var(--ui-bg-image);
 }
 
-.sidebar__5e434,
-.guilds__5e434 {
+.sidebar_pog62O,
+.guilds_pog62O {
   background: transparent;
 }
 
 /* Bande sombre que Discord ajoute sous la colonne de gauche */
-.sidebar__5e434::after {
+.sidebar_pog62O::after {
   display: none;
 }
 
 /* Liste des salons */
-.sidebarList__5e434 {
+.sidebarList_pog62O {
   box-sizing: border-box;
   background: var(--ui-surface-1);
   border: var(--ui-border-width, 1px) solid var(--ui-border) !important;
@@ -29,7 +29,7 @@
 }
 
 /* Panneau utilisateur (micro, casque, réglages) */
-.panels__5e434 {
+.panels_pog62O {
   background: var(--ui-surface-2);
   border-color: var(--ui-border);
   border-radius: var(--ui-radius);
@@ -37,13 +37,13 @@
 }
 
 /* Zone principale : marge autour, chaque enfant devient une carte */
-.page__5e434 {
+.page_pog62O {
   padding: 0 var(--ui-gap) var(--ui-gap);
   background: transparent;
   border: none !important;
 }
 
-.page__5e434 > :not(:has(.chat_f75fb0)) {
+.page_pog62O > :not(:has(.chat_z_gUBg)) {
   background: var(--ui-surface-1);
   border: var(--ui-border-width, 1px) solid var(--ui-border);
   border-radius: var(--ui-radius);
@@ -53,16 +53,16 @@
 
 /* Page de salon : l'en-tête, les messages et les membres sont trois cartes,
    leurs conteneurs restent transparents */
-.page__5e434 > :has(.chat_f75fb0),
-.chat_f75fb0 {
+.page_pog62O > :has(.chat_z_gUBg),
+.chat_z_gUBg {
   background: transparent;
 }
 
 /* En-têtes de chat (salon textuel, chat d'un salon vocal…). L'espace vers le chat
-   est une marge sur .container__9293f, présent sur tous ces en-têtes ; seul celui
-   des salons textuels porte aussi .title_f75fb0.
-   :not(#_) pour passer devant `.theme-dark .themed__9293f`, chargé après le thème */
-.chat_f75fb0 .container__9293f:not(#_) {
+   est une marge sur .container_ybUK7Z, présent sur tous ces en-têtes ; seul celui
+   des salons textuels porte aussi .title_z_gUBg.
+   :not(#_) pour passer devant `.theme-dark .themed_ybUK7Z`, chargé après le thème */
+.chat_z_gUBg .container_ybUK7Z:not(#_) {
   --__header-bar-background: var(--ui-surface-1);
 
   background: var(--ui-surface-1);
@@ -72,12 +72,12 @@
   margin-bottom: var(--ui-gap);
 }
 
-.content_f75fb0 {
+.content_z_gUBg {
   gap: var(--ui-gap);
 }
 
 /* Le chat porte aussi la lueur d'accent (réglage « Lueur d'accent ») */
-.chatContent_f75fb0 {
+.chatContent_z_gUBg {
   background: var(--ui-surface-1);
   border: var(--ui-border-width, 1px) solid var(--ui-border);
   border-radius: var(--ui-radius);
@@ -87,7 +87,7 @@
 
 /* overflow: hidden autorise la carte à rétrécir sous la largeur de la liste :
    flex-shrink: 0 la garde entière quand la zone centrale réclame de la place (forums) */
-.container_c8ffbb {
+.container_86es0b {
   background: var(--ui-surface-1);
   border: var(--ui-border-width, 1px) solid var(--ui-border);
   box-shadow: var(--ui-panel-shadow, none);
@@ -96,6 +96,6 @@
   flex-shrink: 0;
 }
 
-.members_c8ffbb {
+.members_86es0b {
   background: transparent;
 }

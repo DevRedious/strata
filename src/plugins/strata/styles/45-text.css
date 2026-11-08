@@ -2,37 +2,37 @@
    garde sa valeur par défaut, sa variable n'est pas posée : Discord garde alors ses
    propres valeurs, y compris celles de ses paramètres d'accessibilité. */
 
-.messageContent_c19a55:not(#_) {
+.messageContent_2i8Bfm:not(#_) {
   font-size: var(--ui-chat-font-size, 1rem);
   line-height: calc(var(--ui-chat-font-size, 1rem) * 1.375);
 }
 
-.groupStart__5126c:not(#_) {
+.groupStart_SY_P2T:not(#_) {
   margin-top: var(--ui-message-spacing, var(--custom-group-spacing-start));
 }
 
-.avatar_c19a55:not(#_),
-.replyAvatar_c19a55:not(#_) {
+.avatar_2i8Bfm:not(#_),
+.replyAvatar_2i8Bfm:not(#_) {
   border-radius: var(--ui-avatar-radius, 50%);
 }
 
 /* Icônes de serveur : Discord les découpe avec un masque SVG (sa forme arrondie).
    Pour une autre forme, on retire le masque et on arrondit l'icône nous-mêmes. */
 @container style(--ui-guild-shape: custom) {
-  .wrapper_cc5dd2 foreignObject {
+  .wrapper_hqZPsU foreignObject {
     mask: none;
   }
 
-  .wrapper__6e9f8,
-  .childWrapper__6e9f8,
-  .wrapper__6e9f8 img,
-  .folderButtonInner__48112,
-  .folderPreviewWrapper__48112,
-  .folderIcon__48112 {
+  .wrapper_JJ-hgR,
+  .childWrapper_JJ-hgR,
+  .wrapper_JJ-hgR img,
+  .folderButtonInner_RTMSuZ,
+  .folderPreviewWrapper_RTMSuZ,
+  .folderIcon_RTMSuZ {
     border-radius: var(--ui-guild-radius);
   }
 
-  .wrapper__6e9f8 {
+  .wrapper_JJ-hgR {
     overflow: hidden;
   }
 }

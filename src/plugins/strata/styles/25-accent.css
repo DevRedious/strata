@@ -1,17 +1,17 @@
 /* Accent en dégradé : --ui-accent-image vaut none tant que l'option est coupée.
    Boutons principaux, accueil et serveur survolés, salon sélectionné, liseré des
    messages qui te mentionnent. */
-.lookFilled__201d5.colorBrand__201d5:not(#_),
-.primary__75098:not(#_),
-.primary_a22cb0:not(#_),
-.tabBar__133bf .addFriend__133bf:not([aria-selected="true"], #_),
-.wrapper__6e9f8.selected__6e9f8 .childWrapper__6e9f8:not(#_),
-.wrapper__6e9f8:hover .childWrapper__6e9f8:not(#_),
-.mentioned__5126c::before {
+.lookFilled_9OQtot.colorBrand_9OQtot:not(#_),
+.primary_F7qvhY:not(#_),
+.primary_F7qvhY:not(#_),
+.tabBar_zrUwGA .addFriend_zrUwGA:not([aria-selected="true"], #_),
+.wrapper_JJ-hgR.selected_JJ-hgR .childWrapper_JJ-hgR:not(#_),
+.wrapper_JJ-hgR:hover .childWrapper_JJ-hgR:not(#_),
+.mentioned_SY_P2T::before {
   background-image: var(--ui-accent-image, none);
 }
 
-.modeSelected__2ea32 .link__2ea32:not(#_) {
+.modeSelected_TNyK-N .link_TNyK-N:not(#_) {
   background-image: var(--ui-accent-image-soft, none);
 }
 

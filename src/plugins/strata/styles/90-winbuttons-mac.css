@@ -1,38 +1,38 @@
 /* Boutons de fenêtre « Pastilles macOS » : pastilles de couleur, icônes au survol.
    Ordre Discord : réduire, agrandir, fermer ; ordre macOS : fermer, réduire, agrandir.
    La zone cliquable garde la hauteur de la barre, seule la pastille est dessinée. */
-.winButtons_c38106 {
+.winButtons_3zSH5d {
   gap: 0;
 }
 
 /* Séparateur vertical de Discord : reste avant le groupe de pastilles */
-.winButtonsWithDivider_c38106::before {
+.winButtonsWithDivider_3zSH5d::before {
   order: -2;
 }
 
 /* :not(#_) pour annuler le fond de survol de Discord (rouge sur fermer) */
-.winButton_c38106:not(#_) {
+.winButton_3zSH5d:not(#_) {
   position: relative;
   width: 22px;
   background: transparent;
   color: rgb(0 0 0 / 65%);
 }
 
-.winButton_c38106 {
+.winButton_3zSH5d {
   --ui-dot: #febc2e;
 }
 
-.winButton_c38106:nth-child(2) {
+.winButton_3zSH5d:nth-child(2) {
   --ui-dot: #28c840;
 }
 
-.winButton_c38106.winButtonClose_c38106 {
+.winButton_3zSH5d.winButtonClose_3zSH5d {
   --ui-dot: #ff5f57;
 
   order: -1;
 }
 
-.winButton_c38106::before {
+.winButton_3zSH5d::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -45,7 +45,7 @@
 }
 
 /* Icônes masquées, visibles quand la souris est sur le groupe, comme sur macOS */
-.winButton_c38106 svg {
+.winButton_3zSH5d svg {
   position: relative;
   width: 8px;
   height: 8px;
@@ -53,10 +53,10 @@
   transition: opacity 0.1s ease;
 }
 
-.winButtons_c38106:hover .winButton_c38106 svg {
+.winButtons_3zSH5d:hover .winButton_3zSH5d svg {
   opacity: 1;
 }
 
-.winButton_c38106:active::before {
+.winButton_3zSH5d:active::before {
   filter: brightness(0.85);
 }

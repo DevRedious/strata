@@ -3,7 +3,7 @@
 
 /* Lueur d'accent autour du champ de saisie actif */
 @container style(--ui-glow: on) {
-  .channelTextArea__74017:focus-within:not(#_) {
+  .channelTextArea_2x8-Qn:focus-within:not(#_) {
     box-shadow: 0 0 0 3px var(--ui-accent-soft), 0 0 24px var(--ui-accent-faint);
   }
 }
@@ -17,27 +17,27 @@
 }
 
 @container style(--ui-anim: on) {
-  .message__5126c {
+  .message_SY_P2T {
     transition: background-color 0.15s ease;
   }
 
-  .link__2ea32 {
+  .link_TNyK-N {
     transition: background-color 0.15s ease, translate 0.15s ease;
   }
 
-  .wrapper__2ea32:not(.modeSelected__2ea32):hover .link__2ea32 {
+  .wrapper_TNyK-N:not(.modeSelected_TNyK-N):hover .link_TNyK-N {
     translate: 2px 0;
   }
 
-  .listItem__650eb .wrapper_cc5dd2 {
+  .listItem_rwEpIL .wrapper_hqZPsU {
     transition: translate 0.15s ease;
   }
 
-  .listItem__650eb:hover .wrapper_cc5dd2 {
+  .listItem_rwEpIL:hover .wrapper_hqZPsU {
     translate: 0 -1px;
   }
 
-  .menu_c1e9c4 {
+  .menu_M3qk4j {
     animation: vc-strata-pop 0.12s ease-out;
     transform-origin: top;
   }

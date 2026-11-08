@@ -3,28 +3,28 @@
 /* Durées d'appel (bloc « Voix connectée », salons vocaux de la liste) : Discord
    impose la police de code en style inline, d'où !important. Chiffres de largeur
    égale pour que le compteur ne bouge pas. */
-:is(.channel_e131a9, .sidebarList__5e434) [style*="--font-code"] {
+:is(.channel_9U6LUN, .sidebarList_pog62O) [style*="--font-code"] {
   font-family: var(--font-primary) !important;
   font-variant-numeric: tabular-nums;
 }
 
 /* Nom et statut lisibles sur une nameplate (bannière décorative) */
-.plated__37e49 :is(.panelTitleContainer__37e49, .panelSubtextContainer__37e49) {
+.plated_g6VwXp :is(.panelTitleContainer_g6VwXp, .panelSubtextContainer_g6VwXp) {
   text-shadow: 0 1px 2px rgb(0 0 0 / 85%), 0 0 8px rgb(0 0 0 / 50%);
 }
 
-.plated__37e49 .panelSubtextContainer__37e49 {
+.plated_g6VwXp .panelSubtextContainer_g6VwXp {
   color: var(--ui-text);
 }
 
 /* Survol des boutons en accent : caméra, partage, activités, soundboard… */
-:is(.button_e131a9.buttonColor_e131a9, .button_e131a9 .buttonColor_e131a9):not(.buttonActive_e131a9):hover:not(#_) {
+:is(.button_9U6LUN.buttonColor_9U6LUN, .button_9U6LUN .buttonColor_9U6LUN):not(.buttonActive_9U6LUN):hover:not(#_) {
   background-color: var(--ui-accent-soft);
   color: var(--ui-text-strong);
 }
 
 /* … et micro, casque, paramètres */
-.buttons__37e49 :is(button, [role="button"]):hover:not(#_) {
+.buttons_g6VwXp :is(button, [role="button"]):hover:not(#_) {
   background-color: var(--ui-accent-soft);
   color: var(--ui-text-strong);
 }

@@ -7,8 +7,9 @@ import { fileURLToPath } from 'node:url';
 const ORIGIN = 'https://discord.com';
 export const CACHE_DIR = fileURLToPath(new URL('../.cache/discord-css', import.meta.url));
 
-// Classes des modules CSS de Discord : nom_hash ou nom__hash (hash hexadécimal de 5-6 caractères)
-export const CLASS_RE = /\.([A-Za-z][A-Za-z0-9-]*_{1,2}[a-f0-9]{5,6})(?![A-Za-z0-9_-])/g;
+// Classes des modules CSS de Discord : nom__hash (5 caractères hexadécimaux), nom_hash (6 hexadécimaux)
+// ou, depuis novembre 2026, nom_hash sur 6 caractères alphanumériques, tirets et soulignés compris
+export const CLASS_RE = /\.([A-Za-z][A-Za-z0-9-]*?_(?:_[a-f0-9]{5}|[A-Za-z0-9_-]{6}))(?![A-Za-z0-9_-])/g;
 
 async function text(url) {
   const res = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0' } });
